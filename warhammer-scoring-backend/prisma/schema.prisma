@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model armies {
+  id                                   Int           @id @default(autoincrement())
+  name                                 String        @unique(map: "unique_army") @db.VarChar(50)
+  detachments                          detachments[]
+  games_games_opponent_army_idToarmies games[]       @relation("games_opponent_army_idToarmies")
+  games_games_user_army_idToarmies     games[]       @relation("games_user_army_idToarmies")
+}
+
+model detachments {
+  id                                              Int     @id @default(autoincrement())
+  name                                            String  @db.VarChar(50)
+  army_id                                         Int
+  armies                                          armies  @relation(fields: [army_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_detachments_armies")
+  games_games_user_detachment_idTodetachments     games[] @relation("games_user_detachment_idTodetachments")
+  games_games_opponent_detachment_idTodetachments games[] @relation("games_opponent_detachment_idTodetachments")
+
+  @@unique([name, army_id], map: "unique_name_army")
+}
+
+model games {
+  id                                                    Int         @id @default(autoincrement())
+  user_id                                               Int
+  user_army_id                                          Int
+  opponent_army_id                                      Int
+  user_detachment_id                                    Int
+  opponent_detachment_id                                Int
+  date                                                  DateTime    @db.Date
+  user_score                                            Int
+  opponent_score                                        Int
+  user_wtc_score                                        Int
+  opponent_wtc_score                                    Int
+  is_tournament                                         Boolean
+  tournament_name                                       String?     @db.VarChar(50)
+  detachments_games_user_detachment_idTodetachments     detachments @relation("games_user_detachment_idTodetachments", fields: [user_detachment_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_games-detachments_user_detachment_id")
+  armies_games_opponent_army_idToarmies                 armies      @relation("games_opponent_army_idToarmies", fields: [opponent_army_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_games_armies_opponent_army_id")
+  armies_games_user_army_idToarmies                     armies      @relation("games_user_army_idToarmies", fields: [user_army_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_games_armies_user_army_id")
+  detachments_games_opponent_detachment_idTodetachments detachments @relation("games_opponent_detachment_idTodetachments", fields: [opponent_detachment_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_games_detachments_opponent_detachment_id")
+  users                                                 users       @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_games_users")
+
+  @@index([date], map: "idx_games_date")
+  @@index([opponent_army_id], map: "idx_games_opponent_army_id")
+  @@index([opponent_detachment_id], map: "idx_games_opponent_detachment_id")
+  @@index([user_army_id], map: "idx_games_user_army_id")
+  @@index([user_detachment_id], map: "idx_games_user_detachment_id")
+  @@index([user_id], map: "idx_games_user_id")
+}
+
+model users {
+  id       Int     @id @default(autoincrement())
+  username String  @unique(map: "unique_username") @db.VarChar(50)
+  email    String  @unique(map: "unique_email") @db.VarChar(100)
+  password String  @db.VarChar(255)
+  games    games[]
+}

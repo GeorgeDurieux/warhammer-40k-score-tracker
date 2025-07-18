@@ -1,0 +1,38 @@
+@import 'tailwindcss';
+
+@theme {
+    --color-gray-5: hsl(0, 0%, 5%);
+    --color-gray-15: hsl(0, 0%, 15%);
+    --color-gray-25: hsl(0, 0%, 25%);
+    --color-slate-25: hsl(180, 25%, 25%);
+    --color-slate-35: hsl(180, 25%, 35%);
+    --color-slate-50: hsl(180, 25%, 50%);
+}
+
+:root {
+    background-color: var(--color-gray-15);
+}
+
+/* Custom scrollbar */
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-35) var(--color-gray-25); 
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: var(--color-gray-25); 
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: var(--color-slate-35); 
+  border-radius: 6px;
+}
+
+
+
+
