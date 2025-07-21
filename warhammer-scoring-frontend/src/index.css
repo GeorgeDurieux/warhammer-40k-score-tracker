@@ -33,6 +33,33 @@
   border-radius: 6px;
 }
 
+/* Autofill style */
+
+@layer utilities {
+  input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px theme('colors.gray.5') inset !important;
+    -webkit-text-fill-color: theme('colors.slate.50') !important;
+    transition: background-color 5000s ease-in-out 0s;
+    border-color: var(--color-slate-50);
+  }
+}
+
+/* Number Input Remove Arrows */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+
+
+
 
 
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import type { MatchForm } from '../types/MatchForm'
 import SelectField from './SelectField'
 import NumberField from './NumberField'
-import MonthField from './MonthField'
+import DateField from './DateField'
 import CheckboxField from './CheckboxField'
 import TextareaField from './TextareaField'
 
@@ -112,7 +112,7 @@ function MatchFormComponent() {
                     required
                 />
 
-                <MonthField 
+                <DateField 
                     label="Date"
                     id="date"
                     value={formData.date}

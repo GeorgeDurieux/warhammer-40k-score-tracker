@@ -32,7 +32,7 @@ function TextField({
     return (
         <div className="text-slate-50 text-xl text-center">
             <label className="block mb-2" htmlFor={id}>{label}</label>
-            <div className="relative inline-block mx-auto">
+            <div className="relative inline-block mx-auto bg-gray-5">
                 <input 
                     type={type} 
                     id={id}

@@ -6,12 +6,14 @@ const prisma = new PrismaClient()
 export const createDetachment = async (req: Request, res: Response) => {
     try {
         const {
-            name
+            name,
+            armyId
         } = req.body
 
         const newDetachment = await prisma.detachments.create({
             data: {
-                name
+                name,
+                armies: { connect: { id: Number(armyId) } }
             }
         })
         res.status(201).json(newDetachment)
