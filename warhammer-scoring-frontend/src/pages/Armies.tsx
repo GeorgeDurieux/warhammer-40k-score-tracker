@@ -28,7 +28,7 @@ function Armies() {
     }, [])
 
     const handleEdit = (id: number) => {
-        console.log('Edit army:', id)
+        navigate(`/edit-army/${id}`)
     }
 
     const handleDelete = async (id: number) => {

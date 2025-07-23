@@ -7,6 +7,7 @@ import Login from './pages/LogIn'
 import Register from './pages/Register'
 import Armies from './pages/Armies'
 import AddArmy from './pages/AddArmy'
+import EditArmy from './pages/EditArmy'
 
 const links = [
   { label: 'Home', path: '/' },
@@ -29,6 +30,8 @@ function App() {
                 <Route path="/submit-match" element={<SubmitMatch />} />
                 <Route path="/armies" element={<Armies />} />
                 <Route path='/add-army' element={<AddArmy />} />
+                <Route path="/edit-army/:id" element={<EditArmy />} />
+
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </>

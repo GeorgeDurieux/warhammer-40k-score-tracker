@@ -46,7 +46,10 @@ export const getArmyById = async (req: Request, res: Response): Promise<void> =>
 
     try {
         const army = await prisma.armies.findUnique({
-            where: { id: Number(id) }
+            where: { id: Number(id) },
+            include: {
+                detachments: true
+            }
         })
 
         if (!army) {

@@ -1,9 +1,10 @@
 type TextFieldProps = {
     id: string
-    label: string
+    label?: string
     value: string
     type?: string
     autoComplete?: string
+    autoFocus?: boolean
     onChange: (value: string) => void
     icon?: React.ReactNode
     onIconClick?: () => void
@@ -12,6 +13,7 @@ type TextFieldProps = {
     pattern?: string
     minLength?: number
     maxLength?: number
+    onBlur?: () => void
 }
 
 function TextField({
@@ -19,7 +21,8 @@ function TextField({
     label, 
     value, 
     type, 
-    autoComplete, 
+    autoComplete,
+    autoFocus, 
     onChange,
     icon,
     onIconClick,
@@ -27,7 +30,8 @@ function TextField({
     title,
     pattern,
     minLength,
-    maxLength
+    maxLength,
+    onBlur
 }: TextFieldProps) {
     return (
         <div className="text-slate-50 text-xl text-center">
@@ -37,7 +41,9 @@ function TextField({
                     type={type} 
                     id={id}
                     value={value}
+                    onBlur={onBlur}
                     autoComplete={autoComplete}
+                    autoFocus={autoFocus}
                     onChange={e => onChange(e.target.value)}
                     className="border rounded pl-2 py-1 pr-10"
                     required={required}
@@ -45,6 +51,7 @@ function TextField({
                     pattern={pattern}
                     minLength={minLength}
                     maxLength={maxLength}
+                    spellCheck={false}
                 />
                 {icon && (
                     <button
