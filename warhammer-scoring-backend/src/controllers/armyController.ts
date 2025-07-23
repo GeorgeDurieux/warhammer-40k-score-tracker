@@ -98,7 +98,10 @@ export const updateArmyById = async (req: Request, res: Response): Promise<void>
 
     try {
         const existingArmy = await prisma.armies.findUnique({
-            where: { id: Number(id) }
+            where: { id: Number(id) },
+            include: {
+                detachments:true
+            }
         })
 
         if (!existingArmy) {
@@ -107,7 +110,8 @@ export const updateArmyById = async (req: Request, res: Response): Promise<void>
         }
 
         const {
-            name
+            name,
+            detachments
         } = req.body
 
         const updatedArmy = await prisma.armies.update({
@@ -116,6 +120,38 @@ export const updateArmyById = async (req: Request, res: Response): Promise<void>
                 name
             }
         })
+
+        //Filter detachments that already exist
+        const incomingIds = detachments
+            .filter((detachment: any) => detachment.id) 
+            .map((detachment: any) => detachment.id)
+
+        const existingIds = existingArmy.detachments.map(detachment => detachment.id)    
+        const idsToDelete = existingIds.filter(id => !incomingIds.includes(id))
+
+        await prisma.detachments.deleteMany({
+            where: { id: { in: idsToDelete } }
+        })
+
+        await Promise.all(detachments.map(async (detachment: { id?: number, name: string }) => {
+
+            if (detachment.id) {
+                // Update existing
+                await prisma.detachments.update({
+                    where: { id: detachment.id },
+                    data: { name: detachment.name }
+                })
+                
+            } else {
+                // Create new
+                await prisma.detachments.create({
+                    data: {
+                        name: detachment.name,
+                        army_id: Number(id)
+                    }
+                })
+            }
+        }))
 
         res.status(200).json(updatedArmy)
 

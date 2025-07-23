@@ -54,6 +54,7 @@ function AddArmyComponent() {
             <CustomButton 
                 onClick={handleAddDetachment} 
                 children={'Add detachment'}
+                isSmall={true}
             />
 
             <CustomButton 

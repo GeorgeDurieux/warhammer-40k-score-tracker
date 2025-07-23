@@ -58,7 +58,7 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
 
     const handleSave = async () => {
         await fetch(`http://localhost:4000/api/armies/${armyId}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(army)
         })
@@ -114,6 +114,7 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
             <CustomButton
                 onClick={handleAddDetachment}
                 children={'Add detachment'}
+                isSmall={true}
             
             />
 
