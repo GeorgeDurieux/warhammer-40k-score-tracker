@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Login from './pages/LogIn'
 import Register from './pages/Register'
 import Armies from './pages/Armies'
+import AddArmy from './pages/AddArmy'
 
 const links = [
   { label: 'Home', path: '/' },
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/submit-match" element={<SubmitMatch />} />
                 <Route path="/armies" element={<Armies />} />
+                <Route path='/add-army' element={<AddArmy />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </>

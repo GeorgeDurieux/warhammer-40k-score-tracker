@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import ArmyList from '../components/ArmyList'
+import { useNavigate } from 'react-router-dom'
 
 type Detachment = {
   id: number
@@ -15,6 +16,7 @@ type Army = {
 function Armies() {
 
     const [armies, setArmies] = useState<Army[]>([])
+    let navigate = useNavigate()
 
     useEffect(() => {        
         const fetchArmies = async () => {
@@ -36,7 +38,7 @@ function Armies() {
     }
 
      const handleAddArmy = () => {
-        console.log('Add new army clicked')
+        navigate('/add-army')
     }
 
     return (

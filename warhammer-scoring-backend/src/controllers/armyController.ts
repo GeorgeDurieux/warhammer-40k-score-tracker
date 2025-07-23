@@ -6,12 +6,16 @@ const prisma = new PrismaClient()
 export const createArmy = async (req: Request, res: Response) => {
     try {
         const {
-            name
+            name,
+            detachments
         } = req.body
 
         const newArmy = await prisma.armies.create({
             data: {
-                name
+                name, 
+                detachments: {
+                    create: detachments.map((d: string) => ({ name: d }))
+                }
             }
         })
         res.status(201).json(newArmy)
@@ -62,6 +66,14 @@ export const deleteArmyById = async (req: Request, res: Response): Promise<void>
     const { id } = req.params
 
     try {
+        const armyId = Number(id)
+
+        // First delete all detachments linked to this army
+        await prisma.detachments.deleteMany({
+            where: { army_id: Number(armyId) }
+        })
+
+        // Then delete the army
         const deletedArmy = await prisma.armies.delete({
             where: { id: Number(id) }
         })
