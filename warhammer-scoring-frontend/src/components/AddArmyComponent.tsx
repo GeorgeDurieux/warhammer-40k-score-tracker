@@ -38,7 +38,7 @@ function AddArmyComponent() {
                 type="text"
                 value={armyName}
                 label={'Army Name'}
-                onChange={() => setArmyName(armyName)}
+                onChange={(newVal) => setArmyName(newVal)}
             />
 
             {detachments.map((detachmentName, detachmentIndex) => (
@@ -47,7 +47,7 @@ function AddArmyComponent() {
                     type="text"
                     value={detachmentName}
                     label={`Detachment ${detachmentIndex + 1}`}
-                    onChange={() => handleDetachmentsChange(detachmentIndex, detachmentName)}
+                    onChange={(newVal) => handleDetachmentsChange(detachmentIndex, newVal)}
                 />
             ))}
 

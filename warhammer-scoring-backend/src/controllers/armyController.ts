@@ -127,23 +127,26 @@ export const updateArmyById = async (req: Request, res: Response): Promise<void>
             .map((detachment: any) => detachment.id)
 
         const existingIds = existingArmy.detachments.map(detachment => detachment.id)    
+
+        //Find and delete detachments that are not in the new "version" of the army
         const idsToDelete = existingIds.filter(id => !incomingIds.includes(id))
 
         await prisma.detachments.deleteMany({
             where: { id: { in: idsToDelete } }
         })
 
+        //Main part
         await Promise.all(detachments.map(async (detachment: { id?: number, name: string }) => {
 
             if (detachment.id) {
-                // Update existing
+                // Update existing detachments
                 await prisma.detachments.update({
                     where: { id: detachment.id },
                     data: { name: detachment.name }
                 })
-                
+
             } else {
-                // Create new
+                // Create new detachments
                 await prisma.detachments.create({
                     data: {
                         name: detachment.name,

@@ -1,11 +1,16 @@
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/react'
 import { Fragment } from 'react'
 
+type Option = {
+  label: string
+  value: string
+}
+
 type SelectFieldProps = {
     id: string
     label: string
     value: string
-    options: string[]
+    options: Option[]
     onChange: (value: string) => void
     required?: boolean
 }
@@ -20,7 +25,7 @@ function SelectField({ id, label, value, options, onChange }: SelectFieldProps) 
             <Listbox value={value} onChange={onChange}>
 
                 <ListboxButton id={id} className="border rounded px-4 py-2 min-w-16 bg-gray-5 text-slate-50 cursor-pointer text-left">
-                    {value || '-- Select --'}
+                    {options.find(option => option.value === value)?.label || '-- Select --'}
                 </ListboxButton>
 
                 <ListboxOptions className="mt-1 max-h-60 max-w-100 overflow-auto bg-gray-5 mx-auto border border-slate-50 rounded scrollbar-thin">
@@ -29,10 +34,10 @@ function SelectField({ id, label, value, options, onChange }: SelectFieldProps) 
                         -- Select --
                     </li>
 
-                    {options.map((option) => (
+                    {options.map(({ label, value }) => (
                         <ListboxOption
-                            key={option}
-                            value={option}
+                            key={value}
+                            value={value}
                             as={Fragment}
                         >
                             {({ focus, selected }) => (
@@ -41,7 +46,7 @@ function SelectField({ id, label, value, options, onChange }: SelectFieldProps) 
                                         focus ? 'bg-slate-25 ' : ''
                                     } ${selected ? 'font-semibold' : 'font-normal'}`}
                                 >
-                                    {option}
+                                    {label}
                                 </li>
                             )}
                         </ListboxOption>

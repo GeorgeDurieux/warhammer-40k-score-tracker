@@ -5,6 +5,8 @@ import NumberField from './NumberField'
 import DateField from './DateField'
 import CheckboxField from './CheckboxField'
 import TextareaField from './TextareaField'
+import CustomButton from "./CustomButton"
+import { useAuth } from "../context/AuthContext"
 
 type Detachment = {
   id: number
@@ -19,16 +21,18 @@ type Army = {
 
 function MatchFormComponent() {
 
+    const { user } = useAuth()
+
     const [formData, setFormData] = useState<MatchForm>({
-        userArmy: '',
-        userDetachment: '',
-        opponentArmy: '',
-        opponentDetachment: '',
+        user_army_id: 0,
+        user_detachment_id: 0,
+        opponent_army_id: 0,
+        opponent_detachment_id: 0,
         date: '',
-        userScore: 0,
-        opponentScore: 0,
-        isTournament: false,
-        tournamentName: ''
+        user_score: 0,
+        opponent_score: 0,
+        is_tournament: false,
+        tournament_name: ''
     })
 
     const [armies, setArmies] = useState<Army[]>([])
@@ -42,73 +46,155 @@ function MatchFormComponent() {
         fetchArmies()
     }, [])
 
-    const armyNames = armies.map(army => army.name).sort()
+    const selectedUserArmy = armies.find(army => army.id === formData.user_army_id)
+    const userDetachments = selectedUserArmy?.detachments ?? []
 
-    const selectedUserArmy = armies.find(army => army.name === formData.userArmy)
-    const userDetachments = selectedUserArmy?.detachments.map(det => det.name).sort() ?? []
-
-    const selectedOpponentArmy = armies.find(army => army.name === formData.opponentArmy)
-    const opponentDetachments = selectedOpponentArmy?.detachments.map(det => det.name).sort() ?? []
+    const selectedOpponentArmy = armies.find(army => army.id === formData.opponent_army_id)
+    const opponentDetachments = selectedOpponentArmy?.detachments ?? []
 
     return (
         <>
-            <form>
+            <form
+                className="flex flex-col items-center"
 
-                <SelectField 
+                onSubmit={ async (e) => {
+                    e.preventDefault()
+                    
+                    try {
+
+                        //User Id
+                        const token = localStorage.getItem('token')
+
+                        if (!token) {
+                            alert('You must be logged in to submit')
+                            return
+                        }
+
+                        const user_id = user?.id
+
+                        //Calculation of WTC scores
+                        const scoreDiff = formData.user_score - formData.opponent_score
+                        const user_wtc_score = Math.max(0, Math.min(20, Math.floor(10 + scoreDiff / 5)))
+                        const opponent_wtc_score = 20 - user_wtc_score
+
+
+                        const matchData = {
+                            ...formData,
+                            user_id,
+                            user_wtc_score,
+                            opponent_wtc_score,
+                            detachments_games_user_detachment_idTodetachments: {
+                                connect: { id: formData.user_detachment_id }
+                            },
+                            detachments_games_opponent_detachment_idTodetachments: {
+                                connect: { id: formData.opponent_detachment_id }
+                            },
+                            armies_games_user_army_idToarmies: {
+                                connect: { id: formData.user_army_id }
+                            },
+                            armies_games_opponent_army_idToarmies: {
+                                connect: { id: formData.opponent_army_id }
+                            },
+                            users: {
+                                connect: { id: user_id }
+                            }
+                        }
+
+                        console.log('Submitting form:', formData)
+
+                        //Post match
+                        const res = await fetch('http://localhost:4000/api/matches', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(matchData)
+                        })
+
+                        if (!res.ok) {
+                            throw new Error('Failed to submit match')
+                        }
+
+                        alert('Match submitted!')
+
+                    } catch (err) {
+                        console.log(err)
+                        alert('Error submitting match')
+                    }
+                }}
+            >    
+
+                <SelectField
                     label="Your Army"
                     id="userArmy"
-                    value={formData.userArmy}
-                    options={armyNames}
-                    onChange={(val) => setFormData({ 
-                        ...formData, 
-                        userArmy: val,
-                        userDetachment: ''
-                    })}
-                    required
+                    value={formData.user_army_id.toString()}
+                    options={armies.map(army => ({ label: army.name, value: army.id.toString() }))}
+                    onChange={(val) =>
+                        setFormData({
+                        ...formData,
+                        user_army_id: Number(val),
+                        user_detachment_id: 0
+                        })
+                    }
                 />
 
-                <SelectField 
+
+                <SelectField
                     label="Your Detachment"
                     id="userDetachment"
-                    value={formData.userDetachment}
-                    options={userDetachments}
-                    onChange={(val) => setFormData({ ...formData, userDetachment: val})}
+                    value={formData.user_detachment_id.toString()}
+                    options={userDetachments.map(det => ({
+                        label: det.name,
+                        value: det.id.toString()
+                    })) ?? []}
+                    onChange={(val) =>
+                        setFormData({ ...formData, user_detachment_id: Number(val) })
+                    }
                 />
 
-                <SelectField 
+
+                <SelectField
                     label="Opponent's Army"
                     id="opponentArmy"
-                    value={formData.opponentArmy}
-                    options={armyNames}
-                    onChange={(val) => setFormData({ 
-                        ...formData, 
-                        opponentArmy: val,
-                        opponentDetachment: ''
-                    })}
-                    required
+                    value={formData.opponent_army_id.toString()}
+                    options={armies.map(army => ({ label: army.name, value: army.id.toString() }))}
+                    onChange={(val) =>
+                        setFormData({
+                        ...formData,
+                        opponent_army_id: Number(val),
+                        opponent_detachment_id: 0
+                        })
+                    }
                 />
 
-                <SelectField 
+
+                <SelectField
                     label="Opponent's Detachment"
                     id="opponentDetachment"
-                    value={formData.opponentDetachment}
-                    options={opponentDetachments}
-                    onChange={(val) => setFormData({ ...formData, opponentDetachment: val})}
+                    value={formData.opponent_detachment_id.toString()}
+                    options={opponentDetachments.map(det => ({
+                        label: det.name,
+                        value: det.id.toString()
+                    })) ?? []}
+                    onChange={(val) =>
+                        setFormData({ ...formData, opponent_detachment_id: Number(val) })
+                    }
                 />
+
 
                 <NumberField 
                     label="Your Score"
                     id="userScore"
-                    value={formData.userScore}
-                    onChange={(val) => setFormData({ ...formData, userScore: val})}
+                    value={formData.user_score}
+                    onChange={(val) => setFormData({ ...formData, user_score: val})}
                     required
                 />
 
                 <NumberField 
                     label="Opponent's Score"
                     id="opponentScore"
-                    value={formData.opponentScore}
-                    onChange={(val) => setFormData({ ...formData, opponentScore: val})}
+                    value={formData.opponent_score}
+                    onChange={(val) => setFormData({ ...formData, opponent_score: val})}
                     required
                 />
 
@@ -122,27 +208,32 @@ function MatchFormComponent() {
                 <CheckboxField 
                     label="Tournament match"
                     id="isTournament"
-                    value={formData.isTournament}
-                    onChange={(isTournament) => {
+                    value={formData.is_tournament}
+                    onChange={(is_tournament) => {
                         setFormData((prev) => ({
                             ...prev,
-                            isTournament,
-                            tournamentName:
-                                isTournament
-                                ? prev.tournamentName ?? ''
+                            is_tournament,
+                            tournament_name:
+                                is_tournament
+                                ? prev.tournament_name ?? ''
                                 : undefined
                         }))
                     }}
                 />
 
-                {formData.isTournament && (
+                {formData.is_tournament && (
                     <TextareaField 
                     label="Tournament Name"
                     id="tournamentName"
-                    value={formData.tournamentName ?? ''}
-                    onChange={(val) => setFormData({ ...formData, tournamentName: val})}
+                    value={formData.tournament_name ?? ''}
+                    onChange={(val) => setFormData({ ...formData, tournament_name: val})}
                 />
                 )}
+
+                <CustomButton
+                    children={'Submit Match'}
+                    type='submit'
+                />
 
             </form>
         </>

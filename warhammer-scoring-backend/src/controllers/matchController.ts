@@ -7,28 +7,34 @@ export const createMatch = async (req: Request, res: Response) => {
 
     try {
         const {
-            userArmy,
-            userDetachment,
-            opponentArmy,
-            opponentDetachment,
+            user_id,
+            user_army_id,
+            user_detachment_id,
+            opponent_army_id,
+            opponent_detachment_id,
             date,
-            userScore,
-            opponentScore,
-            isTournament,
-            tournamentName
+            user_score,
+            opponent_score,
+            user_wtc_score,
+            opponent_wtc_score,
+            is_tournament,
+            tournament_name
         } = req.body
 
-        const newMatch = await prisma.match.create({
+        const newMatch = await prisma.games.create({
             data: {
-                userArmy,
-                userDetachment,
-                opponentArmy,
-                opponentDetachment,
+                user_id,
+                user_army_id,
+                user_detachment_id,
+                opponent_army_id,
+                opponent_detachment_id,
                 date: new Date(date),
-                userScore,
-                opponentScore,
-                isTournament,
-                tournamentName: isTournament ? tournamentName : null
+                user_score,
+                opponent_score,
+                user_wtc_score,
+                opponent_wtc_score,
+                is_tournament,
+                tournament_name: is_tournament ? tournament_name : null
             }
         })
 
@@ -43,7 +49,7 @@ export const createMatch = async (req: Request, res: Response) => {
 export const getMatches = async (req: Request, res: Response) => {
 
     try {
-        const matches = await prisma.match.findMany({
+        const matches = await prisma.games.findMany({
             orderBy: { date: 'desc' }
         })
         res.status(200).json(matches)
@@ -59,7 +65,7 @@ export const getMatchById = async (req: Request, res: Response): Promise<void> =
     const { id } = req.params
 
     try { 
-        const match = await prisma.match.findUnique({
+        const match = await prisma.games.findUnique({
             where: { id: Number(id) }
         })
 
@@ -80,7 +86,7 @@ export const deleteMatchById = async (req: Request, res: Response): Promise<void
     const { id } = req.params
 
     try {
-        const deletedMatch = await prisma.match.delete({
+        const deletedMatch = await prisma.games.delete({
             where: { id: Number(id) }
         })
 
@@ -100,7 +106,7 @@ export const updateMatchById = async (req: Request, res: Response): Promise<void
     const { id } = req.params
 
     try {
-        const existingMatch = await prisma.match.findUnique({
+        const existingMatch = await prisma.games.findUnique({
             where: { id: Number(id) }
         })
 
@@ -109,29 +115,35 @@ export const updateMatchById = async (req: Request, res: Response): Promise<void
         }
 
         const {
-            userArmy,
-            userDetachment,
-            opponentArmy,
-            opponentDetachment,
+            user_id,
+            user_army_id,
+            user_detachment_id,
+            opponent_army_id,
+            opponent_detachment_id,
             date,
-            userScore,
-            opponentScore,
-            isTournament,
-            tournamentName
+            user_score,
+            opponent_score,
+            user_wtc_score,
+            opponent_wtc_score,
+            is_tournament,
+            tournament_name
         } = req.body
 
-        const updatedMatch = await prisma.match.update({
+        const updatedMatch = await prisma.games.update({
             where: { id: Number(id) },
             data: {
-                userArmy,
-                userDetachment,
-                opponentArmy,
-                opponentDetachment,
+                user_id,
+                user_army_id,
+                user_detachment_id,
+                opponent_army_id,
+                opponent_detachment_id,
                 date: new Date(date),
-                userScore,
-                opponentScore,
-                isTournament,
-                tournamentName: isTournament ? tournamentName : null
+                user_score,
+                opponent_score,
+                user_wtc_score,
+                opponent_wtc_score,
+                is_tournament,
+                tournament_name: is_tournament ? tournament_name : null
             }
         })
 
