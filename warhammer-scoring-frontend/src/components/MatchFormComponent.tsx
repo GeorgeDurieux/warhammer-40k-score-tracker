@@ -46,11 +46,25 @@ function MatchFormComponent() {
         fetchArmies()
     }, [])
 
-    const selectedUserArmy = armies.find(army => army.id === formData.user_army_id)
-    const userDetachments = selectedUserArmy?.detachments ?? []
+    //Find detachments according to armies
+    const getEffectiveDetachments = (armyId: number): Detachment[] => {
+        const army = armies.find(a => a.id === armyId)
+        if (!army) return []
 
-    const selectedOpponentArmy = armies.find(army => army.id === formData.opponent_army_id)
-    const opponentDetachments = selectedOpponentArmy?.detachments ?? []
+        const chapterNames = ['Space Wolves', 'Dark Angels', 'Blood Angels', 'Deathwatch']
+        const isChapter = chapterNames.includes(army.name)
+
+        if (isChapter) {
+            const marines = armies.find(a => a.name === 'Space Marines')
+            const marineDetachments = marines?.detachments ?? []
+            return [...(army.detachments ?? []), ...marineDetachments]
+        }
+
+        return army.detachments ?? []
+    }
+
+    const userDetachments = getEffectiveDetachments(formData.user_army_id)
+    const opponentDetachments = getEffectiveDetachments(formData.opponent_army_id)
 
     return (
         <>
