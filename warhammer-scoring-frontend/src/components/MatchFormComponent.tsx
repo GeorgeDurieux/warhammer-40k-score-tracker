@@ -74,10 +74,35 @@ function MatchFormComponent() {
 
                         //Calculation of WTC scores
                         const scoreDiff = formData.user_score - formData.opponent_score
-                        const user_wtc_score = Math.max(0, Math.min(20, Math.floor(10 + scoreDiff / 5)))
-                        const opponent_wtc_score = 20 - user_wtc_score
+                        const absDiff = Math.abs(scoreDiff)
+
+                        let wtcDelta = 0
+
+                        if (absDiff >= 6 && absDiff <= 10) wtcDelta = 1
+                        else if (absDiff >= 11 && absDiff <= 15) wtcDelta = 2
+                        else if (absDiff >= 16 && absDiff <= 20) wtcDelta = 3
+                        else if (absDiff >= 21 && absDiff <= 25) wtcDelta = 4
+                        else if (absDiff >= 26 && absDiff <= 30) wtcDelta = 5
+                        else if (absDiff >= 31 && absDiff <= 35) wtcDelta = 6
+                        else if (absDiff >= 36 && absDiff <= 40) wtcDelta = 7
+                        else if (absDiff >= 41 && absDiff <= 45) wtcDelta = 8
+                        else if (absDiff >= 46 && absDiff <= 50) wtcDelta = 9
+                        else if (absDiff >= 51) wtcDelta = 10
+
+                        let user_wtc_score, opponent_wtc_score
+
+                        if (scoreDiff === 0) {
+                        user_wtc_score = opponent_wtc_score = 10
+                        } else if (scoreDiff > 0) {
+                        user_wtc_score = 10 + wtcDelta
+                        opponent_wtc_score = 10 - wtcDelta
+                        } else {
+                        user_wtc_score = 10 - wtcDelta
+                        opponent_wtc_score = 10 + wtcDelta
+                        }
 
 
+                        //Make data, connect detachmnets
                         const matchData = {
                             ...formData,
                             user_id,
@@ -99,8 +124,6 @@ function MatchFormComponent() {
                                 connect: { id: user_id }
                             }
                         }
-
-                        console.log('Submitting form:', formData)
 
                         //Post match
                         const res = await fetch('http://localhost:4000/api/matches', {

@@ -15,16 +15,22 @@ function DateField({ id, label, value, onChange }: DateFieldProps) {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null)
 
     useEffect(() => {
-        if (value) {
-            const [year, month] = value.split('-').map(Number)
-            setSelectedDate(new Date(year, month - 1))
-        }
-    }, [value])
+    if (value) {
+        const [year, month] = value.split('-').map(Number)
+        const safeDate = new Date(year, month - 1, 1, 12)
+        setSelectedDate(safeDate)
+    }
+}, [value])
+
 
     const handleChange = (date: Date | null) => {
         setSelectedDate(date)
+        
         if (date) {
-            const formatted = date.toISOString().slice(0, 7)
+            const year = date.getFullYear()
+            const month = String(date.getMonth() + 1).padStart(2, '0') 
+            const formatted = `${year}-${month}`
+
             onChange(formatted)
         }
     }
