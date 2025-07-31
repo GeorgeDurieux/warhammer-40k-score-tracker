@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
-import TextField from "./TextField"
-import { Pencil, Trash2 } from "lucide-react"
+import { Trash2 } from "lucide-react"
 import CustomButton from "./CustomButton"
 
 type Detachment = {
@@ -18,7 +17,6 @@ type Army = {
 function EditArmyComponent ({ armyId }: {armyId: number}) {
 
     const [army, setArmy] = useState<Army | null>(null)
-    const [isEditingArmyName, setIsEditingArmyName] = useState(false)
 
     useEffect(() => {
         const fetchArmy = async () => {
@@ -78,22 +76,6 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
                     value={army.name}
                     onChange={() => handleArmyNameChange(army.name)}
                 />
-                {/* {isEditingArmyName ? (
-                    <TextField
-                        id={army.name}
-                        value={army.name}
-                        onChange={() => handleArmyNameChange(army.name)}
-                        onBlur={() => setIsEditingArmyName(false)}
-                        autoFocus={true}
-                    />
-                ) : (
-                    <div>
-                        <span className="text-2xl text-slate-50">{army.name}</span>
-                        <button onClick={() => setIsEditingArmyName(true)} className="text-slate-35 hover:text-slate-50 transition-colors duration-250 cursor-pointer ml-2">
-                            <Pencil size={20} />
-                            </button>
-                    </div>
-                )} */}
             </div>
 
             {/* Detachments */}
@@ -119,13 +101,13 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
             <div className="w-full">
                 <CustomButton
                     onClick={handleAddDetachment}
-                    children={'Add detachment'}
+                    children={' + Add New Detachment'}
                     isSmall={true}
                 />
             </div>
 
             {/* Save */}
-            <div>
+            <div className="mt-8">
                 <CustomButton
                     onClick={handleSave}
                     children={'Save Changes'}

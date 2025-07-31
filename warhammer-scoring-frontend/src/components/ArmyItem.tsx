@@ -25,7 +25,7 @@ export default function ArmyItem({ army, onEdit, onDelete }: Props) {
     const detachments = army.detachments || []
 
     return (
-        <div className=" bg-gray-5 p-4 mb-4 rounded w-[350px]">
+        <div className=" bg-gray-5 p-4 rounded w-[350px]">
             <div className="flex justify-between items-center gap-3">
                 <div className="flex items-center gap-3">
 
