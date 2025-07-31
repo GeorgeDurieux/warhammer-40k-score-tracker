@@ -69,11 +69,16 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
 
     return (
 
-         <div className="flex flex-col items-center gap-4">
+         <div className="flex flex-col items-center gap-8">
 
-            {/* Army Name */}
-            <div className="mb-4">
-                {isEditingArmyName ? (
+            {/* Army */}
+            <div className="">
+                <input
+                    className="bg-gray-5 text-slate-50 px-2 py-1 rounded text-2xl"
+                    value={army.name}
+                    onChange={() => handleArmyNameChange(army.name)}
+                />
+                {/* {isEditingArmyName ? (
                     <TextField
                         id={army.name}
                         value={army.name}
@@ -88,11 +93,11 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
                             <Pencil size={20} />
                             </button>
                     </div>
-                )}
+                )} */}
             </div>
 
             {/* Detachments */}
-            <div className="space-y-2 mb-4">
+            <div className="gap-2 flex flex-col w-full">
                 {army.detachments.map((detachment, index) => (
                     <div key={index} className="flex items-center space-x-2">
                         <input
@@ -111,12 +116,13 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
             </div>
 
             {/* Add Detachment */}
-            <CustomButton
-                onClick={handleAddDetachment}
-                children={'Add detachment'}
-                isSmall={true}
-            
-            />
+            <div className="w-full">
+                <CustomButton
+                    onClick={handleAddDetachment}
+                    children={'Add detachment'}
+                    isSmall={true}
+                />
+            </div>
 
             {/* Save */}
             <div>
