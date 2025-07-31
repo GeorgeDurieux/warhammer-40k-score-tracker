@@ -68,7 +68,7 @@ function NumberField({
 
   return (
 
-    <div className="text-slate-50 text-xl text-center pt-4">
+    <div className="text-slate-50 text-xl text-center">
 
       <label htmlFor={id} className="block mb-2">{label}</label>
 

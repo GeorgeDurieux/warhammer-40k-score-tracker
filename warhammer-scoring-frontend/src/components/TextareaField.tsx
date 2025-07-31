@@ -7,7 +7,7 @@ type TextareaFieldProps = {
 
 function TextareaField({ id, label, value, onChange }: TextareaFieldProps) {
     return (
-        <div className="text-slate-50 text-xl text-center pt-4">
+        <div className="text-slate-50 text-xl text-center">
             <label className="block mb-2" htmlFor={id}>{label}</label>
             <textarea 
                 id={id} 

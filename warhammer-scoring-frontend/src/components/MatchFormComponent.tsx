@@ -69,7 +69,7 @@ function MatchFormComponent() {
     return (
         <>
             <form
-                className="flex flex-col items-center"
+                className="flex flex-col items-center gap-4"
 
                 onSubmit={ async (e) => {
                     e.preventDefault()

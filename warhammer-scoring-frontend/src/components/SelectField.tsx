@@ -18,7 +18,7 @@ type SelectFieldProps = {
 function SelectField({ id, label, value, options, onChange }: SelectFieldProps) {
 
     return (
-        <div className="text-slate-50 text-xl text-center pt-4">
+        <div className="text-slate-50 text-xl text-center">
 
             <label className="block mb-2" htmlFor={id}>{label}</label>
 
