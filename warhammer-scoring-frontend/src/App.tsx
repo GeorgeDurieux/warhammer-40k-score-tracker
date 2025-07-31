@@ -8,6 +8,7 @@ import Register from './pages/Register'
 import Armies from './pages/Armies'
 import AddArmy from './pages/AddArmy'
 import EditArmy from './pages/EditArmy'
+import MatchHistory from './pages/MatchHistory'
 
 const links = [
   { label: 'Home', path: '/' },
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/submit-match" element={<SubmitMatch />} />
+                <Route path="/match-history" element={<MatchHistory />} />
                 <Route path="/armies" element={<Armies />} />
                 <Route path='/add-army' element={<AddArmy />} />
                 <Route path="/edit-army/:id" element={<EditArmy />} />
