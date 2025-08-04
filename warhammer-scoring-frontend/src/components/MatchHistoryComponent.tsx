@@ -1,3 +1,4 @@
+import CustomButton from './CustomButton'
 import MatchEntry from './MatchEntry'
 
 type Game = {
@@ -14,6 +15,11 @@ type Game = {
   opponent_wtc_score: number
   is_tournament: boolean
   tournament_name?: string
+
+  user_army: { name: string }
+  opponent_army: { name: string }
+  user_detachment: { name: string }
+  opponent_detachment: { name: string }
 }
 
 type MatchHistoryProps = {
@@ -25,14 +31,12 @@ type MatchHistoryProps = {
 
 const MatchHistoryComponent = ({ matches, onEdit, onDelete, onAdd }: MatchHistoryProps) => {
   return (
-    <div className="w-full max-w-4xl">
+    <div className="w-full max-w-4xl mb-32">
       <div className="flex justify-end mb-6">
-        <button 
-          onClick={onAdd} 
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md shadow"
-        >
-          + Add Match
-        </button>
+        <CustomButton
+            onClick={onAdd}
+            children={'+ Add Match'}
+        />
       </div>
 
       {matches.length === 0 ? (

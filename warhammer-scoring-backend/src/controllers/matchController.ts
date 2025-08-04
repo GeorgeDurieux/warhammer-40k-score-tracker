@@ -50,9 +50,34 @@ export const getMatches = async (req: Request, res: Response) => {
 
     try {
         const matches = await prisma.games.findMany({
-            orderBy: { date: 'desc' }
+            orderBy: [{ date: 'desc' }, { id: 'desc' }],
+            include: {
+                armies_games_user_army_idToarmies: true,
+                armies_games_opponent_army_idToarmies: true,
+                detachments_games_user_detachment_idTodetachments: true,
+                detachments_games_opponent_detachment_idTodetachments: true,
+            }
         })
-        res.status(200).json(matches)
+
+        const formattedGames = matches.map(game => ({
+
+            //Game table stats
+            id: game.id,
+            date: game.date,
+            is_tournament: game.is_tournament,
+            tournament_name: game.tournament_name,
+            user_score: game.user_score,
+            opponent_score: game.opponent_score,
+            user_wtc_score: game.user_wtc_score,
+            opponent_wtc_score: game.opponent_wtc_score,
+
+            //Armies / Detachments tables stats - Rename
+            user_army: game.armies_games_user_army_idToarmies,
+            opponent_army: game.armies_games_opponent_army_idToarmies,
+            user_detachment: game.detachments_games_user_detachment_idTodetachments,
+            opponent_detachment: game.detachments_games_opponent_detachment_idTodetachments
+        }))
+        res.status(200).json(formattedGames)
 
     } catch(err) {        
         console.log(err)

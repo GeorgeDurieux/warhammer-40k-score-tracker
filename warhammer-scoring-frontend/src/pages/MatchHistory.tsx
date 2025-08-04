@@ -16,6 +16,11 @@ type Game = {
   opponent_wtc_score: number
   is_tournament: boolean
   tournament_name?: string
+
+  user_army: { name: string }
+  opponent_army: { name: string }
+  user_detachment: { name: string }
+  opponent_detachment: { name: string }
 }
 
 const MatchHistory = () => {
@@ -46,7 +51,7 @@ const MatchHistory = () => {
   }
 
   const handleAddMatch = () => {
-    navigate('/add-match')
+    navigate('/submit-match')
   }
 
   return (
