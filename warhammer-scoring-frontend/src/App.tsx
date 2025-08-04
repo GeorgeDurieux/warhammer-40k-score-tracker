@@ -9,6 +9,7 @@ import Armies from './pages/Armies'
 import AddArmy from './pages/AddArmy'
 import EditArmy from './pages/EditArmy'
 import MatchHistory from './pages/MatchHistory'
+import EditMatch from './pages/EditMatch'
 
 const links = [
   { label: 'Home', path: '/' },
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/armies" element={<Armies />} />
                 <Route path='/add-army' element={<AddArmy />} />
                 <Route path="/edit-army/:id" element={<EditArmy />} />
+                <Route path="/edit-match/:id" element={<EditMatch />} />
 
                 <Route path="*" element={<NotFound />} />
             </Routes>

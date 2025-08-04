@@ -19,21 +19,33 @@ type Army = {
   detachments: Detachment[]
 }
 
-function MatchFormComponent() {
+type MatchFormComponentProps = {
+    matchToEdit?: MatchForm & { id?: number }
+}
+
+function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
 
     const { user } = useAuth()
 
-    const [formData, setFormData] = useState<MatchForm>({
-        user_army_id: 0,
-        user_detachment_id: 0,
-        opponent_army_id: 0,
-        opponent_detachment_id: 0,
-        date: '',
-        user_score: 0,
-        opponent_score: 0,
-        is_tournament: false,
-        tournament_name: ''
-    })
+    const [formData, setFormData] = useState<MatchForm>(
+        matchToEdit || {
+            user_army_id: 0,
+            user_detachment_id: 0,
+            opponent_army_id: 0,
+            opponent_detachment_id: 0,
+            date: '',
+            user_score: 0,
+            opponent_score: 0,
+            is_tournament: false,
+            tournament_name: ''
+        }
+    )
+
+    useEffect(() => {
+        if (matchToEdit) {
+        setFormData(matchToEdit)
+        }
+    }, [matchToEdit])
 
     const [armies, setArmies] = useState<Army[]>([])
     
@@ -139,20 +151,34 @@ function MatchFormComponent() {
                             }
                         }
 
-                        //Post match
-                        const res = await fetch('http://localhost:4000/api/matches', {
-                            method: 'POST',
-                            headers: {
+                        let res
+
+                        if (matchToEdit?.id) {
+                            // Edit match
+                            res = await fetch(`http://localhost:4000/api/matches/${matchToEdit.id}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(matchData)
+                            })
+
+                        } else {
+                            // Create new match entry
+                            res = await fetch('http://localhost:4000/api/matches', {
+                                method: 'POST',
+                                headers: {
                                 'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(matchData)
-                        })
+                                },
+                                body: JSON.stringify(matchData)
+                            })
+                        }
 
                         if (!res.ok) {
                             throw new Error('Failed to submit match')
                         }
 
-                        alert('Match submitted!')
+                        alert(matchToEdit?.id ? 'Match updated!' : 'Match submitted!')
 
                     } catch (err) {
                         console.log(err)

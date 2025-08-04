@@ -59,23 +59,23 @@ export const getMatches = async (req: Request, res: Response) => {
             }
         })
 
-        const formattedGames = matches.map(game => ({
+        const formattedGames = matches.map(match => ({
 
             //Game table stats
-            id: game.id,
-            date: game.date,
-            is_tournament: game.is_tournament,
-            tournament_name: game.tournament_name,
-            user_score: game.user_score,
-            opponent_score: game.opponent_score,
-            user_wtc_score: game.user_wtc_score,
-            opponent_wtc_score: game.opponent_wtc_score,
+            id: match.id,
+            date: match.date,
+            is_tournament: match.is_tournament,
+            tournament_name: match.tournament_name,
+            user_score: match.user_score,
+            opponent_score: match.opponent_score,
+            user_wtc_score: match.user_wtc_score,
+            opponent_wtc_score: match.opponent_wtc_score,
 
             //Armies / Detachments tables stats - Rename
-            user_army: game.armies_games_user_army_idToarmies,
-            opponent_army: game.armies_games_opponent_army_idToarmies,
-            user_detachment: game.detachments_games_user_detachment_idTodetachments,
-            opponent_detachment: game.detachments_games_opponent_detachment_idTodetachments
+            user_army: match.armies_games_user_army_idToarmies,
+            opponent_army: match.armies_games_opponent_army_idToarmies,
+            user_detachment: match.detachments_games_user_detachment_idTodetachments,
+            opponent_detachment: match.detachments_games_opponent_detachment_idTodetachments
         }))
         res.status(200).json(formattedGames)
 
@@ -91,16 +91,42 @@ export const getMatchById = async (req: Request, res: Response): Promise<void> =
 
     try { 
         const match = await prisma.games.findUnique({
-            where: { id: Number(id) }
-        })
+            where: { id: Number(id) },
+            include: {
+                armies_games_user_army_idToarmies: true,
+                armies_games_opponent_army_idToarmies: true,
+                detachments_games_user_detachment_idTodetachments: true,
+                detachments_games_opponent_detachment_idTodetachments: true,
+            }
+        })      
 
         if (!match) {
             res.status(404).json({ err: 'Match not found' })
+            return
         }
 
-        res.status(200).json(match)
+        const formattedMatch = {
 
-    } catch (err) {
+            //Game table stats
+            id: match.id,
+            date: match.date,
+            is_tournament: match.is_tournament,
+            tournament_name: match.tournament_name,
+            user_score: match.user_score,
+            opponent_score: match.opponent_score,
+            user_wtc_score: match.user_wtc_score,
+            opponent_wtc_score: match.opponent_wtc_score,
+
+            //Armies / Detachments tables stats - Rename
+            user_army: match.armies_games_user_army_idToarmies,
+            opponent_army: match.armies_games_opponent_army_idToarmies,
+            user_detachment: match.detachments_games_user_detachment_idTodetachments,
+            opponent_detachment: match.detachments_games_opponent_detachment_idTodetachments
+        }
+
+        res.status(200).json(formattedMatch)
+
+    } catch (err) { 
         console.log(err)
         res.status(500).json({ err: 'Failed to retrieve match' })
     }       

@@ -70,7 +70,7 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
          <div className="flex flex-col items-center gap-8">
 
             {/* Army */}
-            <div className="">
+            <div>
                 <input
                     className="bg-gray-5 text-slate-50 px-2 py-1 rounded text-2xl"
                     value={army.name}
