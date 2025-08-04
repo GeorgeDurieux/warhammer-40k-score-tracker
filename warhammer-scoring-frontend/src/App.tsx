@@ -10,6 +10,7 @@ import AddArmy from './pages/AddArmy'
 import EditArmy from './pages/EditArmy'
 import MatchHistory from './pages/MatchHistory'
 import EditMatch from './pages/EditMatch'
+import Statistics from './pages/Statistics'
 
 const links = [
   { label: 'Home', path: '/' },
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/submit-match" element={<SubmitMatch />} />
                 <Route path="/match-history" element={<MatchHistory />} />
+                <Route path="/statistics" element={<Statistics />} />
                 <Route path="/armies" element={<Armies />} />
                 <Route path='/add-army' element={<AddArmy />} />
                 <Route path="/edit-army/:id" element={<EditArmy />} />

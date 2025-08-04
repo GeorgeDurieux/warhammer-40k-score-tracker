@@ -33,6 +33,7 @@ const MatchHistory = () => {
         const res = await fetch('http://localhost:4000/api/matches')
         const data = await res.json()
         setMatches(data)
+        
       } catch (error) {
         console.error('Failed to fetch matches:', error)
       }
