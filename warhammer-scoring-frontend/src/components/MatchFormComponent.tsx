@@ -156,7 +156,7 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
                         if (matchToEdit?.id) {
                             // Edit match
                             res = await fetch(`http://localhost:4000/api/matches/${matchToEdit.id}`, {
-                                method: 'PUT',
+                                method: 'PATCH',
                                 headers: {
                                     'Content-Type': 'application/json'
                                 },
