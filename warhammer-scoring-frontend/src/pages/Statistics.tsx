@@ -61,19 +61,29 @@ const Statistics = () => {
 
 
     return (
-        <div className="flex flex-col gap-6 items-center mx-auto mb-24">
+        <div className="flex min-h-[96vh]">
 
-            <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">
-                Statistics
-            </h1>
+            <aside className="w-80 bg-gray-5 p-4 rounded sticky top-4 ">
+                <Filters filters={filters} setFilters={setFilters} matches={matches} />
+            </aside>
 
-            <Filters filters={filters} setFilters={setFilters} matches={matches} />
+            <div className='flex flex-col gap-6 items-center flex-1'>
 
-            <StatsSummary filters={filters} matches={filteredMatches} />
+                <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">
+                    Statistics
+                </h1>
 
-            <MatchList filters={filters} matches={filteredMatches} />
+                <StatsSummary filters={filters} matches={filteredMatches} />
 
-            <WinrateByMonth filters={filters} matches={filteredMatches} />
+                <MatchList filters={filters} matches={filteredMatches} />
+
+                <WinrateByMonth filters={filters} matches={filteredMatches} />
+            </div>
+            
+
+            
+
+            
 
         </div>
     )

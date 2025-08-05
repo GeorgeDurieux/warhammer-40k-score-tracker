@@ -64,7 +64,9 @@ const Filters = ({ filters, setFilters, matches }: FiltersProps) => {
     )
 
     return (
-        <div className="flex flex-col gap-4 bg-gray-5 px-8 py-4 rounded text-slate-50">
+        <div className="flex flex-col gap-12 bg-gray-5 pt-20 rounded text-slate-50 h-full items-center">
+
+            <h1 className="text-6xl">Filters</h1>
 
             <div>
 
@@ -88,7 +90,7 @@ const Filters = ({ filters, setFilters, matches }: FiltersProps) => {
 
             </div>
 
-            <div className="flex gap-8 items-center">
+            <div className="flex flex-col gap-8 items-center">
 
                 {/* User army options */}
                 <div className="flex flex-col gap-4 ">

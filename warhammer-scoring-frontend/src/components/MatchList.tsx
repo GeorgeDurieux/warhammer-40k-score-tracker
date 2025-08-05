@@ -1,3 +1,4 @@
+import { ChevronDownIcon } from "lucide-react"
 import { useState } from "react"
 
 type Game = {
@@ -131,6 +132,9 @@ const MatchList = ({ filters, matches }: MatchListProps) => {
                                 >
 
                                     <td className="border px-2 py-1">
+                                        <ChevronDownIcon
+                                            className={`w-4 h-4 transition-transform duration-200 inline mr-2 ${expanded[det.detachment] ? 'rotate-180' : ''}`}
+                                        />
                                         {det.detachment}
                                     </td>
 
