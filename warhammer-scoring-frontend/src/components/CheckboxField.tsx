@@ -21,7 +21,7 @@ function CheckboxField({ id, label, value, onChange }: CheckboxFieldProps) {
 
         {/* Custom checkbox box, for the visual */}
         <div
-          className={`w-6 h-6 mr-2 border-2 bg-gray-5 rounded flex items-center justify-center transition-colors duration-200 border-slate-50 hover:shadow-lg focus:shadow-lg shadow-slate-35 ${
+          className={`w-6 h-6 mr-2 border-2 bg-gray-5 rounded flex items-center justify-center transition-colors duration-200 border-slate-50 hover:shadow-lg focus:shadow-xl shadow-slate-35 hover:bg-slate-25 ${
             value ? 'bg-slate-25' : 'bg-transparent'
           }`}
         >

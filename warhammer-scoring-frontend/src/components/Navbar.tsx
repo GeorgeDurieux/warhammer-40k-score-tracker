@@ -29,10 +29,10 @@ function Navbar({ links }: NavbarProps) {
                                 key={path} 
                                 to={path} 
                                 className={({ isActive }) => 
-                                    `px-8 py-4 transition-colors duration-250 ${
+                                    `px-8 py-4 transition-all duration-250 ${
                                         isActive  
-                                        ? 'bg-slate-35' 
-                                        : 'hover:bg-slate-25'
+                                        ? 'bg-[radial-gradient(circle_at_center,theme(colors.slate.50)_0%,theme(colors.slate.25)_100%)]' 
+                                        : 'hover:bg-[radial-gradient(circle_at_center,theme(colors.slate.35)_0%,theme(colors.slate.15)_100%)]'
                                     }`
                                 }
                             >
