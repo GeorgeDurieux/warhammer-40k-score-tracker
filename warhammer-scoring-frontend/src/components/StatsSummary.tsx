@@ -20,23 +20,39 @@ type Game = {
 }
 
 type StatsSummaryProps = {
-  matches: Game[]
+  filters: {
+        tournamentOnly: boolean
+        wtc: boolean
+        userArmy: string
+        userDetachment: string
+        opponentArmy: string
+        opponentDetachment: string
+    }
+    matches: Game[]
 }
 
-const StatsSummary = ({ matches }: StatsSummaryProps) => {
-  const wins = matches.filter(m => m.user_score > m.opponent_score).length
-  const losses = matches.filter(m => m.user_score < m.opponent_score).length
-  const draws = matches.length - wins - losses
+const StatsSummary = ({ filters, matches }: StatsSummaryProps) => {
 
-  return (
-    <div className="bg-gray-5 p-6 rounded text-slate-50 text-lg border border-slate-50">
-      <p>Total Games: {matches.length}</p>
-      <p>Wins: {wins}</p>
-      <p>Losses: {losses}</p>
-      <p>Draws: {draws}</p>
-      <p>Winrate: {(wins / matches.length * 100).toPrecision(3)}%</p>
-    </div>
-  )
+    let wins, losses
+
+    if (filters.wtc) {
+        wins = matches.filter(m => m.user_wtc_score > m.opponent_wtc_score).length
+        losses = matches.filter(m => m.user_wtc_score < m.opponent_wtc_score).length
+    } else {
+        wins = matches.filter(m => m.user_score > m.opponent_score).length
+        losses = matches.filter(m => m.user_score < m.opponent_score).length
+    }
+    const draws = matches.length - wins - losses
+
+    return (
+        <div className="bg-gray-5 p-6 rounded text-slate-50 text-lg border border-slate-50">
+        <p>Total Games: {matches.length}</p>
+        <p>Wins: {wins}</p>
+        <p>Losses: {losses}</p>
+        <p>Draws: {draws}</p>
+        <p>Winrate: {(wins / matches.length * 100).toPrecision(3)}%</p>
+        </div>
+    )
 }
 
 export default StatsSummary

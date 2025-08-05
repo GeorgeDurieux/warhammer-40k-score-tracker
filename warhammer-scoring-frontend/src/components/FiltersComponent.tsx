@@ -25,6 +25,7 @@ type Game = {
 type FiltersProps = {
     filters: {
         tournamentOnly: boolean
+        wtc: boolean
         userArmy: string
         userDetachment: string
         opponentArmy: string
@@ -32,6 +33,7 @@ type FiltersProps = {
     }
     setFilters: React.Dispatch<React.SetStateAction<{
         tournamentOnly: boolean
+        wtc: boolean
         userArmy: string
         userDetachment: string
         opponentArmy: string
@@ -71,6 +73,17 @@ const Filters = ({ filters, setFilters, matches }: FiltersProps) => {
                     value={filters.tournamentOnly}
                     label='Tournament Only'
                     onChange={value => setFilters(f => ({ ...f, tournamentOnly: value }))}
+                />
+
+            </div>
+
+            <div>
+
+                <CheckboxField 
+                    id='wtc'
+                    value={filters.wtc}
+                    label='WTC Scoring'
+                    onChange={value => setFilters(f => ({ ...f, wtc: value }))}
                 />
 
             </div>

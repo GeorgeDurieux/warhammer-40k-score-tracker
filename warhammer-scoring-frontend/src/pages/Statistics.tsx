@@ -27,6 +27,7 @@ const Statistics = () => {
     const [matches, setMatches] = useState<Game[]>([])
     const [filters, setFilters] = useState({
         tournamentOnly: false,
+        wtc: false,
         userArmy: 'all',
         userDetachment: 'all',
         opponentArmy: 'all',
@@ -65,7 +66,7 @@ const filteredMatches = matches.filter(match => {
         </h1>
 
         <Filters filters={filters} setFilters={setFilters} matches={matches} />
-        <StatsSummary matches={filteredMatches} />
+        <StatsSummary filters={filters} matches={filteredMatches} />
 
     </div>
   )
