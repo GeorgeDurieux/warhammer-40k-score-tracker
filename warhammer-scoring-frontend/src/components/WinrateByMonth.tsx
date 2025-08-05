@@ -77,7 +77,7 @@ const WinrateByMonth = ({ filters, matches }: WinrateByMonthProps) => {
             {monthArray.length === 0 ? (
                 <p>No matches found for these filters.</p>
             ) : (
-                <div className='flex bg-amber-300'>
+                <div className='flex'>
                     <table className="border border-slate-50">
 
                         <thead>

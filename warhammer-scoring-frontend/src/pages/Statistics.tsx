@@ -3,6 +3,7 @@ import Filters from '../components/FiltersComponent'
 import StatsSummary from '../components/StatsSummary'
 import MatchList from '../components/MatchList'
 import WinrateByMonth from '../components/WinrateByMonth'
+import ScoreByMonth from '../components/ScoreByMonth'
 
 type Game = {
     id: number
@@ -61,7 +62,7 @@ const Statistics = () => {
 
 
     return (
-        <div className="flex min-h-[96vh]">
+        <div className="flex min-h-[96vh] pb-24">
 
             <aside className="w-80 bg-gray-5 p-4 rounded sticky top-4 ">
                 <Filters filters={filters} setFilters={setFilters} matches={matches} />
@@ -78,13 +79,9 @@ const Statistics = () => {
                 <MatchList filters={filters} matches={filteredMatches} />
 
                 <WinrateByMonth filters={filters} matches={filteredMatches} />
-            </div>
-            
 
-            
-
-            
-
+                <ScoreByMonth filters={filters} matches={filteredMatches} />
+            </div> 
         </div>
     )
 }
