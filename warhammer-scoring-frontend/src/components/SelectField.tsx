@@ -50,7 +50,7 @@ function SelectField({ id, label, value, options, onChange }: SelectFieldProps) 
                                 leaveTo="opacity-0 translate-y-1"
                             >
 
-                                <ListboxOptions className="mt-1 max-h-100 min-w-max overflow-auto bg-gray-5 mx-auto border border-slate-50 rounded scrollbar-thin absolute left-1/2 w-full shadow-lg z-50 -translate-x-1/2 shadow-slate-35">
+                                <ListboxOptions className="mt-1 max-h-100 min-w-max overflow-auto bg-gray-5 mx-auto border border-slate-50 rounded scrollbar-thin absolute left-1/2 w-full shadow-lg z-50 -translate-x-1/2 shadow-gray-5">
 
                                     <li className="px-4 py-2 text-slate-50 cursor-default select-none">
                                         -- Select --

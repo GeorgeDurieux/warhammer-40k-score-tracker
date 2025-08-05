@@ -46,7 +46,7 @@ function Navbar({ links }: NavbarProps) {
                     <div className="flex items-center gap-4 px-4">
                         <span>Welcome, {user?.username || 'Commander'}!</span>
                         <button 
-                            className="transition-colors duration-250 hover:text-slate-50 cursor-pointer"
+                            className="transition-all duration-250 hover:text-slate-50 hover:scale-[1.1] cursor-pointer"
                             onClick={logout}
                         >
                             <LogOut/>
