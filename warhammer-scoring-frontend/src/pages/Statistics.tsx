@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Filters from '../components/FiltersComponent'
 import StatsSummary from '../components/StatsSummary'
+import MatchList from '../components/MatchList'
 
 type Game = {
     id: number
@@ -34,7 +35,7 @@ const Statistics = () => {
         opponentDetachment: 'all'
     })
 
-  useEffect(() => {
+    useEffect(() => {
         const fetchMatches = async () => {
             try {
                 const res = await fetch('http://localhost:4000/api/matches')
@@ -46,30 +47,33 @@ const Statistics = () => {
             }
         }
         fetchMatches()
-  }, [])
+    }, [])
 
-const filteredMatches = matches.filter(match => {
-    if (filters.tournamentOnly && !match.is_tournament) return false
-    if (filters.userArmy && filters.userArmy !== 'all' && match.user_army.name !== filters.userArmy) return false
-    if (filters.userDetachment && filters.userDetachment !== 'all' && match.user_detachment.name !== filters.userDetachment) return false
-    if (filters.opponentArmy && filters.opponentArmy !== 'all' && match.opponent_army.name !== filters.opponentArmy) return false
-    if (filters.opponentDetachment && filters.opponentDetachment !== 'all' && match.opponent_detachment.name !== filters.opponentDetachment) return false
-    return true
-})
+    const filteredMatches = matches.filter(match => {
+        if (filters.tournamentOnly && !match.is_tournament) return false
+        if (filters.userArmy && filters.userArmy !== 'all' && match.user_army.name !== filters.userArmy) return false
+        if (filters.userDetachment && filters.userDetachment !== 'all' && match.user_detachment.name !== filters.userDetachment) return false
+        if (filters.opponentArmy && filters.opponentArmy !== 'all' && match.opponent_army.name !== filters.opponentArmy) return false
+        if (filters.opponentDetachment && filters.opponentDetachment !== 'all' && match.opponent_detachment.name !== filters.opponentDetachment) return false
+        return true
+    })
 
 
-  return (
-    <div className="flex flex-col gap-6 items-center mx-auto">
+    return (
+        <div className="flex flex-col gap-6 items-center mx-auto">
 
-        <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">
-            Statistics
-        </h1>
+            <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">
+                Statistics
+            </h1>
 
-        <Filters filters={filters} setFilters={setFilters} matches={matches} />
-        <StatsSummary filters={filters} matches={filteredMatches} />
+            <Filters filters={filters} setFilters={setFilters} matches={matches} />
+            
+            <StatsSummary filters={filters} matches={filteredMatches} />
 
-    </div>
-  )
+            <MatchList filters={filters} matches={filteredMatches} />
+
+        </div>
+    )
 }
 
 export default Statistics
