@@ -45,13 +45,77 @@ const StatsSummary = ({ filters, matches }: StatsSummaryProps) => {
     const draws = matches.length - wins - losses
 
     return (
-        <div className="bg-gray-5 p-6 rounded text-slate-50 text-lg border border-slate-50">
-        <p>Total Games: {matches.length}</p>
-        <p>Wins: {wins}</p>
-        <p>Losses: {losses}</p>
-        <p>Draws: {draws}</p>
-        <p>Winrate: {(wins / matches.length * 100).toPrecision(3)}%</p>
+        <div className="text-slate-50">
+
+            <h2 className="text-xl font-semibold mb-2 text-center">Summary</h2>
+
+            <table className="w-full border border-slate-50 bg-gray-5 rounded text-lg">
+
+                <tbody>
+
+                    <tr className="hover:bg-[radial-gradient(circle_at_center,theme(colors.slate.35)_0%,theme(colors.slate.15)_100%)]">
+
+                        <td className="border px-4 py-2 font-semibold">
+                            Total Games
+                        </td>
+
+                        <td className="border px-4 py-2 text-center">
+                            {matches.length}
+                        </td>
+
+                    </tr>
+
+                    <tr className="hover:bg-[radial-gradient(circle_at_center,theme(colors.slate.35)_0%,theme(colors.slate.15)_100%)]">
+
+                        <td className="border px-4 py-2 font-semibold">
+                            Wins
+                        </td>
+
+                        <td className="border px-4 py-2 text-center">
+                            {wins}
+                        </td>
+                    </tr>
+
+                    <tr className="hover:bg-[radial-gradient(circle_at_center,theme(colors.slate.35)_0%,theme(colors.slate.15)_100%)]">
+
+                        <td className="border px-4 py-2 font-semibold">
+                            Losses
+                        </td>
+
+                        <td className="border px-4 py-2 text-center">
+                            {losses}
+                        </td>
+
+                    </tr>
+
+                    <tr className="hover:bg-[radial-gradient(circle_at_center,theme(colors.slate.35)_0%,theme(colors.slate.15)_100%)]">
+
+                        <td className="border px-4 py-2 font-semibold">
+                            Draws
+                        </td>
+
+                        <td className="border px-4 py-2 text-center">
+                            {draws}
+                        </td>
+
+                    </tr>
+
+                    <tr className="hover:bg-[radial-gradient(circle_at_center,theme(colors.slate.35)_0%,theme(colors.slate.15)_100%)]">
+
+                        <td className="border px-4 py-2 font-semibold">
+                            Winrate
+                        </td>
+
+                        <td className="border px-4 py-2 text-center">
+                            {(wins / matches.length * 100).toPrecision(3)}%
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
+        
     )
 }
 

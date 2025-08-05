@@ -105,7 +105,7 @@ const MatchList = ({ filters, matches }: MatchListProps) => {
 
 
     return (
-        <div className="text-slate-50 text-left mt-4 mb-16">
+        <div className="text-slate-50 text-left mt-4">
             <h2 className="text-xl font-semibold mb-2 text-center">Matchup Analysis</h2>
             {detachmentArray.length === 0 ? (
                 <p>No matches found for these filters.</p>

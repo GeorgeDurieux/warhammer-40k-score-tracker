@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Filters from '../components/FiltersComponent'
 import StatsSummary from '../components/StatsSummary'
 import MatchList from '../components/MatchList'
+import WinrateByMonth from '../components/WinrateByMonth'
 
 type Game = {
     id: number
@@ -60,17 +61,19 @@ const Statistics = () => {
 
 
     return (
-        <div className="flex flex-col gap-6 items-center mx-auto">
+        <div className="flex flex-col gap-6 items-center mx-auto mb-24">
 
             <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">
                 Statistics
             </h1>
 
             <Filters filters={filters} setFilters={setFilters} matches={matches} />
-            
+
             <StatsSummary filters={filters} matches={filteredMatches} />
 
             <MatchList filters={filters} matches={filteredMatches} />
+
+            <WinrateByMonth filters={filters} matches={filteredMatches} />
 
         </div>
     )
