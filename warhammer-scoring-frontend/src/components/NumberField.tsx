@@ -89,7 +89,7 @@ function NumberField({
         <button
           type="button"
           onClick={decrement}
-          className="absolute left-0 pl-2 h-full cursor-pointer text-slate-50 hover:text-white"
+          className="absolute left-0 pl-2 h-full cursor-pointer text-slate-50 hover:text-white hover:scale-[1.1] transition-all duration-250"
         >
           –
         </button>
@@ -98,7 +98,7 @@ function NumberField({
         <button
           type="button"
           onClick={increment}
-          className="absolute right-0 pr-2 h-full cursor-pointer text-slate-50 hover:text-white"
+          className="absolute right-0 pr-2 h-full cursor-pointer text-slate-50 hover:text-white hover:scale-[1.1] transition-all duration-250"
         >
           +
         </button>

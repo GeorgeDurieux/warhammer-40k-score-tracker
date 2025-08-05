@@ -63,14 +63,14 @@ const MatchEntry = ({ match, onEdit, onDelete }: MatchEntryProps) => {
 
         <button 
             onClick={() => onEdit?.(match.id)} 
-            className="text-slate-35 hover:text-slate-50 transition-colors duration-250 cursor-pointer"
+            className="text-slate-35 hover:text-slate-50 hover:scale-[1.1] transition-all  duration-250 cursor-pointer"  
         >
             <Pencil size={20} />
         </button>
 
         <button 
             onClick={() => onDelete?.(match.id)} 
-            className="text-slate-35 hover:text-slate-50 transition-colors duration-250 cursor-pointer"
+            className="text-slate-35 hover:text-slate-50 hover:scale-[1.1] transition-all duration-250 cursor-pointer"
         >
             <Trash2 size={20} />
         </button>
