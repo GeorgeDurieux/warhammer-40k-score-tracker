@@ -62,9 +62,9 @@ const Statistics = () => {
 
 
     return (
-        <div className="flex min-h-[96vh] pb-24">
+        <div className="flex min-h-screen items-start">
 
-            <aside className="w-80 bg-gray-5 p-4 rounded sticky top-4 ">
+            <aside className="w-80 bg-gray-5 p-4 rounded sticky top-0 min-h-screen">
                 <Filters filters={filters} setFilters={setFilters} matches={matches} />
             </aside>
 
