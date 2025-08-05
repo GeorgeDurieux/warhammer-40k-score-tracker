@@ -1,3 +1,6 @@
+import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts'
+
+
 type Game = {
   id: number
   user_id: number
@@ -74,48 +77,80 @@ const WinrateByMonth = ({ filters, matches }: WinrateByMonthProps) => {
             {monthArray.length === 0 ? (
                 <p>No matches found for these filters.</p>
             ) : (
+                <div className='flex bg-amber-300'>
+                    <table className="border border-slate-50">
 
-                <table className="w-full border border-slate-50">
+                        <thead>
 
-                    <thead>
-
-                        <tr className="bg-gray-5">
-                            <th className="border px-2 py-1">Month</th>
-                            <th className="border px-2 py-1">Wins</th>
-                            <th className="border px-2 py-1">Total</th>
-                            <th className="border px-2 py-1">Winrate</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        {monthArray.map(row => (
-
-                            <tr key={row.month} className="bg-gray-5 hover:bg-[radial-gradient(circle_at_center,theme(colors.slate.35)_0%,theme(colors.slate.15)_100%)]">
-
-                                <td className="border px-2 py-1">
-                                    {row.month}
-                                </td>
-
-                                <td className="border px-2 py-1 text-center">
-                                    {row.wins}
-                                </td>
-
-                                <td className="border px-2 py-1 text-center">
-                                    {row.total}
-                                </td>
-
-                                <td className="border px-2 py-1 text-center">
-                                    {row.winrate}%
-                                </td>
-
+                            <tr className="bg-gray-5">
+                                <th className="border px-2 py-1">Month</th>
+                                <th className="border px-2 py-1">Wins</th>
+                                <th className="border px-2 py-1">Total</th>
+                                <th className="border px-2 py-1">Winrate</th>
                             </tr>
-                        ))}
 
-                    </tbody>
+                        </thead>
 
-                </table>
+                        <tbody>
+
+                            {monthArray.map(row => (
+
+                                <tr key={row.month} className="bg-gray-5 hover:bg-[radial-gradient(circle_at_center,theme(colors.slate.35)_0%,theme(colors.slate.15)_100%)]">
+
+                                    <td className="border px-2 py-1">
+                                        {row.month}
+                                    </td>
+
+                                    <td className="border px-2 py-1 text-center">
+                                        {row.wins}
+                                    </td>
+
+                                    <td className="border px-2 py-1 text-center">
+                                        {row.total}
+                                    </td>
+
+                                    <td className="border px-2 py-1 text-center">
+                                        {row.winrate}%
+                                    </td>
+
+                                </tr>
+                            ))}
+
+                        </tbody>
+
+                    </table>
+
+                    <div className="bg-gray-5 p-4 h-64 w-96">
+
+                        <ResponsiveContainer width="100%" height="100%">
+
+                            <BarChart data={monthArray.reverse()}>
+
+                                <defs>
+                                    <linearGradient id="customGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stopColor="hsl(180, 25%, 50%)" stopOpacity={0.9}/>
+                                        <stop offset="100%" stopColor="hsl(180, 25%, 15%)" stopOpacity={0.7}/>
+                                    </linearGradient>
+                                </defs>
+
+                                <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+
+                                <XAxis dataKey="month" stroke="#ddd" tick={{ fill: '#ddd' }} />
+
+                                <YAxis stroke="#ddd" tick={{ fill: '#ddd' }} domain={[0, 100]} />
+
+                                <Tooltip 
+                                    contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #38bdf8', color: '#fff' }}
+                                    cursor={{ fill: 'hsl(180, 25%, 15%)' }}
+                                />
+
+                                <Bar dataKey="winrate" fill="url(#customGradient)" radius={[4, 4, 0, 0]} barSize={30} />
+
+                            </BarChart>
+
+                        </ResponsiveContainer>
+                    </div>
+                </div>    
             )}
         </div>
 
