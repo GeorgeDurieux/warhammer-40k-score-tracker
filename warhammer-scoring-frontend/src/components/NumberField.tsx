@@ -82,7 +82,7 @@ function NumberField({
           onBlur={commitValue}
           onFocus={handleFocus}
           required={required}
-          className="w-24 px-2 py-1 bg-gray-5 border border-slate-50 text-slate-50 rounded text-center appearance-none"
+          className="w-24 px-2 py-1 bg-gray-5 border border-slate-50 text-slate-50 rounded text-center appearance-none hover:shadow-lg  focus:shadow-lg shadow-slate-35"
         />
 
         {/* Minus button */}

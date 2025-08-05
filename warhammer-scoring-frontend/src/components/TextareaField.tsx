@@ -13,7 +13,7 @@ function TextareaField({ id, label, value, onChange }: TextareaFieldProps) {
                 id={id} 
                 value={value} 
                 onChange={(e) => onChange(e.target.value)}
-                className="border rounded px-2 bg-gray-5 text-center"
+                className="border rounded px-2 bg-gray-5 text-center hover:shadow-lg focus:shadow-lg shadow-slate-35"
             >
             </textarea>
         </div>

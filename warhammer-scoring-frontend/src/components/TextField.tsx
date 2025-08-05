@@ -45,7 +45,7 @@ function TextField({
                     autoComplete={autoComplete}
                     autoFocus={autoFocus}
                     onChange={e => onChange(e.target.value)}
-                    className="border rounded pl-2 py-1 pr-10"
+                    className="border rounded pl-2 py-1 pr-10 hover:shadow-lg focus:shadow-lg focus:outline-none shadow-slate-35"
                     required={required}
                     title={title}
                     pattern={pattern}

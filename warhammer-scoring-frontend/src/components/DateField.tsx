@@ -15,12 +15,12 @@ function DateField({ id, label, value, onChange }: DateFieldProps) {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null)
 
     useEffect(() => {
-    if (value) {
-        const [year, month] = value.split('-').map(Number)
-        const safeDate = new Date(year, month - 1, 1, 12)
-        setSelectedDate(safeDate)
-    }
-}, [value])
+        if (value) {
+            const [year, month] = value.split('-').map(Number)
+            const safeDate = new Date(year, month - 1, 1, 12)
+            setSelectedDate(safeDate)
+        }
+    }, [value])
 
 
     const handleChange = (date: Date | null) => {
@@ -45,7 +45,7 @@ function DateField({ id, label, value, onChange }: DateFieldProps) {
                 dateFormat="yyyy-MM"
                 showMonthYearPicker
                 maxDate={new Date()}
-                className="border rounded px-2 bg-gray-5"
+                className="border rounded px-2 bg-gray-5 hover:shadow-lg focus:shadow-lg shadow-slate-35"
             >
             </DatePicker>
         </div>
