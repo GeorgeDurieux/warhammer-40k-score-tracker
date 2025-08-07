@@ -1,4 +1,5 @@
 import { ChevronDownIcon } from "lucide-react"
+import React from "react"
 import { useState } from "react"
 
 type Game = {
@@ -124,7 +125,7 @@ const MatchList = ({ filters, matches }: MatchListProps) => {
                     
                     <tbody>
                         {detachmentArray.map(det => (
-                            <>
+                            <React.Fragment key={det.detachment}>
                                 <tr
                                     key={det.detachment}
                                     className="cursor-pointer font-bold bg-gray-5 hover:bg-[radial-gradient(circle_at_center,theme(colors.slate.35)_0%,theme(colors.slate.15)_100%)]"
@@ -175,7 +176,7 @@ const MatchList = ({ filters, matches }: MatchListProps) => {
                                     </tr>
                                 
                                 ))}
-                            </>
+                            </React.Fragment>
                         ))}
                     </tbody>
                 </table>

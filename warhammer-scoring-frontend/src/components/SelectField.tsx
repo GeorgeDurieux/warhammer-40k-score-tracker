@@ -28,7 +28,7 @@ function SelectField({ id, label, value, options, onChange }: SelectFieldProps) 
                 <Listbox value={value} onChange={onChange}>
 
                     {({ open }) => (
-                        <>
+                        <div>
                             <ListboxButton 
                                 id={id} 
                                 className="border rounded px-4 py-2 min-w-32 bg-gray-5 text-slate-50 cursor-pointer flex items-center justify-between gap-2
@@ -76,7 +76,7 @@ function SelectField({ id, label, value, options, onChange }: SelectFieldProps) 
                                 </ListboxOptions>
 
                             </Transition>
-                        </>
+                        </div>
                     )}
 
                         

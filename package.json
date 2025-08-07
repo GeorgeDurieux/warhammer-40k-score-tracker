@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@types/recharts": "^1.8.29",
+    "react-range": "^1.10.0",
     "recharts": "^3.1.2"
   }
 }

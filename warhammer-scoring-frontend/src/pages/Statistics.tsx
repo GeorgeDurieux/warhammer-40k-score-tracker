@@ -34,7 +34,9 @@ const Statistics = () => {
         userArmy: 'all',
         userDetachment: 'all',
         opponentArmy: 'all',
-        opponentDetachment: 'all'
+        opponentDetachment: 'all',
+        fromMonth: '',
+        toMonth: ''
     })
 
     useEffect(() => {
@@ -52,11 +54,22 @@ const Statistics = () => {
     }, [])
 
     const filteredMatches = matches.filter(match => {
+
+        //Tournament
         if (filters.tournamentOnly && !match.is_tournament) return false
+
+        //Armies and detachments
         if (filters.userArmy && filters.userArmy !== 'all' && match.user_army.name !== filters.userArmy) return false
         if (filters.userDetachment && filters.userDetachment !== 'all' && match.user_detachment.name !== filters.userDetachment) return false
         if (filters.opponentArmy && filters.opponentArmy !== 'all' && match.opponent_army.name !== filters.opponentArmy) return false
         if (filters.opponentDetachment && filters.opponentDetachment !== 'all' && match.opponent_detachment.name !== filters.opponentDetachment) return false
+
+        //Dates
+        const matchMonth = match.date.slice(0, 7)
+        if (filters.fromMonth && matchMonth < filters.fromMonth) return false
+        if (filters.toMonth && matchMonth > filters.toMonth) return false
+        
+        //Remaining return
         return true
     })
 
