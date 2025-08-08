@@ -46,6 +46,8 @@ function DateField({ id, label, value, onChange }: DateFieldProps) {
                 showMonthYearPicker
                 maxDate={new Date()}
                 className="border rounded px-2 bg-gray-5 hover:shadow-lg focus:shadow-lg shadow-slate-35"
+                autoComplete='off'
+                name='no-autofill-date'
             >
             </DatePicker>
         </div>
