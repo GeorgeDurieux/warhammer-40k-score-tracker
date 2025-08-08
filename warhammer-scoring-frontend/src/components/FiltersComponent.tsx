@@ -46,9 +46,10 @@ type FiltersProps = {
         toMonth: string
     }>>
     matches: Game[]
+    showWtc?: boolean
 }
 
-const Filters = ({ filters, setFilters, matches }: FiltersProps) => {
+const Filters = ({ filters, setFilters, matches, showWtc }: FiltersProps) => {
 
     //Dropdowns "all"
     const getUniqueWithAll = (list: string[]) => {
@@ -148,16 +149,18 @@ const Filters = ({ filters, setFilters, matches }: FiltersProps) => {
             </div>
 
             {/* WTC Scoring on / off */}
-            <div>
+            { showWtc && (
+                <div>
 
-                <CheckboxField 
-                    id='wtc'
-                    value={filters.wtc}
-                    label='WTC Scoring'
-                    onChange={value => setFilters(f => ({ ...f, wtc: value }))}
-                />
+                    <CheckboxField 
+                        id='wtc'
+                        value={filters.wtc}
+                        label='WTC Scoring'
+                        onChange={value => setFilters(f => ({ ...f, wtc: value }))}
+                    />
 
-            </div>
+                </div>
+            )}    
 
             {/* Months range picker */}
             <div>

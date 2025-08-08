@@ -30,29 +30,33 @@ type MatchHistoryProps = {
 }
 
 const MatchHistoryComponent = ({ matches, onEdit, onDelete, onAdd }: MatchHistoryProps) => {
-  return (
-    <div className="w-full max-w-4xl mb-32">
-      <div className="flex justify-end mb-6">
-        <CustomButton
-            onClick={onAdd}
-            children={'+ Add Match'}
-        />
-      </div>
 
-      {matches.length === 0 ? (
-        <p className="text-slate-300 text-center">No matches found.</p>
-      ) : (
-        <div className="space-y-4">
-            {matches.map((match) => (
-                <MatchEntry
-                    key={match.id}
-                    match={match}
-                    onEdit={onEdit}
-                    onDelete={onDelete}
-                />
-            ))}   
+  return (
+
+    <div className="w-full max-w-4xl mb-32">
+
+        <div className="flex justify-end mb-6">
+            <CustomButton
+                onClick={onAdd}
+                children={'+ Add Match'}
+            />
         </div>
-      )}
+
+        {matches.length === 0 ? (
+            <p className="text-slate-50 text-center">No matches found.</p>
+        ) : (
+            <div className="space-y-4">
+                {matches.map((match) => (
+                    <MatchEntry
+                        key={match.id}
+                        match={match}
+                        onEdit={onEdit}
+                        onDelete={onDelete}
+                    />
+                ))}   
+            </div>
+        )}
+
     </div>
   )
 }
