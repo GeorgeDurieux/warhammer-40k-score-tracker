@@ -24,7 +24,7 @@ const MonthRangeSlider = ({ months, values, onChange }: Props) => {
         renderTrack={({ props, children }) => (
           <div
             {...props}
-            className="h-2 bg-gray-400 rounded relative my-4"
+            className="h-2 bg-gray-25 rounded relative my-4"
           >
             {children}
           </div>
@@ -32,13 +32,13 @@ const MonthRangeSlider = ({ months, values, onChange }: Props) => {
         renderThumb={({ props }) => {
             const { key, ...restProps } = props
             return (
-                <div key={key} {...restProps} className="w-4 h-4 bg-slate-100 rounded-full shadow-lg cursor-pointer" />
+                <div key={key} {...restProps} className="w-4 h-4 bg-slate-50 rounded-full shadow-lg cursor-pointer" />
             )
         }}
 
       />
 
-      <div className="flex justify-between text-xs text-slate-300 mt-2">
+      <div className="flex justify-between text-xs text-slate-50 mt-2">
         {months.map((month, i) => (
           <span key={month} className="w-8 text-center">
             {i % 2 === 0 ? month.slice(5) : ''}
@@ -46,7 +46,7 @@ const MonthRangeSlider = ({ months, values, onChange }: Props) => {
         ))}
       </div>
 
-      <div className="text-center text-slate-200 mt-2">
+      <div className="text-center text-slate-50 mt-2">
         {months[values[0]]} → {months[values[1]]}
       </div>
     </div>
