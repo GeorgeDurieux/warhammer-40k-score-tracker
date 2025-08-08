@@ -127,7 +127,7 @@ const ScoreByMonth = ({ filters, matches }: ScoreByMonthProps) => {
 
                                 <XAxis dataKey="month" stroke="#ddd" tick={{ fill: '#ddd' }} />
 
-                                <YAxis stroke="#ddd" tick={{ fill: '#ddd' }} domain={[0, 100]} />
+                                <YAxis stroke="#ddd" tick={{ fill: '#ddd' }} domain={filters.wtc? [0, 20] : [0, 100]} />
 
                                 <Tooltip 
                                     contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #38bdf8', color: '#fff' }}
