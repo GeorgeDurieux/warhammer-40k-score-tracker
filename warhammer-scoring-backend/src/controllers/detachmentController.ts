@@ -108,6 +108,35 @@ export const updateDetachmentById = async (req: Request, res: Response): Promise
     }
 }
 
+export const softDeleteDetachmentById = async (req: Request, res: Response): Promise<void> => {
+
+    const { id } = req.params
+
+    try {
+        const existingDetachment = await prisma.detachments.findUnique({
+            where: { id: Number(id) }
+        })
+
+        if (!existingDetachment) {
+            res.status(404).json({ err: 'Detachment not found' })
+            return
+        }
+
+        const updatedDetachment = await prisma.detachments.update({
+            where: { id: Number(id) },
+            data: {
+                is_deleted: true
+            }
+        })
+
+        res.status(200).json(updatedDetachment)
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ err: 'Failed to update detachment' })
+    }
+}
+
 export const getDetachmentByArmy = async (req: Request, res: Response): Promise<void> => {
 
     const { armyId } = req.params

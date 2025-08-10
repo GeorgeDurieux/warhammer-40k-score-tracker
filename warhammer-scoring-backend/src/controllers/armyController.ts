@@ -69,11 +69,10 @@ export const deleteArmyById = async (req: Request, res: Response): Promise<void>
     const { id } = req.params
 
     try {
-        const armyId = Number(id)
 
         // First delete all detachments linked to this army
         await prisma.detachments.deleteMany({
-            where: { army_id: Number(armyId) }
+            where: { army_id: Number(id) }
         })
 
         // Then delete the army
@@ -84,11 +83,46 @@ export const deleteArmyById = async (req: Request, res: Response): Promise<void>
         res.status(200).json({ message: 'Deleted', deletedArmy})
 
     } catch (err: any) {
+
         console.log(err)
+
         if (err.code === 'P2025') {
-            res.status(404).json({ err: 'Detachment not found' })
+            res.status(404).json({ err: 'Army not found' })
         }
+        
         res.status(500).json({ err: 'Failed to delete army' })
+    }
+}
+
+export const softDeleteArmyById = async (req: Request, res: Response): Promise<void> => {
+
+    const { id } = req.params
+
+    try {
+
+        const existingArmy = await prisma.armies.findUnique({
+            where: { id: Number(id) }
+        })
+
+        if (!existingArmy) {
+            res.status(404).json({ err: 'Army not found' })
+            return
+        }
+
+        const updatedArmy = await prisma.armies.update({
+            where: { id: Number(id) },
+            data: {
+                is_deleted: true
+            }
+        })
+
+        res.status(200).json({ message: 'Deleted', updatedArmy})
+
+    } catch (err: any) {
+
+        console.log(err)
+        res.status(500).json({ err: 'Failed to update army' })
+        
     }
 }
 

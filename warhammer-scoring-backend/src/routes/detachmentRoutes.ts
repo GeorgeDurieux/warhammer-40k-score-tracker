@@ -5,6 +5,7 @@ import {
     getDetachmentByArmy, 
     getDetachmentById, 
     getDetachments, 
+    softDeleteDetachmentById, 
     updateDetachmentById 
 } from "../controllers/detachmentController";
 
@@ -15,6 +16,7 @@ router.get('/', getDetachments)
 router.get('/:id', getDetachmentById)
 router.delete('/:id', deleteDetachmentById)
 router.patch('/:id', updateDetachmentById)
-router.get('/:armyId', getDetachmentByArmy)
+router.patch('/soft/:id', softDeleteDetachmentById)
+router.get('/army/:armyId', getDetachmentByArmy)
 
 export default router

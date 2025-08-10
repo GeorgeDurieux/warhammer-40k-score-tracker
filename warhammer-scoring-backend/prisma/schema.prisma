@@ -10,18 +10,20 @@ datasource db {
 model armies {
   id                                   Int           @id @default(autoincrement())
   name                                 String        @unique(map: "unique_army") @db.VarChar(50)
+  is_deleted                           Boolean?      @default(false)
   detachments                          detachments[]
   games_games_opponent_army_idToarmies games[]       @relation("games_opponent_army_idToarmies")
   games_games_user_army_idToarmies     games[]       @relation("games_user_army_idToarmies")
 }
 
 model detachments {
-  id                                              Int     @id @default(autoincrement())
-  name                                            String  @db.VarChar(50)
+  id                                              Int      @id @default(autoincrement())
+  name                                            String   @db.VarChar(50)
   army_id                                         Int
-  armies                                          armies  @relation(fields: [army_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_detachments_armies")
-  games_games_user_detachment_idTodetachments     games[] @relation("games_user_detachment_idTodetachments")
-  games_games_opponent_detachment_idTodetachments games[] @relation("games_opponent_detachment_idTodetachments")
+  is_deleted                                      Boolean? @default(false)
+  armies                                          armies   @relation(fields: [army_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_detachments_armies")
+  games_games_user_detachment_idTodetachments     games[]  @relation("games_user_detachment_idTodetachments")
+  games_games_opponent_detachment_idTodetachments games[]  @relation("games_opponent_detachment_idTodetachments")
 
   @@unique([name, army_id], map: "unique_name_army")
 }
@@ -55,9 +57,10 @@ model games {
 }
 
 model users {
-  id       Int     @id @default(autoincrement())
-  username String  @unique(map: "unique_username") @db.VarChar(50)
-  email    String  @unique(map: "unique_email") @db.VarChar(100)
-  password String  @db.VarChar(255)
+  id       Int      @id @default(autoincrement())
+  username String   @unique(map: "unique_username") @db.VarChar(50)
+  email    String   @unique(map: "unique_email") @db.VarChar(100)
+  password String   @db.VarChar(255)
+  is_admin Boolean? @default(false)
   games    games[]
 }
