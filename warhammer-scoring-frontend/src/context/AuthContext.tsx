@@ -8,6 +8,7 @@ type User = {
     id: number
     username: string
     email: string
+    is_admin: boolean
 }
 
 type AuthContextType = {
@@ -30,9 +31,9 @@ export const AuthProvider = ({ children }: {children: ReactNode}) => {
         const token = localStorage.getItem('token')
 
         if (token) {
-            const { id, username, email } = jwtDecode<User & {exp: number}>(token)
+            const { id, username, email, is_admin } = jwtDecode<User & {exp: number}>(token)
 
-            setUser({ id, username, email })
+            setUser({ id, username, email, is_admin })
 
             setIsLoggedIn(true)
         }
@@ -42,9 +43,9 @@ export const AuthProvider = ({ children }: {children: ReactNode}) => {
         
         try {
             const data = await apiLogin(name, password)
-            const { id, username, email } = jwtDecode<User & {exp: number}>(data.token)
+            const { id, username, email, is_admin } = jwtDecode<User & {exp: number}>(data.token)
 
-            setUser({ id, username, email })
+            setUser({ id, username, email, is_admin })
 
             setIsLoggedIn(true)
             
@@ -56,9 +57,9 @@ export const AuthProvider = ({ children }: {children: ReactNode}) => {
     const register = async (name: string, password: string, mail: string) => {
         try {
             const data = await handleRegister(name, mail, password)
-            const { id,  username, email } = jwtDecode<User & {exp: number}>(data.token)
+            const { id,  username, email, is_admin } = jwtDecode<User & {exp: number}>(data.token)
 
-            setUser({ id, username, email })
+            setUser({ id, username, email, is_admin })
             
         } catch (err) {
             console.error('Registration failed', err)

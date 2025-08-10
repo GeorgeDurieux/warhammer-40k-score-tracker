@@ -14,8 +14,6 @@ type NavbarProps = {
 
 function Navbar({ links }: NavbarProps) {
 
-    const isAdmin = true
-
     const { user, isLoggedIn, logout } = useAuth()
 
     return (
@@ -23,7 +21,7 @@ function Navbar({ links }: NavbarProps) {
             <nav className="bg-gray-5 text-white flex justify-between">
                 <div className="flex">
                     {links.map(({ label, path, adminOnly }) => {
-                        if (adminOnly && !isAdmin) return null
+                        if (adminOnly && !user?.is_admin) return null
                         return (
                             <RouterNavLink 
                                 key={path} 
