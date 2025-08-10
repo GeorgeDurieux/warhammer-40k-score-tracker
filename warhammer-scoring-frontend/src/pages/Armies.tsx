@@ -32,9 +32,18 @@ function Armies() {
     }
 
     const handleDelete = async (id: number) => {
+
         if (!confirm('Are you sure you want to delete this army?')) return
-        await fetch(`http://localhost:4000/api/armies/${id}`, { method: 'DELETE' })
-        setArmies((prev) => prev.filter((a) => a.id !== id))
+        
+        const res = await fetch(`http://localhost:4000/api/armies/soft/${id}`, { method: 'PATCH' })
+
+        if (res.ok) {
+            //Reset UI
+            setArmies(prev => prev.filter(a => a.id !== id))
+        } else {
+            alert('Failed to delete army')
+        }
+
     }
 
      const handleAddArmy = () => {
