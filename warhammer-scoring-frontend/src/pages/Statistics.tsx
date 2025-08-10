@@ -78,7 +78,7 @@ const Statistics = () => {
         <div className="flex min-h-screen items-start">
 
             <aside className="w-80 bg-gray-5 p-4 rounded sticky top-0 min-h-screen">
-                <Filters filters={filters} setFilters={setFilters} matches={matches} showWtc={true} />
+                <Filters filters={filters} setFilters={setFilters} matches={matches} showWtc={false} />
             </aside>
 
             <div className='flex flex-col gap-6 items-center flex-1'>

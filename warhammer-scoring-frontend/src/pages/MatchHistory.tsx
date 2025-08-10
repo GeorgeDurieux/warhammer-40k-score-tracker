@@ -25,6 +25,7 @@ type Game = {
 }
 
 const MatchHistory = () => {
+
     const [matches, setMatches] = useState<Game[]>([])
 
     const [filters, setFilters] = useState({
@@ -54,10 +55,6 @@ const MatchHistory = () => {
         fetchMatches()
     }, [])
 
-    const handleEdit = (id: number) => {
-        navigate(`/edit-match/${id}`)
-    }
-
     const filteredMatches = matches.filter(match => {
 
             //Tournament
@@ -77,6 +74,10 @@ const MatchHistory = () => {
             //Remaining return
             return true
         })
+
+    const handleEdit = (id: number) => {
+        navigate(`/edit-match/${id}`)
+    }
 
     const handleDelete = async (id: number) => {
         if (!confirm('Are you sure you want to delete this match?')) return
