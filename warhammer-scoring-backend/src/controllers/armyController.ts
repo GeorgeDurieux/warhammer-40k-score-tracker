@@ -172,8 +172,9 @@ export const updateArmyById = async (req: Request, res: Response): Promise<void>
         //Find and delete detachments that are not in the new "version" of the army
         const idsToDelete = existingIds.filter(id => !incomingIds.includes(id))
 
-        await prisma.detachments.deleteMany({
-            where: { id: { in: idsToDelete } }
+        await prisma.detachments.updateMany({
+            where: { id: { in: idsToDelete } },
+            data: { is_deleted: true }
         })
 
         //Main part
