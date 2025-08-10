@@ -27,6 +27,7 @@ export const createDetachment = async (req: Request, res: Response) => {
 export const getDetachments = async (req: Request, res: Response) => {
     try {
         const detachments = await prisma.detachments.findMany({
+            where: { is_deleted: false },
             orderBy: { name: 'desc' }
         })
         res.status(200).json(detachments)
@@ -143,7 +144,8 @@ export const getDetachmentByArmy = async (req: Request, res: Response): Promise<
 
     try {
         const army = await prisma.detachments.findMany({
-            where: { id: Number(armyId) }
+            where: { id: Number(armyId), is_deleted: false },
+            orderBy: { name: 'desc' }
         })
 
         res.status(200).json(army)

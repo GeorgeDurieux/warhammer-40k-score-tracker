@@ -29,8 +29,14 @@ export const createArmy = async (req: Request, res: Response) => {
 export const getArmies = async (req: Request, res: Response) => {
     try {
         const armies = await prisma.armies.findMany({
+            where: { is_deleted: false},
             orderBy: { name: 'asc' },
-            include: { detachments: { orderBy: { name: 'asc' } } }
+            include: { 
+                detachments: { 
+                    where: { is_deleted: false },
+                    orderBy: { name: 'asc' } 
+                } 
+            }
         })
         res.status(200).json(armies)
 
