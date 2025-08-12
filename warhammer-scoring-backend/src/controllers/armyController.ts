@@ -16,6 +16,9 @@ export const createArmy = async (req: Request, res: Response) => {
                 detachments: {
                     create: detachments.map((d: string) => ({ name: d }))
                 }
+            },
+            include: {
+                detachments: true
             }
         })
         res.status(201).json(newArmy)
@@ -161,7 +164,7 @@ export const updateArmyById = async (req: Request, res: Response): Promise<void>
             detachments
         } = req.body
 
-        const updatedArmy = await prisma.armies.update({
+        await prisma.armies.update({
             where: { id: Number(id) },
             data: {
                 name
@@ -203,6 +206,11 @@ export const updateArmyById = async (req: Request, res: Response): Promise<void>
                 })
             }
         }))
+
+        const updatedArmy = await prisma.armies.findUnique({
+            where: { id: Number(id) },
+            include: { detachments: true }
+        })
 
         res.status(200).json(updatedArmy)
 
