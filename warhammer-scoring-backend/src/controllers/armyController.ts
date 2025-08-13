@@ -67,6 +67,7 @@ export const getArmyById = async (req: Request, res: Response): Promise<void> =>
         }
 
         res.status(200).json(army)
+        
     } catch (err) {
         console.log(err)
         res.status(500).json({ err: 'Failed to retrieve army' })

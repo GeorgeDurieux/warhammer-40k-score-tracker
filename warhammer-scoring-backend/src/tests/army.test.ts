@@ -47,7 +47,7 @@ describe('Armies API', () => {
     })
 
     //DELETE first army
-    it('DELETE /a[i/armies/:armyId should delete an existing army and return 200 with confirmation message', async () => {
+    it('DELETE /api/armies/:armyId should delete an existing army and return 200 with confirmation message', async () => {
 
         const existingArmy = await prisma.armies.findFirst()
 
@@ -99,6 +99,36 @@ describe('Armies API', () => {
         expect(createdArmy?.detachments.length).toBe(2)
     })
 
+    //GET the new army
+    it('GET /api/armies/:armyId should fetch an existing army with detachments and return 200', async () => {
+
+        const existingArmy = await prisma.armies.findFirst({
+            include: { detachments: true }
+        })
+
+        expect(existingArmy).not.toBeNull()
+
+        const res = await request(app)
+            .get(`/api/armies/${existingArmy!.id}`)
+            .expect(200)
+
+        expect(res.body.name).toBe(existingArmy?.name) 
+
+        const detachmentNames = res.body.detachments.map((d: any) => d.name)
+
+        expect(detachmentNames).toEqual(
+            expect.arrayContaining(existingArmy!.detachments.map(d => d.name))
+        )
+    })
+
+    //GET invalid id army
+    it('GET /api/armies/:00 should return 404', async () => {
+
+        await request(app)
+            .get(`/api/armies/00`)
+            .expect(404)
+    })
+
     //PATCH the new army
     it('PATCH /api/armies/:armyId should update an existing army with new name and detachments', async () => {
 
@@ -106,7 +136,7 @@ describe('Armies API', () => {
             include: { detachments: true }
         })
 
-        expect(existingArmy).not.toBeNull();
+        expect(existingArmy).not.toBeNull()
 
         const updatedData = {
             name: existingArmy!.name + ' Updated',
