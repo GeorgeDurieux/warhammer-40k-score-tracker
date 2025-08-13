@@ -12,8 +12,10 @@ describe('Detachment API', () => {
     beforeAll(async () => {
 
         // Clean 
-        await prisma.detachments.deleteMany({})
-        await prisma.armies.deleteMany({})
+        await prisma.games.deleteMany()
+        await prisma.detachments.deleteMany()
+        await prisma.armies.deleteMany()
+        await prisma.users.deleteMany()
 
         // Seed
         testArmy = await prisma.armies.create({

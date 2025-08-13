@@ -10,8 +10,10 @@ describe('Armies API', () => {
     beforeAll(async () => {
 
         // Clean 
+        await prisma.games.deleteMany()
         await prisma.detachments.deleteMany()
         await prisma.armies.deleteMany()
+        await prisma.users.deleteMany()
 
         // Seed
         await prisma.armies.create({
