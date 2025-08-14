@@ -1,5 +1,6 @@
-import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { Request, Response } from "express"
+import { PrismaClient } from "@prisma/client"
+import { ERROR_CODES } from '../constants/errorCodes'
 
 const prisma = new PrismaClient()
 
@@ -25,7 +26,7 @@ export const createArmy = async (req: Request, res: Response) => {
 
     } catch (err) {
         console.log(err)
-        res.status(500).json({ err: 'Internal server error' })
+        res.status(500).json({ errorCode: ERROR_CODES.ARMY_CREATE_ERROR })
     }
 }
 
@@ -45,7 +46,7 @@ export const getArmies = async (req: Request, res: Response) => {
 
     } catch (err) {
         console.log(err)
-        res.status(500).json({ err: 'Failed to fetch armies' })
+        res.status(500).json({ errorCode: ERROR_CODES.ARMY_FETCH_ERROR })
     }
 }
 
@@ -62,7 +63,7 @@ export const getArmyById = async (req: Request, res: Response): Promise<void> =>
         })
 
         if (!army) {
-            res.status(404).json({ err: 'Army not found' })
+            res.status(404).json({ errorCode: ERROR_CODES.ARMY_NOT_FOUND })
             return
         }
 
@@ -70,7 +71,7 @@ export const getArmyById = async (req: Request, res: Response): Promise<void> =>
         
     } catch (err) {
         console.log(err)
-        res.status(500).json({ err: 'Failed to retrieve army' })
+        res.status(500).json({ errorCode: ERROR_CODES.ARMY_FETCH_ERROR })
     }
 }
 
@@ -97,10 +98,10 @@ export const deleteArmyById = async (req: Request, res: Response): Promise<void>
         console.log(err)
 
         if (err.code === 'P2025') {
-            res.status(404).json({ err: 'Army not found' })
+            res.status(404).json({ errorCode: ERROR_CODES.ARMY_NOT_FOUND })
         }
 
-        res.status(500).json({ err: 'Failed to delete army' })
+        res.status(500).json({ errorCode: ERROR_CODES.ARMY_DELETE_ERROR })
     }
 }
 
@@ -115,7 +116,7 @@ export const softDeleteArmyById = async (req: Request, res: Response): Promise<v
         })
 
         if (!existingArmy) {
-            res.status(404).json({ err: 'Army not found' })
+            res.status(404).json({ errorCode: ERROR_CODES.ARMY_NOT_FOUND })
             return
         }
 
@@ -138,7 +139,7 @@ export const softDeleteArmyById = async (req: Request, res: Response): Promise<v
     } catch (err: any) {
 
         console.log(err)
-        res.status(500).json({ err: 'Failed to delete army' })
+        res.status(500).json({ errorCode: ERROR_CODES.ARMY_DELETE_ERROR })
         
     }
 }
@@ -156,7 +157,7 @@ export const updateArmyById = async (req: Request, res: Response): Promise<void>
         })
 
         if (!existingArmy) {
-            res.status(404).json({ err: 'Army not found' })
+            res.status(404).json({ errorCode: ERROR_CODES.ARMY_NOT_FOUND })
             return
         }
 
@@ -217,6 +218,6 @@ export const updateArmyById = async (req: Request, res: Response): Promise<void>
 
     } catch (err) {
         console.log(err)
-        res.status(500).json({ err: 'Failed to update army' })
+        res.status(500).json({ erroCode: ERROR_CODES.ARMY_UPDATE_ERROR })
     }
 }

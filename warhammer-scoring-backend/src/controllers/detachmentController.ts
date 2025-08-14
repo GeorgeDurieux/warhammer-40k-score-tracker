@@ -1,5 +1,6 @@
-import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { Request, Response } from "express"
+import { PrismaClient } from "@prisma/client"
+import { ERROR_CODES } from '../constants/errorCodes'
 
 const prisma = new PrismaClient()
 
@@ -20,7 +21,7 @@ export const createDetachment = async (req: Request, res: Response) => {
 
     } catch (err) {
         console.log(err)
-        res.status(500).json({ err: 'Internal server error' })
+        res.status(500).json({ errorCode: ERROR_CODES.DETACHMENT_CREATE_ERROR })
     }
 }
 
@@ -34,7 +35,7 @@ export const getDetachments = async (req: Request, res: Response) => {
 
     } catch (err) {
         console.log(err)
-        res.status(500).json({ err: 'Failed to fetch detachments' })
+        res.status(500).json({ errorCode: ERROR_CODES.DETACHMENT_FETCH_ERROR })
     }
 }
 
@@ -48,14 +49,14 @@ export const getDetachmentById = async (req: Request, res: Response): Promise<vo
         })
 
         if (!detachment) {
-            res.status(404).json({ err: 'Detachment not found' })
+            res.status(404).json({ errorCode: ERROR_CODES.DETACHMENT_NOT_FOUND })
             return
         }
 
         res.status(200).json(detachment)
     } catch (err) {
         console.log(err)
-        res.status(500).json({ err: 'Failed to retrieve detachment' })
+        res.status(500).json({ errorCode: ERROR_CODES.DETACHMENT_FETCH_ERROR })
     }
 }
 
@@ -70,9 +71,9 @@ export const deleteDetachmentById = async (req: Request, res: Response): Promise
   } catch (err: any) {
     console.error(err)
     if (err.code === 'P2025') {
-      res.status(404).json({ err: 'Detachment not found' })
+      res.status(404).json({ errorCode: ERROR_CODES.DETACHMENT_NOT_FOUND })
     }
-    res.status(500).json({ err: 'Failed to delete detachment' })
+    res.status(500).json({ errorCode: ERROR_CODES.DETACHMENT_DELETE_ERROR })
   }
 }
 
@@ -86,7 +87,7 @@ export const updateDetachmentById = async (req: Request, res: Response): Promise
         })
 
         if (!existingDetachment) {
-            res.status(404).json({ err: 'Detachment not found' })
+            res.status(404).json({ errorCode: ERROR_CODES.DETACHMENT_NOT_FOUND })
             return
         }
 
@@ -105,7 +106,7 @@ export const updateDetachmentById = async (req: Request, res: Response): Promise
 
     } catch (err) {
         console.log(err)
-        res.status(500).json({ err: 'Failed to update detachment' })
+        res.status(500).json({ errorCode: ERROR_CODES.DETACHMENT_UPDATE_ERROR })
     }
 }
 
@@ -119,7 +120,7 @@ export const softDeleteDetachmentById = async (req: Request, res: Response): Pro
         })
 
         if (!existingDetachment) {
-            res.status(404).json({ err: 'Detachment not found' })
+            res.status(404).json({ errorCode: ERROR_CODES.DETACHMENT_NOT_FOUND })
             return
         }
 
@@ -134,7 +135,7 @@ export const softDeleteDetachmentById = async (req: Request, res: Response): Pro
 
     } catch (err) {
         console.log(err)
-        res.status(500).json({ err: 'Failed to update detachment' })
+        res.status(500).json({ errorCode: ERROR_CODES.DETACHMENT_DELETE_ERROR })
     }
 }
 
@@ -152,6 +153,6 @@ export const getDetachmentByArmy = async (req: Request, res: Response): Promise<
 
     } catch (err) {
         console.log(err)
-        res.status(500).json({ err: 'Failed to retrieve detachments' })
+        res.status(500).json({ errorCode: ERROR_CODES.DETACHMENT_FETCH_ERROR })
     }
 }

@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { PrismaClient } from "@prisma/client"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import { ERROR_CODES } from '../constants/errorCodes'
 
 const prisma = new PrismaClient()
 const JWT_SECRET = process.env.JWT_SECRET || 'super-secret-key'
@@ -11,7 +12,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     const { username, email, password } = req.body
 
     if (!username || !email || !password) {
-        res.status(400).json({ err: 'All fields are required' })
+        res.status(400).json({ errorCode: ERROR_CODES.AUTH_MISSING_FIELDS })
         return
     }
 
@@ -21,7 +22,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         })
 
         if (existingUser) {
-            res.status(409).json({ err: 'User already exists' })
+            res.status(409).json({ errorCode: ERROR_CODES.AUTH_USER_EXISTS })
             return
         }
 
@@ -41,7 +42,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
     } catch( err) {
         console.log(err)
-        res.status(500).json( { err: 'Failed to register user' })
+        res.status(500).json( { errorCode: ERROR_CODES.AUTH_REGISTER_ERROR })
     }
 }
 
@@ -50,7 +51,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     const { username, password } = req.body
 
     if (!username || !password) {
-        res.status(400).json({ err: 'Email and password are required' })
+        res.status(400).json({ errorCode: ERROR_CODES.AUTH_MISSING_FIELDS })
         return
     }
 
@@ -60,14 +61,14 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         })
 
         if (!user) {
-            res.status(401).json( { err: 'Invalid username' })
+            res.status(401).json( { errorCode:  ERROR_CODES.AUTH_INVALID_USERNAME })
             return
         }
 
         const isValid = await bcrypt.compare(password, user.password)
 
         if (!isValid) {
-            res.status(401).json( { err: 'Invalid password' })
+            res.status(401).json( { errorCode: ERROR_CODES.AUTH_INVALID_PASSWORD })
             return
         }
 
@@ -77,6 +78,6 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
     } catch(err) {
         console.log(err)
-        res.status(500).json({ err: 'Failed to login' })
+        res.status(500).json({ errorCode: ERROR_CODES.AUTH_LOGIN_ERROR })
     }
 }

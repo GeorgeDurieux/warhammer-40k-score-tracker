@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
 import { PrismaClient } from "@prisma/client"
+import { ERROR_CODES } from '../constants/errorCodes'
 
 const prisma = new PrismaClient()
 
@@ -42,7 +43,7 @@ export const createMatch = async (req: Request, res: Response) => {
 
     } catch(err) {
         console.log(err)
-        res.status(500).json({ err: 'Internal server error' })
+        res.status(500).json({ errorCode: ERROR_CODES.MATCH_CREATE_FAILED })
     }
 }
 
@@ -81,7 +82,7 @@ export const getMatches = async (req: Request, res: Response) => {
 
     } catch(err) {        
         console.log(err)
-        res.status(500).json({ err: 'Failed to fetch matches' })
+        res.status(500).json({ errorCode: ERROR_CODES.MATCH_FETCH_FAILED })
     }
 }
 
@@ -101,7 +102,7 @@ export const getMatchById = async (req: Request, res: Response): Promise<void> =
         })      
 
         if (!match) {
-            res.status(404).json({ err: 'Match not found' })
+            res.status(404).json({ errorCode: ERROR_CODES.MATCH_NOT_FOUND })
             return
         }
 
@@ -128,7 +129,7 @@ export const getMatchById = async (req: Request, res: Response): Promise<void> =
 
     } catch (err) { 
         console.log(err)
-        res.status(500).json({ err: 'Failed to retrieve match' })
+        res.status(500).json({ errorCode: ERROR_CODES.ARMY_FETCH_ERROR })
     }       
 }
 
@@ -146,9 +147,9 @@ export const deleteMatchById = async (req: Request, res: Response): Promise<void
     } catch (err: any) {
         console.log(err)
         if (err.code === 'P2025') {
-            res.status(404).json({ err: 'Match not found' })
+            res.status(404).json({ errorCode: ERROR_CODES.MATCH_NOT_FOUND })
         }
-        res.status(500).json({ err: 'Failed to delete match' })
+        res.status(500).json({ errorCode: ERROR_CODES.MATCH_DELETE_FAILED })
     }
 }
 
@@ -162,7 +163,7 @@ export const updateMatchById = async (req: Request, res: Response): Promise<void
         })
 
         if (!existingMatch) {
-            res.status(404).json({ err: 'Match not found' })
+            res.status(404).json({ errorCode: ERROR_CODES.MATCH_NOT_FOUND })
         }
 
         const {
@@ -202,6 +203,6 @@ export const updateMatchById = async (req: Request, res: Response): Promise<void
 
     } catch (err) {
         console.log(err)
-        res.status(500).json({ err: 'Failed to update match' })
+        res.status(500).json({ errorCode: ERROR_CODES.MATCH_UPDATE_FAILED })
     }
 }
