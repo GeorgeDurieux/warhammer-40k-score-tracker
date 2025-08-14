@@ -6,9 +6,11 @@ type ModalProps = {
   title: string
   children: React.ReactNode
   onClose: () => void
+  onConfirm?: () => void
+  confirmText?: string
 }
 
-export default function Modal({ isOpen, title, children, onClose }: ModalProps) {
+export default function Modal({ isOpen, title, children, onClose, onConfirm, confirmText }: ModalProps) {
   const [showAnimation, setShowAnimation] = useState(false)
 
   // Animate when isOpen changes
@@ -50,9 +52,20 @@ export default function Modal({ isOpen, title, children, onClose }: ModalProps) 
             {/* Scrollable content */}
             <div className="max-h-[60vh] overflow-y-auto pr-2">{children}</div>
 
-            {/* Footer with button */}
-            <div className="mt-4 flex justify-end">
-                <CustomButton onClick={onClose} isSmall>
+            {/* Footer with close button and optional confirm */}
+            <div className="mt-4 flex justify-end gap-2">
+                {onConfirm && (
+                    <CustomButton 
+                        onClick={onConfirm} 
+                        isSmall
+                    >
+                        {confirmText || 'Confirm'}
+                    </CustomButton>
+                )}
+                <CustomButton 
+                    onClick={onClose} 
+                    isSmall
+                >
                     Close
                 </CustomButton>
             </div>
