@@ -6,5 +6,8 @@ export const handleApiError = (error: any) => {
 
     const message = ERROR_MESSAGES[errorCode] || "An unexpected error occurred."
 
-    alert(message)
+    return {
+        title: 'Error',
+        message
+    }
 }

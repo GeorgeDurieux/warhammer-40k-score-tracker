@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MatchHistoryComponent from "../components/MatchHistoryComponent"
 import Filters from '../components/FiltersComponent'
+import Modal from '../components/Modal'
 
 type Game = {
   id: number
@@ -38,19 +39,26 @@ const MatchHistory = () => {
             fromMonth: '',
             toMonth: ''
         })
+
+        const [confirmModalOpen, setConfirmModalOpen] = useState(false)
+        const [matchToDelete, setMatchToDelete] = useState<number | null>(null)
+
+        const [errorModalOpen, setErrorModalOpen] = useState(false)
+        const [errorMessage, setErrorMessage] = useState('')
         
     const navigate = useNavigate()
 
     useEffect(() => {
         const fetchMatches = async () => {
-        try {
-            const res = await fetch('http://localhost:4000/api/matches')
-            const data = await res.json()
-            setMatches(data)
-            
-        } catch (error) {
-            console.error('Failed to fetch matches:', error)
-        }
+            try {
+                const res = await fetch('http://localhost:4000/api/matches')
+                const data = await res.json()
+                setMatches(data)
+                
+            } catch (error: any) {
+                setErrorMessage(error.message || 'Failed to fetch matches')
+                setErrorModalOpen(true)
+            }
         }
         fetchMatches()
     }, [])
@@ -79,10 +87,27 @@ const MatchHistory = () => {
         navigate(`/edit-match/${id}`)
     }
 
-    const handleDelete = async (id: number) => {
-        if (!confirm('Are you sure you want to delete this match?')) return
-        await fetch(`http://localhost:4000/api/matches/${id}`, { method: 'DELETE' })
-        setMatches(prev => prev.filter(m => m.id !== id))
+    const handleDelete = (id: number) => {
+        setMatchToDelete(id)
+        setConfirmModalOpen(true)
+    }
+
+    const confirmDelete = async () => {
+        if (matchToDelete === null) return
+
+        try {
+            const res = await fetch(`http://localhost:4000/api/matches/${matchToDelete}`, { method: 'DELETE' })
+            if (!res.ok) throw new Error('Failed to delete match')
+
+            setMatches(prev => prev.filter(m => m.id !== matchToDelete))
+
+        } catch (error: any) {
+            setErrorMessage(error.message || 'Failed to delete match')
+            setErrorModalOpen(true)
+        } finally {
+            setConfirmModalOpen(false)
+            setMatchToDelete(null)
+        }
     }
 
     const handleAddMatch = () => {
@@ -108,6 +133,26 @@ const MatchHistory = () => {
                     onDelete={handleDelete} 
                     onAdd={handleAddMatch}
                 />
+
+                {/* Confirm Delete Modal */}
+                <Modal
+                    isOpen={confirmModalOpen}
+                    title="Confirm Delete"
+                    onClose={() => setConfirmModalOpen(false)}
+                    onConfirm={confirmDelete}
+                    confirmText="Delete"
+                >
+                    Are you sure you want to delete this match?
+                </Modal>
+
+                {/* Error Modal */}
+                <Modal
+                    isOpen={errorModalOpen}
+                    title="Error"
+                    onClose={() => setErrorModalOpen(false)}
+                >
+                    <p>{errorMessage}</p>
+                </Modal>
             </div>
 
         </div>

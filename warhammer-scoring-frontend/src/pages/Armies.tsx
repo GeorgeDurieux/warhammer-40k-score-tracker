@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import ArmyList from '../components/ArmyList'
 import { useNavigate } from 'react-router-dom'
+import Modal from '../components/Modal'
 
 type Detachment = {
   id: number
@@ -15,14 +16,27 @@ type Army = {
 
 function Armies() {
 
+    const [errorModalOpen, setErrorModalOpen] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
+
+    const [confirmModalOpen, setConfirmModalOpen] = useState(false)
+    const [armyToDelete, setArmyToDelete] = useState<number | null>(null)
+
     const [armies, setArmies] = useState<Army[]>([])
+
     let navigate = useNavigate()
 
     useEffect(() => {        
         const fetchArmies = async () => {
-            const res = await fetch('http://localhost:4000/api/armies')
-            const data = await res.json()
-            setArmies(data)
+            try {
+                const res = await fetch('http://localhost:4000/api/armies')
+                if (!res.ok) throw new Error('Failed to fetch armies')
+                const data = await res.json()
+                setArmies(data)
+            } catch (err: any) {
+                setErrorMessage(err.message || 'Something went wrong')
+                setErrorModalOpen(true)
+            }
         }
         fetchArmies()
     }, [])
@@ -31,19 +45,30 @@ function Armies() {
         navigate(`/edit-army/${id}`)
     }
 
-    const handleDelete = async (id: number) => {
+    const handleDelete = (id: number) => {
+        setArmyToDelete(id)
+        setConfirmModalOpen(true)
+    }
 
-        if (!confirm('Are you sure you want to delete this army?')) return
+    const confirmDelete = async () => {
+
+        if (armyToDelete === null) return
         
-        const res = await fetch(`http://localhost:4000/api/armies/soft/${id}`, { method: 'PATCH' })
+        try {
+            const res = await fetch(`http://localhost:4000/api/armies/soft/${armyToDelete}`, { method: 'PATCH' })
+            if (!res.ok) throw new Error('Failed to delete army')
 
-        if (res.ok) {
-            //Reset UI
-            setArmies(prev => prev.filter(a => a.id !== id))
-        } else {
-            alert('Failed to delete army')
+            // Reset UI
+            setArmies(prev => prev.filter(a => a.id !== armyToDelete))
+
+        } catch (err: any) {
+            setErrorMessage(err.message || 'Failed to delete army')
+            setErrorModalOpen(true)
+
+        } finally {
+            setConfirmModalOpen(false)
+            setArmyToDelete(null)
         }
-
     }
 
      const handleAddArmy = () => {
@@ -57,7 +82,29 @@ function Armies() {
 
             <ArmyList armies={armies} onEdit={handleEdit} onDelete={handleDelete} onAdd={handleAddArmy}/>
 
+            {/* Error modal */}
+            <Modal
+                isOpen={errorModalOpen}
+                title={"Error"}
+                onClose={() => setErrorModalOpen(false)}
+            >
+                <p>{errorMessage}</p>
+            </Modal>
+
+            {/* Confirm Delete Modal */}
+            <Modal
+                isOpen={confirmModalOpen}
+                title="Confirm Delete"
+                onClose={() => setConfirmModalOpen(false)}
+                onConfirm={confirmDelete}
+                confirmText="Delete"
+            >
+                Are you sure you want to delete this army?
+            </Modal>
+
+
         </div>
+
     )
 }
 

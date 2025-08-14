@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Trash2 } from "lucide-react"
 import CustomButton from "./CustomButton"
+import Modal from "./Modal"
 
 type Detachment = {
     id?: number
@@ -18,11 +19,22 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
 
     const [army, setArmy] = useState<Army | null>(null)
 
+    const [modalOpen, setModalOpen] = useState(false)
+    const [modalTitle, setModalTitle] = useState("")
+    const [modalMessage, setModalMessage] = useState("")
+
     useEffect(() => {
         const fetchArmy = async () => {
-            const res = await fetch(`http://localhost:4000/api/armies/${armyId}`)
-            const data = await res.json()
-            setArmy(data)
+            try {
+                const res = await fetch(`http://localhost:4000/api/armies/${armyId}`)
+                if (!res.ok) throw new Error("Failed to load army")
+                const data = await res.json()
+                setArmy(data)
+            } catch (err: any) {
+                setModalTitle("Error")
+                setModalMessage(err.message || "Something went wrong")
+                setModalOpen(true)
+            }
         }
         fetchArmy()
     }, [armyId])
@@ -55,12 +67,23 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
     }
 
     const handleSave = async () => {
-        await fetch(`http://localhost:4000/api/armies/${armyId}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(army)
-        })
-        alert('Army updated!')
+        try {
+            const res = await fetch(`http://localhost:4000/api/armies/${armyId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(army)
+            })
+            if (!res.ok) throw new Error("Failed to update army")
+
+            setModalTitle("Success")
+            setModalMessage("Army updated successfully")
+            setModalOpen(true)
+
+        } catch (err: any) {
+            setModalTitle("Error")
+            setModalMessage(err.message || "Something went wrong")
+            setModalOpen(true)
+        }
     }
 
     if (!army) return <div>Loading...</div>
@@ -74,7 +97,7 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
                 <input
                     className="bg-gray-5 text-slate-50 px-2 py-1 rounded text-2xl"
                     value={army.name}
-                    onChange={() => handleArmyNameChange(army.name)}
+                    onChange={(e) => handleArmyNameChange(e.target.value)}
                 />
             </div>
 
@@ -113,6 +136,15 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
                     children={'Save Changes'}
                 />
             </div>
+
+            {/* Modal for success/ error*/}
+            <Modal
+                isOpen={modalOpen}
+                title={modalTitle}
+                onClose={() => setModalOpen(false)}
+            >
+                <p>{modalMessage}</p>
+            </Modal>
         </div>
     )
 }

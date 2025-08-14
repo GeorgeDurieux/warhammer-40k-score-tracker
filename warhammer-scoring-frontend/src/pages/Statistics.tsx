@@ -4,6 +4,7 @@ import StatsSummary from '../components/StatsSummary'
 import MatchList from '../components/MatchList'
 import WinrateByMonth from '../components/WinrateByMonth'
 import ScoreByMonth from '../components/ScoreByMonth'
+import Modal from '../components/Modal'
 
 type Game = {
     id: number
@@ -39,6 +40,9 @@ const Statistics = () => {
         toMonth: ''
     })
 
+    const [errorModalOpen, setErrorModalOpen] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
+
     useEffect(() => {
         const fetchMatches = async () => {
             try {
@@ -46,8 +50,9 @@ const Statistics = () => {
                 const data = await res.json()
                 setMatches(data)
                 
-            } catch (error) {
-                console.error('Failed to fetch matches:', error)
+            } catch (error: any) {
+                setErrorMessage(error.message || 'Failed to fetch matches')
+                setErrorModalOpen(true)
             }
         }
         fetchMatches()
@@ -95,6 +100,15 @@ const Statistics = () => {
 
                 <ScoreByMonth filters={filters} matches={filteredMatches} />
             </div> 
+
+            {/* Error Modal */}
+            <Modal
+                isOpen={errorModalOpen}
+                title="Error"
+                onClose={() => setErrorModalOpen(false)}
+            >
+                <p>{errorMessage}</p>
+            </Modal>
         </div>
     )
 }

@@ -1,11 +1,16 @@
 import { useState } from "react"
 import TextField from "./TextField"
 import CustomButton from "./CustomButton"
+import Modal from "./Modal"
 
 function AddArmyComponent() {
 
     const [armyName, setArmyName] = useState('')
     const [detachments, setDetachments] = useState([''])
+
+    const [modalOpen, setModalOpen] = useState(false)
+    const [modalTitle, setModalTitle] = useState('')
+    const [modalMessage, setModalMessage] = useState('')
 
     const handleAddDetachment = () => {
         setDetachments([...detachments, ''])
@@ -18,16 +23,30 @@ function AddArmyComponent() {
     }
 
     const handleSubmit = async () => {
-        const response = await fetch('http://localhost:4000/api/armies', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: armyName, detachments })
-        })
+        try {
+            const response = await fetch('http://localhost:4000/api/armies', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: armyName, detachments })
+            })
 
-        if (response.ok) {
+            if (!response.ok) {
+                throw new Error('Failed to create army')
+            }
+
+            // Clear form after success
             setArmyName('')
             setDetachments([''])
-        } 
+
+            setModalTitle('Success')
+            setModalMessage('Army created successfully')
+            setModalOpen(true)
+
+        } catch (err: any) {
+            setModalTitle('Error')
+            setModalMessage(err.message || 'Something went wrong')
+            setModalOpen(true)
+        }
     }
 
     return (
@@ -62,6 +81,15 @@ function AddArmyComponent() {
                 children={'Submit'}
 
             />
+
+            {/* Modal for success/error */}
+            <Modal
+                isOpen={modalOpen}
+                title={modalTitle}
+                onClose={() => setModalOpen(false)}
+            >
+                <p>{modalMessage}</p>
+            </Modal>
         </div>
 
     )
