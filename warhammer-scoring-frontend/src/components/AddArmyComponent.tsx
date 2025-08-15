@@ -2,6 +2,7 @@ import { useState } from "react"
 import TextField from "./TextField"
 import CustomButton from "./CustomButton"
 import Modal from "./Modal"
+import { handleApiError } from "../utils/handleApiError"
 
 function AddArmyComponent() {
 
@@ -24,14 +25,14 @@ function AddArmyComponent() {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('http://localhost:4000/api/armies', {
+            const res = await fetch('http://localhost:4000/api/armies', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: armyName, detachments })
             })
 
-            if (!response.ok) {
-                throw new Error('Failed to create army')
+            if (!res.ok) {
+                throw await res.json()
             }
 
             // Clear form after success
@@ -44,7 +45,8 @@ function AddArmyComponent() {
 
         } catch (err: any) {
             setModalTitle('Error')
-            setModalMessage(err.message || 'Something went wrong')
+            const { message } = handleApiError(err)
+            setModalMessage(message)
             setModalOpen(true)
         }
     }

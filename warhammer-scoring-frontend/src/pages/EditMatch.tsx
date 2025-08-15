@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom"
 import MatchFormComponent from "../components/MatchFormComponent"
 import { useEffect, useState } from "react"
 import type { MatchForm } from "../types/MatchForm"
+import Modal from "../components/Modal"
+import { handleApiError } from "../utils/handleApiError"
 
 const EditMatch = () => {
 
@@ -9,14 +11,15 @@ const EditMatch = () => {
     const numericId = Number(id)
     const [matchData, setMatchData] = useState<MatchForm & {id: number} | null>(null)
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState("")
+    const [errorModalOpen, setErrorModalOpen] = useState(false)
+    const [errorMessage, setErrorMessage] = useState("")
 
     useEffect(() => {
         const fetchMatch = async () => {
             try {
                 const res = await fetch(`http://localhost:4000/api/matches/${numericId}`)
                 if (!res.ok) {
-                    throw new Error("Failed to fetch match data")
+                    throw await res.json()
                 }
                 const data = await res.json()
 
@@ -37,7 +40,9 @@ const EditMatch = () => {
                 setMatchData(formattedMatch)
 
             } catch (err: any) {
-                setError(err.message)
+                const { message } = handleApiError(err)
+                setErrorMessage(message)
+                setErrorModalOpen(true)
 
             } finally {
                 setLoading(false)
@@ -48,17 +53,24 @@ const EditMatch = () => {
     }, [id])
 
     if (loading) return <p className="text-center">Loading match...</p>
-    if (error) return <p className="text-center text-red-500">{error}</p>
-    if (!matchData) return <p className="text-center">Match not found.</p>
 
     return (
         <div className="flex flex-col items-center mx-auto">
 
             <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">Edit match</h1>
 
-            <MatchFormComponent 
-                matchToEdit={matchData}
-            />
+            {matchData && (
+                <MatchFormComponent matchToEdit={matchData} />
+            )}
+
+            {/* Error Modal */}
+            <Modal
+                isOpen={errorModalOpen}
+                title="Error"
+                onClose={() => setErrorModalOpen(false)}
+            >
+                <p>{errorMessage}</p>
+            </Modal>
 
         </div>
     )

@@ -8,6 +8,7 @@ import TextareaField from './TextareaField'
 import CustomButton from "./CustomButton"
 import { useAuth } from "../context/AuthContext"
 import Modal from "./Modal"
+import { handleApiError } from "../utils/handleApiError"
 
 type Detachment = {
   id: number
@@ -57,13 +58,23 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
     }, [matchToEdit])
     
     useEffect(() => {        
-        const fetchArmies = async () => {
+    const fetchArmies = async () => {
+        try {
             const res = await fetch('http://localhost:4000/api/armies')
+            if (!res.ok) throw await res.json()
+            
             const data = await res.json()
             setArmies(data)
+
+        } catch (err) {
+            const { title, message } = handleApiError(err)
+            setFeedbackModal({ open: true, title, message })
         }
-        fetchArmies()
-    }, [])
+    }
+
+    fetchArmies()
+}, [])
+
 
     //Find detachments according to armies
     const getEffectiveDetachments = (armyId: number): Detachment[] => {
@@ -145,20 +156,20 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
             let res
             if (matchToEdit?.id) {
                 res = await fetch(`http://localhost:4000/api/matches/${matchToEdit.id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(matchData)
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(matchData)
                 })
             } else {
                 res = await fetch('http://localhost:4000/api/matches', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(matchData)
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(matchData)
                 })
             }
 
             if (!res.ok) {
-                throw new Error('Failed to submit match')
+                throw await res.json()
             }
 
             setFeedbackModal({
@@ -168,11 +179,8 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
             })
 
         } catch (err) {
-            setFeedbackModal({
-                open: true,
-                title: 'Error',
-                message: 'Error submitting match'
-            })
+            const { title, message } = handleApiError(err)
+            setFeedbackModal({ open: true, title, message })
         }
     }
 

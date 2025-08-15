@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import MatchHistoryComponent from "../components/MatchHistoryComponent"
 import Filters from '../components/FiltersComponent'
 import Modal from '../components/Modal'
+import { handleApiError } from '../utils/handleApiError'
 
 type Game = {
   id: number
@@ -52,11 +53,13 @@ const MatchHistory = () => {
         const fetchMatches = async () => {
             try {
                 const res = await fetch('http://localhost:4000/api/matches')
+                if (!res.ok) throw await res.json()
                 const data = await res.json()
                 setMatches(data)
                 
-            } catch (error: any) {
-                setErrorMessage(error.message || 'Failed to fetch matches')
+            } catch (err: any) {
+                const { message } = handleApiError(err)
+                setErrorMessage(message)
                 setErrorModalOpen(true)
             }
         }
@@ -97,12 +100,13 @@ const MatchHistory = () => {
 
         try {
             const res = await fetch(`http://localhost:4000/api/matches/${matchToDelete}`, { method: 'DELETE' })
-            if (!res.ok) throw new Error('Failed to delete match')
+            if (!res.ok) throw await res.json()
 
             setMatches(prev => prev.filter(m => m.id !== matchToDelete))
 
-        } catch (error: any) {
-            setErrorMessage(error.message || 'Failed to delete match')
+        } catch (err: any) {
+            const { message } = handleApiError(err)
+            setErrorMessage(message)
             setErrorModalOpen(true)
         } finally {
             setConfirmModalOpen(false)

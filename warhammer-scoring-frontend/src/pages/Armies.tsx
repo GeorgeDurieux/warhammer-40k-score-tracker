@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import ArmyList from '../components/ArmyList'
 import { useNavigate } from 'react-router-dom'
 import Modal from '../components/Modal'
+import { handleApiError } from '../utils/handleApiError'
 
 type Detachment = {
   id: number
@@ -30,11 +31,12 @@ function Armies() {
         const fetchArmies = async () => {
             try {
                 const res = await fetch('http://localhost:4000/api/armies')
-                if (!res.ok) throw new Error('Failed to fetch armies')
+                if (!res.ok) throw await res.json()
                 const data = await res.json()
                 setArmies(data)
             } catch (err: any) {
-                setErrorMessage(err.message || 'Something went wrong')
+                const { message } = handleApiError(err)
+                setErrorMessage(message)
                 setErrorModalOpen(true)
             }
         }
@@ -56,13 +58,14 @@ function Armies() {
         
         try {
             const res = await fetch(`http://localhost:4000/api/armies/soft/${armyToDelete}`, { method: 'PATCH' })
-            if (!res.ok) throw new Error('Failed to delete army')
+            if (!res.ok) throw await res.json()
 
             // Reset UI
             setArmies(prev => prev.filter(a => a.id !== armyToDelete))
 
         } catch (err: any) {
-            setErrorMessage(err.message || 'Failed to delete army')
+            const { message } = handleApiError(err)
+            setErrorMessage(message)
             setErrorModalOpen(true)
 
         } finally {

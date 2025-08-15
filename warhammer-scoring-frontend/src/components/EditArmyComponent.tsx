@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Trash2 } from "lucide-react"
 import CustomButton from "./CustomButton"
 import Modal from "./Modal"
+import { handleApiError } from "../utils/handleApiError"
 
 type Detachment = {
     id?: number
@@ -27,12 +28,13 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
         const fetchArmy = async () => {
             try {
                 const res = await fetch(`http://localhost:4000/api/armies/${armyId}`)
-                if (!res.ok) throw new Error("Failed to load army")
+                if (!res.ok) throw await res.json()
                 const data = await res.json()
                 setArmy(data)
             } catch (err: any) {
                 setModalTitle("Error")
-                setModalMessage(err.message || "Something went wrong")
+                const { message } = handleApiError(err)
+                setModalMessage(message)
                 setModalOpen(true)
             }
         }
@@ -73,7 +75,7 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(army)
             })
-            if (!res.ok) throw new Error("Failed to update army")
+            if (!res.ok) throw await res.json()
 
             setModalTitle("Success")
             setModalMessage("Army updated successfully")
@@ -81,7 +83,8 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
 
         } catch (err: any) {
             setModalTitle("Error")
-            setModalMessage(err.message || "Something went wrong")
+            const { message } = handleApiError(err)
+            setModalMessage(message)
             setModalOpen(true)
         }
     }
