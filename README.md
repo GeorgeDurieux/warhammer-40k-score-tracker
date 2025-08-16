@@ -96,6 +96,10 @@ npm run dev
 npm start
 ```
 
+## Database Schema
+
+![Database Schema](warhammer-scoring-frontend\src\assets\Warhammer-scoring-tracker-schema.png)
+
 ## Usage
 
 - Submit a match with scores, armies, and tournament details.
