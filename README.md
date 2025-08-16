@@ -98,7 +98,7 @@ npm start
 
 ## Database Schema
 
-![Database Schema](warhammer-scoring-frontend\src\assets\Warhammer-scoring-tracker-schema.png)
+![Database Schema](./warhammer-scoring-frontend/src/assets/Warhammer-scoring-tracker-schema.png)
 
 ## Usage
 
