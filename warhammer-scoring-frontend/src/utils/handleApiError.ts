@@ -1,4 +1,7 @@
 import { ERROR_MESSAGES } from '../constants/errorMessages'
+import { useLogger } from '../services/logger'
+
+const { error: logError } = useLogger()
 
 export const handleApiError = (error: any) => {
     let errorCode: string | undefined
@@ -13,10 +16,12 @@ export const handleApiError = (error: any) => {
     } 
     // Message errors etc
     else if (typeof error === 'string') {
+        logError(error)
         return { title: 'Error', message: error }
     }
 
     const message = ERROR_MESSAGES[errorCode || ''] || "An unexpected error occurred."
+    logError(message, { errorCode })
     return { title: 'Error', message }
 }
 
