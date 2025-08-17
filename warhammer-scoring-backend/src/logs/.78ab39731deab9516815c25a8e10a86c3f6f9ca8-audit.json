@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 12
+    },
+    "auditLog": "C:\\Users\\Ragnar\\Desktop\\Warhammer 40k Scoring Tracker\\warhammer-scoring-backend\\src\\logs\\.78ab39731deab9516815c25a8e10a86c3f6f9ca8-audit.json",
+    "files": [
+        {
+            "date": 1755438465296,
+            "name": "C:\\Users\\Ragnar\\Desktop\\Warhammer 40k Scoring Tracker\\warhammer-scoring-backend\\src\\logs\\combined-2025-08.log",
+            "hash": "7f0c6f4363436e4eff4c16e9438300ce81287319a8c7d05030eac522fc4ed048"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -1,0 +1,93 @@
+2025-08-17 16:47:45 [INFO]: Database connected successfully
+2025-08-17 16:47:45 [INFO]: Server running on http://localhost:4000
+2025-08-17 16:54:31 [INFO]: Database connected successfully
+2025-08-17 16:54:32 [INFO]: Server running on http://localhost:4000
+2025-08-17 16:56:09 [INFO]: Database connected successfully
+2025-08-17 16:56:09 [INFO]: Server running on http://localhost:4000
+2025-08-17 16:56:11 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-17 16:56:11 [INFO]: ::1 - - [17/Aug/2025:13:56:11 +0000] "GET /api/armies HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:11 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-17 16:56:11 [INFO]: ::1 - - [17/Aug/2025:13:56:11 +0000] "GET /api/armies HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:12 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:56:12 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:56:12 [INFO]: ::1 - - [17/Aug/2025:13:56:12 +0000] "GET /api/matches HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:12 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:56:12 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:56:12 [INFO]: ::1 - - [17/Aug/2025:13:56:12 +0000] "GET /api/matches HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:15 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:56:15 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:56:15 [INFO]: ::1 - - [17/Aug/2025:13:56:15 +0000] "GET /api/matches HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:15 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:56:15 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:56:15 [INFO]: ::1 - - [17/Aug/2025:13:56:15 +0000] "GET /api/matches HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:16 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:56:16 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:56:16 [INFO]: ::1 - - [17/Aug/2025:13:56:16 +0000] "GET /api/matches HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:16 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:56:16 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:56:16 [INFO]: ::1 - - [17/Aug/2025:13:56:16 +0000] "GET /api/matches HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:23 [INFO]: [LOGIN] Attempting login for username: Ragnar
+2025-08-17 16:56:23 [INFO]: [LOGIN] JWT token generated for user: 1
+2025-08-17 16:56:23 [INFO]: ::1 - - [17/Aug/2025:13:56:23 +0000] "POST /api/auth/login HTTP/1.1" 200 280 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:25 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:56:25 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:56:25 [INFO]: ::1 - - [17/Aug/2025:13:56:25 +0000] "GET /api/matches HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:25 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:56:25 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:56:25 [INFO]: ::1 - - [17/Aug/2025:13:56:25 +0000] "GET /api/matches HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:30 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-17 16:56:30 [INFO]: ::1 - - [17/Aug/2025:13:56:30 +0000] "GET /api/armies HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:30 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-17 16:56:30 [INFO]: ::1 - - [17/Aug/2025:13:56:30 +0000] "GET /api/armies HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:31 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:56:31 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:56:31 [INFO]: ::1 - - [17/Aug/2025:13:56:31 +0000] "GET /api/matches HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:56:31 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:56:31 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:56:31 [INFO]: ::1 - - [17/Aug/2025:13:56:31 +0000] "GET /api/matches HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0"
+2025-08-17 16:57:17 [INFO]: Database connected successfully
+2025-08-17 16:57:17 [INFO]: Server running on http://localhost:4000
+2025-08-17 16:57:19 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:57:19 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:57:19 [INFO]: frontendFormat
+2025-08-17 16:57:19 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:57:19 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:57:19 [INFO]: frontendFormat
+2025-08-17 16:58:01 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:58:01 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:58:01 [INFO]: frontendFormat
+2025-08-17 16:58:01 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 16:58:01 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 16:58:01 [INFO]: frontendFormat
+2025-08-17 17:01:46 [INFO]: Database connected successfully
+2025-08-17 17:01:46 [INFO]: Server running on http://localhost:4000
+2025-08-17 17:01:48 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 17:01:48 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 17:01:48 [INFO]: [FRONTEND] GET /api/matches 304 - - 37.905 ms
+2025-08-17 17:01:48 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 17:01:48 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 17:01:48 [INFO]: [FRONTEND] GET /api/matches 304 - - 13.485 ms
+2025-08-17 17:01:49 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 17:01:49 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 17:01:49 [INFO]: [FRONTEND] GET /api/matches 304 - - 11.266 ms
+2025-08-17 17:01:49 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 17:01:49 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 17:01:49 [INFO]: [FRONTEND] GET /api/matches 304 - - 11.329 ms
+2025-08-17 17:06:16 [INFO]: Database connected successfully
+2025-08-17 17:06:16 [INFO]: Server running on http://localhost:4000
+2025-08-17 17:06:24 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-17 17:06:24 [INFO]: [FRONTEND] GET /api/armies 304 31.343 ms
+2025-08-17 17:06:24 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-17 17:06:24 [INFO]: [FRONTEND] GET /api/armies 304 13.383 ms
+2025-08-17 17:06:25 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 17:06:25 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 17:06:25 [INFO]: [FRONTEND] GET /api/matches 304 20.194 ms
+2025-08-17 17:06:25 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 17:06:25 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 17:06:25 [INFO]: [FRONTEND] GET /api/matches 304 12.583 ms
+2025-08-17 17:06:26 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 17:06:26 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 17:06:26 [INFO]: [FRONTEND] GET /api/matches 304 11.423 ms
+2025-08-17 17:06:26 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-17 17:06:26 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-17 17:06:26 [INFO]: [FRONTEND] GET /api/matches 304 11.278 ms

@@ -20,14 +20,17 @@ app.use(cors({
 // JSON parser
 app.use(express.json())
 
+morgan.token('prefix', () => '[FRONTEND]')
+const frontendFormat = ':prefix :method :url :status :response-time ms'
+
 // Morgan for successful requests (info logs)
-app.use(morgan('combined', {
+app.use(morgan(frontendFormat, {
   skip: (req, res) => res.statusCode >= 400,
   stream: { write: (message) => logger.info(message.trim()) }
 }))
 
 // Morgan for failed requests (error logs)
-app.use(morgan('combined', {
+app.use(morgan(frontendFormat, {
   skip: (req, res) => res.statusCode < 400,
   stream: { write: (message) => logger.error(message.trim()) }
 }))

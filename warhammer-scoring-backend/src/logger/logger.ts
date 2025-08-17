@@ -3,7 +3,7 @@ import DailyRotateFile from 'winston-daily-rotate-file'
 import path from 'path'
 
 // Directory where logs will be stored
-const logDir = path.join(process.cwd(), 'logs')
+const logDir = path.join(__dirname, '../logs') 
 
 const logger = createLogger({
   level: 'info',
