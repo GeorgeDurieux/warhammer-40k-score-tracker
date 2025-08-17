@@ -1,8 +1,11 @@
 import { Request, Response } from "express"
 import prisma from '../prisma'
 import { ERROR_CODES } from '../constants/errorCodes'
+import logger from '../logger/logger'
 
 export const createMatch = async (req: Request, res: Response) => {
+
+    logger.info('[CREATE MATCH] Creating new match')
 
     try {
         const {
@@ -37,15 +40,18 @@ export const createMatch = async (req: Request, res: Response) => {
             }
         })
 
+        logger.info(`[CREATE MATCH] Match created with id: ${newMatch.id}`)
         res.status(201).json(newMatch)
 
     } catch(err) {
-        console.log(err)
+        logger.error(`[CREATE MATCH] Error: ${err}`)
         res.status(500).json({ errorCode: ERROR_CODES.MATCH_CREATE_FAILED })
     }
 }
 
 export const getMatches = async (req: Request, res: Response) => {
+
+    logger.info('[GET MATCHES] Fetching all matches')
 
     try {
         const matches = await prisma.games.findMany({
@@ -76,10 +82,11 @@ export const getMatches = async (req: Request, res: Response) => {
             user_detachment: match.detachments_games_user_detachment_idTodetachments,
             opponent_detachment: match.detachments_games_opponent_detachment_idTodetachments
         }))
+        logger.info(`[GET MATCHES] Retrieved ${formattedGames.length} matches`)
         res.status(200).json(formattedGames)
 
     } catch(err) {        
-        console.log(err)
+        logger.error(`[GET MATCHES] Error: ${err}`)
         res.status(500).json({ errorCode: ERROR_CODES.MATCH_FETCH_FAILED })
     }
 }
@@ -87,6 +94,7 @@ export const getMatches = async (req: Request, res: Response) => {
 export const getMatchById = async (req: Request, res: Response): Promise<void> => {
 
     const { id } = req.params
+    logger.info(`[GET MATCH] Fetching match by id: ${id}`)
 
     try { 
         const match = await prisma.games.findUnique({
@@ -100,6 +108,7 @@ export const getMatchById = async (req: Request, res: Response): Promise<void> =
         })      
 
         if (!match) {
+            logger.warn(`[GET MATCH] Match not found: ${id}`)
             res.status(404).json({ errorCode: ERROR_CODES.MATCH_NOT_FOUND })
             return
         }
@@ -123,10 +132,11 @@ export const getMatchById = async (req: Request, res: Response): Promise<void> =
             opponent_detachment: match.detachments_games_opponent_detachment_idTodetachments
         }
 
+        logger.info(`[GET MATCH] Match found: ${id}`)
         res.status(200).json(formattedMatch)
 
     } catch (err) { 
-        console.log(err)
+        logger.error(`[GET MATCH] Error: ${err}`)
         res.status(500).json({ errorCode: ERROR_CODES.ARMY_FETCH_ERROR })
     }       
 }
@@ -134,19 +144,23 @@ export const getMatchById = async (req: Request, res: Response): Promise<void> =
 export const deleteMatchById = async (req: Request, res: Response): Promise<void> => {
 
     const { id } = req.params
+    logger.info(`[DELETE MATCH] Deleting match by id: ${id}`)
 
     try {
         const deletedMatch = await prisma.games.delete({
             where: { id: Number(id) }
         })
 
+        logger.info(`[DELETE MATCH] Match deleted: ${id}`)
         res.status(200).json({ message: 'Deleted', deletedMatch})
 
     } catch (err: any) {
         console.log(err)
         if (err.code === 'P2025') {
+            logger.warn(`[DELETE MATCH] Match not found: ${err}`)
             res.status(404).json({ errorCode: ERROR_CODES.MATCH_NOT_FOUND })
         }
+        logger.error(`[DELETE MATCH] Error: ${err}`)
         res.status(500).json({ errorCode: ERROR_CODES.MATCH_DELETE_FAILED })
     }
 }
@@ -154,6 +168,7 @@ export const deleteMatchById = async (req: Request, res: Response): Promise<void
 export const updateMatchById = async (req: Request, res: Response): Promise<void> => {
 
     const { id } = req.params
+    logger.info(`[UPDATE MATCH] Updating match by id: ${id}`)
 
     try {
         const existingMatch = await prisma.games.findUnique({
@@ -161,6 +176,7 @@ export const updateMatchById = async (req: Request, res: Response): Promise<void
         })
 
         if (!existingMatch) {
+            logger.warn(`[UPDATE MATCH] Match not found: ${id}`)
             res.status(404).json({ errorCode: ERROR_CODES.MATCH_NOT_FOUND })
         }
 
@@ -197,10 +213,11 @@ export const updateMatchById = async (req: Request, res: Response): Promise<void
             }
         })
 
+        logger.info(`[UPDATE MATCH] Match updated: ${id}`)
         res.status(200).json(updatedMatch)
 
     } catch (err) {
-        console.log(err)
+        logger.error(`[UPDATE MATCH] Error: ${err}`)
         res.status(500).json({ errorCode: ERROR_CODES.MATCH_UPDATE_FAILED })
     }
 }
