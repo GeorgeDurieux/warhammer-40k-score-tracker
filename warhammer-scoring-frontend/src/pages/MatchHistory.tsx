@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MatchHistoryComponent from "../components/MatchHistoryComponent"
-import Filters from '../components/FiltersComponent'
 import Modal from '../components/Modal'
 import { handleApiError } from '../utils/handleApiError'
+import ResponsiveFilters from '../components/ResponsiveFilters'
 
 type Game = {
   id: number
@@ -120,11 +120,21 @@ const MatchHistory = () => {
 
     return (
 
-        <div className="flex min-h-screen items-start">
+        <div className="flex min-h-screen items-start flex-col md:flex-row">
 
-            <aside className="w-80 bg-gray-5 p-4 rounded sticky top-0 min-h-screen">
-                <Filters filters={filters} setFilters={setFilters} matches={matches}/>
+            <aside
+                className="
+                    bg-gray-5 md:w-80 md:sticky md:top-0 md:min-h-screen
+                    w-full relative min-h-0
+                "
+                >
+                <ResponsiveFilters
+                    filters={filters}
+                    setFilters={setFilters}
+                    matches={matches}
+                />
             </aside>
+
 
             <div className="flex flex-col items-center mx-auto">
                 <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">

@@ -132,7 +132,7 @@ const Filters = ({ filters, setFilters, matches, showWtc }: FiltersProps) => {
 
     return (
 
-        <div className="flex flex-col gap-12 bg-gray-5 pt-20 rounded text-slate-50 h-full items-center">
+        <div className="flex flex-col gap-12 bg-gray-5 pt-4 md:pt-20 rounded text-slate-50 h-full max-h-screen items-center overflow-y-auto">
 
             <h1 className="text-6xl">Filters</h1>
 
