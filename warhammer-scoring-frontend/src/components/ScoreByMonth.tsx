@@ -70,7 +70,7 @@ const ScoreByMonth = ({ filters, matches }: ScoreByMonthProps) => {
         ) : (
             <div className="flex flex-col md:flex-row gap-4">
             {/* Table */}
-            <table className="border border-slate-50 w-full md:w-auto">
+            <table className="border border-slate-50 w-full">
                 <thead>
                 <tr className="bg-gray-5">
                     <th className="border px-2 py-1">Month</th>
@@ -93,7 +93,7 @@ const ScoreByMonth = ({ filters, matches }: ScoreByMonthProps) => {
             </table>
 
             {/* Chart */}
-                <div className="bg-gray-5 p-4 h-64 w-full md:w-96">
+                <div className="bg-gray-5 p-4 h-64 w-full">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={monthArray.reverse()}>
                             <defs>
