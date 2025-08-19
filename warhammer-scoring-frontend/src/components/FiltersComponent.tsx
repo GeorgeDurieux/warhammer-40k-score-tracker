@@ -2,6 +2,7 @@ import CheckboxField from "./CheckboxField"
 import MonthRangeSlider from "./MonthRangeSlider"
 import SelectField from "./SelectField"
 import { useEffect, useMemo } from 'react'
+import Title from "./Title"
 
 type Game = {
     id: number
@@ -132,9 +133,9 @@ const Filters = ({ filters, setFilters, matches, showWtc }: FiltersProps) => {
 
     return (
 
-        <div className="flex flex-col gap-12 bg-gray-5 pt-4 md:pt-20 rounded text-slate-50 h-full max-h-screen items-center overflow-y-auto">
+        <div className="flex flex-col gap-12 bg-gray-5 rounded text-slate-50 h-full max-h-screen items-center overflow-y-auto">
 
-            <h1 className="text-6xl">Filters</h1>
+            <Title title='Filters' />
 
             {/* Tournament Only */}
             <div>
