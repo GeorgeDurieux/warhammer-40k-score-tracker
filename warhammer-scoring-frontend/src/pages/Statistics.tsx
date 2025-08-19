@@ -5,6 +5,7 @@ import MatchList from '../components/MatchList'
 import WinrateByMonth from '../components/WinrateByMonth'
 import ScoreByMonth from '../components/ScoreByMonth'
 import Modal from '../components/Modal'
+import ResponsiveFilters from '../components/ResponsiveFilters'
 
 type Game = {
     id: number
@@ -80,10 +81,18 @@ const Statistics = () => {
 
 
     return (
-        <div className="flex min-h-screen items-start">
+        <div className="flex min-h-screen items-start flex-col md:flex-row">
 
-            <aside className="w-80 bg-gray-5 p-4 rounded sticky top-0 min-h-screen">
-                <Filters filters={filters} setFilters={setFilters} matches={matches} showWtc={false} />
+            <aside
+                className="
+                    bg-gray-5 w-full md:w-80 md:sticky md:top-0 md:min-h-screen relative min-h-0
+                "
+                >
+                <ResponsiveFilters
+                    filters={filters}
+                    setFilters={setFilters}
+                    matches={matches}
+                />
             </aside>
 
             <div className='flex flex-col gap-6 items-center flex-1'>
