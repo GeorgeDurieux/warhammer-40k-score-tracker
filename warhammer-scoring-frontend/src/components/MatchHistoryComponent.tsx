@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import CustomButton from './CustomButton'
 import MatchEntry from './MatchEntry'
 import SortBar from './SortBar'
@@ -37,6 +37,19 @@ const MatchHistoryComponent = ({ matches, onEdit, onDelete, onAdd }: MatchHistor
 
     const [sortOption, setSortOption] = useState<SortOption>('date-desc')
 
+    //For smaller button
+    const [isSmallScreen, setIsSmallScreen] = useState(false)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth < 768) 
+        }
+
+        handleResize()
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
     const sortedMatches = useMemo(() => {
 
         const copy = [...matches]
@@ -70,7 +83,8 @@ const MatchHistoryComponent = ({ matches, onEdit, onDelete, onAdd }: MatchHistor
                 <div className="flex justify-end">
                     <CustomButton
                         onClick={onAdd}
-                        children={'+ Add Match'}
+                        children={'Add Match +'}
+                        isSmall={isSmallScreen}
                     />
                 </div>
 
