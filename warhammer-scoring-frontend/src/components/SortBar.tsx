@@ -26,8 +26,8 @@ const SortBar = ({ sortOption, onSortChange }: SortBarProps) => {
         }`
 
         return isAsc
-            ? <FaArrowUp className={arrowClass} />
-            : <FaArrowDown className={arrowClass} />
+            ? <FaArrowUp className={arrowClass} key={'arrUp'} />
+            : <FaArrowDown className={arrowClass} key={'arrDown'}/>
     }
 
 
