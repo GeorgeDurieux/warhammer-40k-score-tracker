@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Filters from '../components/FiltersComponent'
 import StatsSummary from '../components/StatsSummary'
 import MatchList from '../components/MatchList'
 import WinrateByMonth from '../components/WinrateByMonth'
@@ -50,7 +49,6 @@ const Statistics = () => {
                 const res = await fetch('http://localhost:4000/api/matches')
                 const data = await res.json()
                 setMatches(data)
-                
             } catch (error: any) {
                 setErrorMessage(error.message || 'Failed to fetch matches')
                 setErrorModalOpen(true)
@@ -61,54 +59,46 @@ const Statistics = () => {
 
     const filteredMatches = matches.filter(match => {
 
-        //Tournament
         if (filters.tournamentOnly && !match.is_tournament) return false
+        if (filters.userArmy !== 'all' && match.user_army.name !== filters.userArmy) return false
+        if (filters.userDetachment !== 'all' && match.user_detachment.name !== filters.userDetachment) return false
+        if (filters.opponentArmy !== 'all' && match.opponent_army.name !== filters.opponentArmy) return false
+        if (filters.opponentDetachment !== 'all' && match.opponent_detachment.name !== filters.opponentDetachment) return false
 
-        //Armies and detachments
-        if (filters.userArmy && filters.userArmy !== 'all' && match.user_army.name !== filters.userArmy) return false
-        if (filters.userDetachment && filters.userDetachment !== 'all' && match.user_detachment.name !== filters.userDetachment) return false
-        if (filters.opponentArmy && filters.opponentArmy !== 'all' && match.opponent_army.name !== filters.opponentArmy) return false
-        if (filters.opponentDetachment && filters.opponentDetachment !== 'all' && match.opponent_detachment.name !== filters.opponentDetachment) return false
-
-        //Dates
         const matchMonth = match.date.slice(0, 7)
         if (filters.fromMonth && matchMonth < filters.fromMonth) return false
         if (filters.toMonth && matchMonth > filters.toMonth) return false
-        
-        //Remaining return
+
         return true
     })
 
-
     return (
-        <div className="flex min-h-screen items-start flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row min-h-screen bg-gray-15 text-slate-50">
 
-            <aside
-                className="
-                    bg-gray-5 w-full md:w-80 md:sticky md:top-0 md:min-h-screen relative min-h-0
-                "
-                >
-                <ResponsiveFilters
-                    filters={filters}
-                    setFilters={setFilters}
-                    matches={matches}
-                />
+            {/* Sidebar */}
+            <aside className="bg-gray-5 w-full md:w-80 md:sticky md:top-0 md:min-h-screen">
+                <div className="w-full overflow-x-auto">
+                    <ResponsiveFilters
+                        filters={filters}
+                        setFilters={setFilters}
+                        matches={matches}
+                    />
+                </div>
             </aside>
 
-            <div className='flex flex-col gap-6 items-center flex-1'>
-
-                <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">
+            {/* Main Content */}
+            <main className="flex-1 flex flex-col gap-6 p-4 w-full">
+                <h1 className="text-4xl md:text-6xl text-center mt-8 md:mt-24 mb-8">
                     Statistics
                 </h1>
 
-                <StatsSummary filters={filters} matches={filteredMatches} />
-
-                <MatchList filters={filters} matches={filteredMatches} />
-
-                <WinrateByMonth filters={filters} matches={filteredMatches} />
-
-                <ScoreByMonth filters={filters} matches={filteredMatches} />
-            </div> 
+                <div className="flex flex-col gap-6 w-full max-w-full overflow-x-auto">
+                    <StatsSummary filters={filters} matches={filteredMatches} />
+                    <MatchList filters={filters} matches={filteredMatches} />
+                    <WinrateByMonth filters={filters} matches={filteredMatches} />
+                    <ScoreByMonth filters={filters} matches={filteredMatches} />
+                </div>
+            </main>
 
             {/* Error Modal */}
             <Modal
