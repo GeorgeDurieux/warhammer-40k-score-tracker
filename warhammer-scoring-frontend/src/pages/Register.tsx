@@ -1,9 +1,10 @@
 import RegisterComponent from "../components/RegisterComponent"
+import Title from "../components/Title"
 
 function Register() {
     return (
         <>
-            <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">Register</h1>
+            <Title title='Register' />
             <RegisterComponent />
         </>
     )

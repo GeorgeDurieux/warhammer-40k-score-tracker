@@ -1,5 +1,6 @@
 import EditArmyComponent from "../components/EditArmyComponent"
 import { useParams } from 'react-router-dom'
+import Title from "../components/Title"
 
 function EditArmy () {
 
@@ -8,7 +9,7 @@ function EditArmy () {
 
     return (
         <div className="flex flex-col items-center mx-auto">
-            <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">Edit Army</h1>
+            <Title title='Edit Army'/>
 
             <EditArmyComponent
                 armyId={armyId}     

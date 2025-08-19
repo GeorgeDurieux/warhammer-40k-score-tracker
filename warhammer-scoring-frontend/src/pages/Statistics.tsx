@@ -5,6 +5,7 @@ import WinrateByMonth from '../components/WinrateByMonth'
 import ScoreByMonth from '../components/ScoreByMonth'
 import Modal from '../components/Modal'
 import ResponsiveFilters from '../components/ResponsiveFilters'
+import Title from '../components/Title'
 
 type Game = {
     id: number
@@ -88,9 +89,7 @@ const Statistics = () => {
 
             {/* Main Content */}
             <main className="flex-1 flex flex-col gap-6 p-4 w-full">
-                <h1 className="text-4xl md:text-6xl text-center mt-8 md:mt-24 mb-8">
-                    Statistics
-                </h1>
+                <Title title='Statistics' />
 
                 <div className="flex flex-col gap-6 w-full max-w-full overflow-x-auto">
                     <StatsSummary filters={filters} matches={filteredMatches} />

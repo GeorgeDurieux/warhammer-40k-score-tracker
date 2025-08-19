@@ -1,11 +1,12 @@
 import AddArmyComponent from "../components/AddArmyComponent"
+import Title from "../components/Title"
 
 function AddArmy() {
 
     return (
             <div className="flex flex-col items-center mx-auto">
     
-                <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">Add Army</h1>
+                <Title title='Add Army' />
 
                 <AddArmyComponent />
     

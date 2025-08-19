@@ -1,10 +1,11 @@
 import LoginComponent from "../components/LoginComponent"
+import Title from "../components/Title"
 
 function Login() {
 
     return (
         <>
-            <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">Login</h1>
+            <Title title='Login' />
             <LoginComponent />            
         </>
     )

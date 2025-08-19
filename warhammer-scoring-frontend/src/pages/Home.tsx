@@ -1,6 +1,7 @@
 import { useState } from "react"
 import CustomButton from "../components/CustomButton"
 import Modal from "../components/Modal"
+import Title from "../components/Title"
 
 function Home() {
 
@@ -9,7 +10,7 @@ function Home() {
 
     return (
         <div className="flex flex-col items-center gap-8">
-            <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">Warhammer 40k Score Tracker</h1>
+            <Title title='Warhammer 40k Score Tracker' />
 
             <CustomButton 
                 children="About Warhammer 40k"

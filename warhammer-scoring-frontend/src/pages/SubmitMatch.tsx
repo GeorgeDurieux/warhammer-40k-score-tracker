@@ -1,9 +1,10 @@
 import MatchFormComponent from "../components/MatchFormComponent"
+import Title from "../components/Title"
 
 function SubmitMatch() {
     return (
         <>
-            <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">Submit a match</h1>
+            <Title title='Submit a match' />
             <MatchFormComponent />
         </>
     )

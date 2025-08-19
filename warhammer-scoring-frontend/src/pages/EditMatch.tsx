@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import type { MatchForm } from "../types/MatchForm"
 import Modal from "../components/Modal"
 import { handleApiError } from "../utils/handleApiError"
+import Title from "../components/Title"
 
 const EditMatch = () => {
 
@@ -57,7 +58,7 @@ const EditMatch = () => {
     return (
         <div className="flex flex-col items-center mx-auto">
 
-            <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">Edit match</h1>
+            <Title title='Edit match' />
 
             {matchData && (
                 <MatchFormComponent matchToEdit={matchData} />

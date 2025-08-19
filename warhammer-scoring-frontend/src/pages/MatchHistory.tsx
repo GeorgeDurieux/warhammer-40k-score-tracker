@@ -4,6 +4,7 @@ import MatchHistoryComponent from "../components/MatchHistoryComponent"
 import Modal from '../components/Modal'
 import { handleApiError } from '../utils/handleApiError'
 import ResponsiveFilters from '../components/ResponsiveFilters'
+import Title from '../components/Title'
 
 type Game = {
   id: number
@@ -137,9 +138,7 @@ const MatchHistory = () => {
 
 
             <div className="flex flex-col items-center mx-auto">
-                <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">
-                    Match History
-                </h1>
+                <Title title='Match History' />
 
                 <MatchHistoryComponent 
                     matches={filteredMatches} 

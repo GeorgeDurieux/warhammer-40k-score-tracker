@@ -3,6 +3,7 @@ import ArmyList from '../components/ArmyList'
 import { useNavigate } from 'react-router-dom'
 import Modal from '../components/Modal'
 import { handleApiError } from '../utils/handleApiError'
+import Title from '../components/Title'
 
 type Detachment = {
   id: number
@@ -81,7 +82,7 @@ function Armies() {
     return (
         <div className="flex flex-col items-center mx-auto">
 
-            <h1 className="text-slate-50 text-6xl text-center mt-24 mb-8">Armies</h1>
+            <Title title='Armies' />
 
             <ArmyList armies={armies} onEdit={handleEdit} onDelete={handleDelete} onAdd={handleAddArmy}/>
 
