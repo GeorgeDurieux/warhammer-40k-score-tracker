@@ -33,7 +33,7 @@ const MatchHistory = () => {
     useEffect(() => {
         const fetchMatches = async () => {
             try {
-                const res = await fetch('http://localhost:4000/api/matches')
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/matches`)
                 if (!res.ok) throw await res.json()
                 const data = await res.json()
                 setMatches(data)
@@ -80,7 +80,7 @@ const MatchHistory = () => {
         if (matchToDelete === null) return
 
         try {
-            const res = await fetch(`http://localhost:4000/api/matches/${matchToDelete}`, { method: 'DELETE' })
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/matches/${matchToDelete}`, { method: 'DELETE' })
             if (!res.ok) throw await res.json()
 
             setMatches(prev => prev.filter(m => m.id !== matchToDelete))

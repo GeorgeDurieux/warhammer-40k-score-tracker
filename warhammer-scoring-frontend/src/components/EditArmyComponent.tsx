@@ -16,7 +16,7 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
     useEffect(() => {
         const fetchArmy = async () => {
             try {
-                const res = await fetch(`http://localhost:4000/api/armies/${armyId}`)
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/armies/${armyId}`)
                 if (!res.ok) throw await res.json()
                 const data = await res.json()
                 setArmy(data)

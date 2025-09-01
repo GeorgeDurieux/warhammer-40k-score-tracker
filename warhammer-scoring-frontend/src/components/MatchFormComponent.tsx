@@ -48,7 +48,7 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
     useEffect(() => {        
     const fetchArmies = async () => {
         try {
-            const res = await fetch('http://localhost:4000/api/armies')
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/armies`)
             if (!res.ok) throw await res.json()
             
             const data = await res.json()
@@ -143,13 +143,13 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
 
             let res
             if (matchToEdit?.id) {
-                res = await fetch(`http://localhost:4000/api/matches/${matchToEdit.id}`, {
+                res = await fetch(`${import.meta.env.VITE_API_URL}/matches/${matchToEdit.id}`, {
                     method: 'PATCH',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(matchData)
                 })
             } else {
-                res = await fetch('http://localhost:4000/api/matches', {
+                res = await fetch(`${import.meta.env.VITE_API_URL}/matches`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(matchData)

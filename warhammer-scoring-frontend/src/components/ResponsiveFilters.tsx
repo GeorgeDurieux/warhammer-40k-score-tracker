@@ -14,13 +14,13 @@ const ResponsiveFilters = (props: FiltersProps) => {
             document.body.style.position = "fixed"
         } else {
             document.body.style.overflow = ''
-            document.body.style.position = ""
+            document.body.style.position = ''
         }
 
         // cleanup on unmount
         return () => {
             document.body.style.overflow = ''
-            document.body.style.position = ""
+            document.body.style.position = ''
         }
     }, [isOpen])
 

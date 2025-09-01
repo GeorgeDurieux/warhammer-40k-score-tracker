@@ -27,7 +27,7 @@ const Statistics = () => {
     useEffect(() => {
         const fetchMatches = async () => {
             try {
-                const res = await fetch('http://localhost:4000/api/matches')
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/matches`)
                 const data = await res.json()
                 setMatches(data)
             } catch (error: any) {

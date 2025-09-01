@@ -21,7 +21,7 @@ function Armies() {
     useEffect(() => {        
         const fetchArmies = async () => {
             try {
-                const res = await fetch('http://localhost:4000/api/armies')
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/armies`)
                 if (!res.ok) throw await res.json()
                 const data = await res.json()
                 setArmies(data)
@@ -48,7 +48,7 @@ function Armies() {
         if (armyToDelete === null) return
         
         try {
-            const res = await fetch(`http://localhost:4000/api/armies/soft/${armyToDelete}`, { method: 'PATCH' })
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/armies/soft/${armyToDelete}`, { method: 'PATCH' })
             if (!res.ok) throw await res.json()
 
             // Reset UI

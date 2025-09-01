@@ -18,7 +18,7 @@ const EditMatch = () => {
     useEffect(() => {
         const fetchMatch = async () => {
             try {
-                const res = await fetch(`http://localhost:4000/api/matches/${numericId}`)
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/matches/${numericId}`)
                 if (!res.ok) {
                     throw await res.json()
                 }
