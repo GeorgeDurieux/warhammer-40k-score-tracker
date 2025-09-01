@@ -14,20 +14,19 @@ import type { Detachment } from "../types/Detachment"
 import type { MatchFormComponentProps } from "../types/MatchFormComponentProps"
 
 function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
-
     const { user } = useAuth()
 
     const [formData, setFormData] = useState<MatchForm>(
         matchToEdit || {
-            user_army_id: 0,
-            user_detachment_id: 0,
-            opponent_army_id: 0,
-            opponent_detachment_id: 0,
+            userArmyId: 0,
+            userDetachmentId: 0,
+            opponentArmyId: 0,
+            opponentDetachmentId: 0,
             date: '',
-            user_score: 0,
-            opponent_score: 0,
-            is_tournament: false,
-            tournament_name: ''
+            userScore: 0,
+            opponentScore: 0,
+            isTournament: false,
+            tournamentName: ''
         }
     )
 
@@ -41,30 +40,28 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
 
     useEffect(() => {
         if (matchToEdit) {
-        setFormData(matchToEdit)
+            setFormData(matchToEdit)
         }
     }, [matchToEdit])
     
     useEffect(() => {        
-    const fetchArmies = async () => {
-        try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/armies`)
-            if (!res.ok) throw await res.json()
-            
-            const data = await res.json()
-            setArmies(data)
-
-        } catch (err) {
-            const { title, message } = handleApiError(err)
-            setFeedbackModal({ open: true, title, message })
+        const fetchArmies = async () => {
+            try {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/armies`)
+                if (!res.ok) throw await res.json()
+                
+                const data = await res.json()
+                setArmies(data)
+            } catch (err) {
+                const { title, message } = handleApiError(err)
+                setFeedbackModal({ open: true, title, message })
+            }
         }
-    }
 
-    fetchArmies()
-}, [])
+        fetchArmies()
+    }, [])
 
-
-    //Find detachments according to armies
+    // Find detachments according to armies
     const getEffectiveDetachments = (armyId: number): Detachment[] => {
         const army = armies.find(a => a.id === armyId)
         if (!army) return []
@@ -81,8 +78,8 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
         return army.detachments ?? []
     }
 
-    const userDetachments = getEffectiveDetachments(formData.user_army_id)
-    const opponentDetachments = getEffectiveDetachments(formData.opponent_army_id)
+    const userDetachments = getEffectiveDetachments(formData.userArmyId)
+    const opponentDetachments = getEffectiveDetachments(formData.opponentArmyId)
 
     const handleSubmit = async () => {
         try {
@@ -92,8 +89,8 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
                 return
             }
 
-            const user_id = user?.id
-            const scoreDiff = formData.user_score - formData.opponent_score
+            const userId = user?.id
+            const scoreDiff = formData.userScore - formData.opponentScore
             const absDiff = Math.abs(scoreDiff)
 
             let wtcDelta = 0
@@ -108,37 +105,27 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
             else if (absDiff >= 46 && absDiff <= 50) wtcDelta = 9
             else if (absDiff >= 51) wtcDelta = 10
 
-            let user_wtc_score, opponent_wtc_score
+            let userWtcScore, opponentWtcScore
             if (scoreDiff === 0) {
-                user_wtc_score = opponent_wtc_score = 10
+                userWtcScore = opponentWtcScore = 10
             } else if (scoreDiff > 0) {
-                user_wtc_score = 10 + wtcDelta
-                opponent_wtc_score = 10 - wtcDelta
+                userWtcScore = 10 + wtcDelta
+                opponentWtcScore = 10 - wtcDelta
             } else {
-                user_wtc_score = 10 - wtcDelta
-                opponent_wtc_score = 10 + wtcDelta
+                userWtcScore = 10 - wtcDelta
+                opponentWtcScore = 10 + wtcDelta
             }
 
             const matchData = {
                 ...formData,
-                user_id,
-                user_wtc_score,
-                opponent_wtc_score,
-                detachments_games_user_detachment_idTodetachments: {
-                connect: { id: formData.user_detachment_id }
-                },
-                detachments_games_opponent_detachment_idTodetachments: {
-                connect: { id: formData.opponent_detachment_id }
-                },
-                armies_games_user_army_idToarmies: {
-                connect: { id: formData.user_army_id }
-                },
-                armies_games_opponent_army_idToarmies: {
-                connect: { id: formData.opponent_army_id }
-                },
-                users: {
-                connect: { id: user_id }
-                }
+                userId,
+                userWtcScore,
+                opponentWtcScore,
+                user: { connect: { id: userId } },
+                userArmy: { connect: { id: formData.userArmyId } },
+                opponentArmy: { connect: { id: formData.opponentArmyId } },
+                userDetachment: { connect: { id: formData.userDetachmentId } },
+                opponentDetachment: { connect: { id: formData.opponentDetachmentId } }
             }
 
             let res
@@ -165,96 +152,88 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
                 title: 'Success',
                 message: matchToEdit?.id ? 'Match updated!' : 'Match submitted!'
             })
-
         } catch (err) {
             const { title, message } = handleApiError(err)
             setFeedbackModal({ open: true, title, message })
         }
     }
 
-
     return (
         <>
             <form
                 className="flex flex-col items-center gap-4"
-
                 onSubmit={ async (e) => {
                     e.preventDefault()
                     setIsConfirmOpen(true)                    
                 }}
             >    
-
                 <SelectField
                     label="Your Army"
                     id="userArmy"
-                    value={formData.user_army_id.toString()}
+                    value={formData.userArmyId.toString()}
                     options={armies.map(army => ({ label: army.name, value: army.id.toString() }))}
                     onChange={(val) =>
                         setFormData({
-                        ...formData,
-                        user_army_id: Number(val),
-                        user_detachment_id: 0
+                            ...formData,
+                            userArmyId: Number(val),
+                            userDetachmentId: 0
                         })
                     }
                 />
 
-
                 <SelectField
                     label="Your Detachment"
                     id="userDetachment"
-                    value={formData.user_detachment_id.toString()}
+                    value={formData.userDetachmentId.toString()}
                     options={userDetachments.map(det => ({
                         label: det.name,
                         value: det.id!.toString()
                     })) ?? []}
                     onChange={(val) =>
-                        setFormData({ ...formData, user_detachment_id: Number(val) })
+                        setFormData({ ...formData, userDetachmentId: Number(val) })
                     }
                 />
-
 
                 <SelectField
                     label="Opponent's Army"
                     id="opponentArmy"
-                    value={formData.opponent_army_id.toString()}
+                    value={formData.opponentArmyId.toString()}
                     options={armies.map(army => ({ label: army.name, value: army.id.toString() }))}
                     onChange={(val) =>
                         setFormData({
-                        ...formData,
-                        opponent_army_id: Number(val),
-                        opponent_detachment_id: 0
+                            ...formData,
+                            opponentArmyId: Number(val),
+                            opponentDetachmentId: 0
                         })
                     }
                 />
 
-
                 <SelectField
                     label="Opponent's Detachment"
                     id="opponentDetachment"
-                    value={formData.opponent_detachment_id.toString()}
+                    value={formData.opponentDetachmentId.toString()}
                     options={opponentDetachments.map(det => ({
                         label: det.name,
                         value: det.id!.toString()
                     })) ?? []}
                     onChange={(val) =>
-                        setFormData({ ...formData, opponent_detachment_id: Number(val) })
+                        setFormData({ ...formData, opponentDetachmentId: Number(val) })
                     }
                 />
-
 
                 <NumberField 
                     label="Your Score"
                     id="userScore"
-                    value={formData.user_score}
-                    onChange={(val) => setFormData({ ...formData, user_score: val})}
+                    value={formData.userScore}
+                    onChange={(val) => setFormData({ ...formData, userScore: val})}
                     required
                 />
 
                 <NumberField 
                     label="Opponent's Score"
                     id="opponentScore"
-                    value={formData.opponent_score}
-                    onChange={(val) => setFormData({ ...formData, opponent_score: val})}
+                    value={formData.opponentScore}
+                    onChange={(val) => setFormData({ ...formData, opponentScore: val})}
                     required
                 />
 
@@ -268,33 +247,32 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
                 <CheckboxField 
                     label="Tournament match"
                     id="isTournament"
-                    value={formData.is_tournament}
-                    onChange={(is_tournament) => {
+                    value={formData.isTournament}
+                    onChange={(isTournament) => {
                         setFormData((prev) => ({
                             ...prev,
-                            is_tournament,
-                            tournament_name:
-                                is_tournament
-                                ? prev.tournament_name ?? ''
+                            isTournament,
+                            tournamentName:
+                                isTournament
+                                ? prev.tournamentName ?? ''
                                 : undefined
                         }))
                     }}
                 />
 
-                {formData.is_tournament && (
+                {formData.isTournament && (
                     <TextareaField 
-                    label="Tournament Name"
-                    id="tournamentName"
-                    value={formData.tournament_name ?? ''}
-                    onChange={(val) => setFormData({ ...formData, tournament_name: val})}
-                />
+                        label="Tournament Name"
+                        id="tournamentName"
+                        value={formData.tournamentName ?? ''}
+                        onChange={(val) => setFormData({ ...formData, tournamentName: val})}
+                    />
                 )}
 
                 <CustomButton
                     children={'Submit Match'}
                     type='submit'
                 />
-
             </form>
 
             {/* Confirmation Modal */}

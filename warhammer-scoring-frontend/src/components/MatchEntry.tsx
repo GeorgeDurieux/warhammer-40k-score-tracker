@@ -11,22 +11,22 @@ const MatchEntry = ({ match, onEdit, onDelete }: MatchEntryProps) => {
       <div className="text-slate-50">
 
         <p className="text-lg font-bold">
-            {match.user_army.name} ( {match.user_detachment.name} ) - {match.opponent_army.name} ( {match.opponent_detachment.name} )
+            {match.userArmy.name} ( {match.userDetachment.name} ) - {match.opponentArmy.name} ( {match.opponentDetachment.name} )
         </p>
 
         <p className="text-lg font-semibold">
           {new Date(match.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-          {match.is_tournament && match.tournament_name 
-            ? ` - Tournament: ${match.tournament_name}` 
+          {match.isTournament && match.tournamentName 
+            ? ` - Tournament: ${match.tournamentName}` 
             : ''}
         </p>
 
         <p>
-            Score: <strong>{match.user_score} - {match.opponent_score}</strong>
+            Score: <strong>{match.userScore} - {match.opponentScore}</strong>
         </p>
 
         <p>
-            WTC: <strong>{match.user_wtc_score}-{match.opponent_wtc_score} </strong>            
+            WTC: <strong>{match.userWtcScore}-{match.opponentWtcScore} </strong>            
         </p>
         
 

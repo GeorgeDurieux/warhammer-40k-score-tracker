@@ -3,21 +3,8 @@ import { jwtDecode } from "jwt-decode"
 import type { ReactNode } from "react";
 import {handleLogout as apiLogout, handleRegister} from "../services/auth"
 import { handleLogin as apiLogin } from "../services/auth"
-
-type User = {
-    id: number
-    username: string
-    email: string
-    is_admin: boolean
-}
-
-type AuthContextType = {
-    isLoggedIn: boolean
-    user: User | null
-    login: (username: string, password: string) => void
-    logout: () => void
-    register: (username: string, password: string, email: string) => void
-}
+import type { User } from "../types/User";
+import type { AuthContextType } from "../types/AuthContextType";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
@@ -31,9 +18,9 @@ export const AuthProvider = ({ children }: {children: ReactNode}) => {
         const token = localStorage.getItem('token')
 
         if (token) {
-            const { id, username, email, is_admin } = jwtDecode<User & {exp: number}>(token)
+            const { id, username, email, isAdmin } = jwtDecode<User & {exp: number}>(token)
 
-            setUser({ id, username, email, is_admin })
+            setUser({ id, username, email, isAdmin })
 
             setIsLoggedIn(true)
         }
@@ -43,9 +30,9 @@ export const AuthProvider = ({ children }: {children: ReactNode}) => {
         
         try {
             const data = await apiLogin(name, password)
-            const { id, username, email, is_admin } = jwtDecode<User & {exp: number}>(data.token)
+            const { id, username, email, isAdmin } = jwtDecode<User & {exp: number}>(data.token)
 
-            setUser({ id, username, email, is_admin })
+            setUser({ id, username, email, isAdmin })
 
             setIsLoggedIn(true)
             
@@ -57,9 +44,9 @@ export const AuthProvider = ({ children }: {children: ReactNode}) => {
     const register = async (name: string, password: string, mail: string) => {
         try {
             const data = await handleRegister(name, mail, password)
-            const { id,  username, email, is_admin } = jwtDecode<User & {exp: number}>(data.token)
+            const { id,  username, email, isAdmin } = jwtDecode<User & {exp: number}>(data.token)
 
-            setUser({ id, username, email, is_admin })
+            setUser({ id, username, email, isAdmin })
             
         } catch (err) {
             console.error('Registration failed', err)

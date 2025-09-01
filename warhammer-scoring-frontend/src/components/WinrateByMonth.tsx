@@ -14,14 +14,15 @@ const WinrateByMonth = ({ filters, matches }: WinrateByMonthProps) => {
         statsByMonth[monthKey].total += 1
 
         if (filters.wtc) {
-            if (match.user_wtc_score > match.opponent_wtc_score) {
+            if (match.userWtcScore > match.opponentWtcScore) {
                 statsByMonth[monthKey].wins += 1
             }
         } else {
-            if (match.user_score > match.opponent_score) {
+            if (match.userScore > match.opponentScore) {
                 statsByMonth[monthKey].wins += 1
             }
-        }
+}
+
     })
 
     const monthArray = Object.entries(statsByMonth)

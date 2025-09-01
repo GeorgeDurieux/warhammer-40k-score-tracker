@@ -14,9 +14,9 @@ const ScoreByMonth = ({ filters, matches }: ScoreByMonthProps) => {
     statsByMonth[monthKey].games += 1
 
     if (filters.wtc) {
-      statsByMonth[monthKey].score += match.user_wtc_score
+      statsByMonth[monthKey].score += match.userWtcScore
     } else {
-      statsByMonth[monthKey].score += match.user_score
+      statsByMonth[monthKey].score += match.userScore
     }
   })
 

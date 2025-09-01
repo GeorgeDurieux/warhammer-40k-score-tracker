@@ -7,23 +7,19 @@ const prisma = new PrismaClient()
 
 describe('Auth API', () => {
 
-    // Clean up
     beforeEach(async () => {
-        await prisma.games.deleteMany()
-        await prisma.detachments.deleteMany()
-        await prisma.armies.deleteMany()
-        await prisma.users.deleteMany()
+        await prisma.game.deleteMany()
+        await prisma.detachment.deleteMany()
+        await prisma.army.deleteMany()
+        await prisma.user.deleteMany()
     })
 
-    //After, disconnect
     afterAll(async () => {
         await prisma.$disconnect()
     })
 
-    //Register
     describe('POST /api/auth/register', () => {
 
-        //Register new user
         it('should register a new user', async () => {
             const res = await request(app)
                 .post('/api/auth/register')
@@ -38,13 +34,12 @@ describe('Auth API', () => {
             expect(res.body.user).toHaveProperty('id')
             expect(res.body.user.username).toBe('TestUser')
 
-            const userInDb = await prisma.users.findUnique({ where: { username: 'TestUser' } })
+            const userInDb = await prisma.user.findUnique({ where: { username: 'TestUser' } })
             expect(userInDb).not.toBeNull()
         })
 
-        //Register with existing credentials
         it('should not allow registering with existing username or email', async () => {
-            await prisma.users.create({
+            await prisma.user.create({
                 data: { username: 'TestUser', email: 'testuser@example.com', password: 'hashedpassword' }
             })
 
@@ -57,32 +52,28 @@ describe('Auth API', () => {
                 })
                 .expect(409)
 
-            expect(res.body).toHaveProperty('err', 'User already exists')
+            expect(res.body).toHaveProperty('errorCode', 'AUTH_USER_EXISTS')
         })
 
-        //Register with missing fields
         it('should require all fields', async () => {
             const res = await request(app)
                 .post('/api/auth/register')
                 .send({ username: 'TestUser' })
                 .expect(400)
 
-            expect(res.body).toHaveProperty('err', 'All fields are required')
+            expect(res.body).toHaveProperty('errorCode', 'AUTH_MISSING_FIELDS')
         })
     })
 
-    //Login
     describe('POST /api/auth/login', () => {
 
-        //Before, seed 
         beforeEach(async () => {
             const hashed = await bcrypt.hash('password123', 10)
-            await prisma.users.create({
+            await prisma.user.create({
                 data: { username: 'LoginUser', email: 'login@example.com', password: hashed }
             })
         })
 
-        //Correct login
         it('should login with correct credentials', async () => {
             const res = await request(app)
                 .post('/api/auth/login')
@@ -93,34 +84,31 @@ describe('Auth API', () => {
             expect(res.body.user.username).toBe('LoginUser')
         })
 
-        //Wrong username
         it('should fail with wrong username', async () => {
             const res = await request(app)
                 .post('/api/auth/login')
                 .send({ username: 'WrongUser', password: 'password123' })
                 .expect(401)
 
-            expect(res.body).toHaveProperty('err', 'Invalid username')
+            expect(res.body).toHaveProperty('errorCode', 'AUTH_INVALID_USERNAME')
         })
 
-        //Wrong password
         it('should fail with wrong password', async () => {
             const res = await request(app)
                 .post('/api/auth/login')
                 .send({ username: 'LoginUser', password: 'wrongpassword' })
                 .expect(401)
 
-            expect(res.body).toHaveProperty('err', 'Invalid password')
+            expect(res.body).toHaveProperty('errorCode', 'AUTH_INVALID_PASSWORD')
         })
 
-        //Missing fields
         it('should require both username and password', async () => {
             const res = await request(app)
                 .post('/api/auth/login')
                 .send({ username: 'LoginUser' })
                 .expect(400)
 
-            expect(res.body).toHaveProperty('err', 'Email and password are required')
+            expect(res.body).toHaveProperty('errorCode', 'AUTH_MISSING_FIELDS')
         })
     })
 })

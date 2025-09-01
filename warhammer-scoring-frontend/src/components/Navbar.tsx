@@ -18,7 +18,7 @@ function Navbar({ links }: NavbarProps) {
                 {/* Left side: links (desktop) */}
                 <div className="hidden md:flex">
                     {links.map(({ label, path, adminOnly }) => {
-                        if (adminOnly && !user?.is_admin) return null
+                        if (adminOnly && !user?.isAdmin) return null
                         return (
                         <RouterNavLink
                             key={path}
@@ -107,7 +107,7 @@ function Navbar({ links }: NavbarProps) {
                 ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}
             `}>
                 {links.map(({ label, path, adminOnly }) => {
-                    if (adminOnly && !user?.is_admin) return null
+                    if (adminOnly && !user?.isAdmin) return null
                     return (
                     <RouterNavLink
                         key={path}

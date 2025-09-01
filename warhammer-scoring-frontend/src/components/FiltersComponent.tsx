@@ -13,19 +13,19 @@ const Filters = ({ filters, setFilters, matches, showWtc }: FiltersProps) => {
     }
 
     //Unique armies / detachments that have been used / battled 
-    const uniqueUserArmies = getUniqueWithAll(matches.map(m => m.user_army.name))
-    const uniqueOpponentArmies = getUniqueWithAll(matches.map(m => m.opponent_army.name))
+    const uniqueUserArmies = getUniqueWithAll(matches.map(m => m.userArmy.name))
+    const uniqueOpponentArmies = getUniqueWithAll(matches.map(m => m.opponentArmy.name))
 
     const uniqueUserDetachments = getUniqueWithAll(
         matches
-            .filter(m => filters.userArmy === 'all' || m.user_army.name === filters.userArmy)
-            .map(m => m.user_detachment.name)
+            .filter(m => filters.userArmy === 'all' || m.userArmy.name === filters.userArmy)
+            .map(m => m.userDetachment.name)
     )
 
     const uniqueOpponentDetachments = getUniqueWithAll(
         matches
-            .filter(m => filters.opponentArmy === 'all' || m.opponent_army.name === filters.opponentArmy)
-            .map(m => m.opponent_detachment.name)
+            .filter(m => filters.opponentArmy === 'all' || m.opponentArmy.name === filters.opponentArmy)
+            .map(m => m.opponentDetachment.name)
     )
 
     //Get all months
@@ -66,7 +66,7 @@ const Filters = ({ filters, setFilters, matches, showWtc }: FiltersProps) => {
         }
     }
 
-    //Automatically set deaults
+    //Automatically set defaults
     useEffect(() => {
         if (
             months.length > 0 &&
@@ -94,34 +94,28 @@ const Filters = ({ filters, setFilters, matches, showWtc }: FiltersProps) => {
 
             {/* Tournament Only */}
             <div>
-
                 <CheckboxField 
                     id='tournamentOnly'
                     value={filters.tournamentOnly}
                     label='Tournament Only'
                     onChange={value => setFilters(f => ({ ...f, tournamentOnly: value }))}
                 />
-
             </div>
 
             {/* WTC Scoring on / off */}
             { showWtc && (
                 <div>
-
                     <CheckboxField 
                         id='wtc'
                         value={filters.wtc}
                         label='WTC Scoring'
                         onChange={value => setFilters(f => ({ ...f, wtc: value }))}
                     />
-
                 </div>
             )}    
 
             {/* Months range picker */}
             <div>
-
-                {/* Render if we have months */}
                 {months.length > 0 && (
                     <div>
                         <MonthRangeSlider
@@ -131,15 +125,12 @@ const Filters = ({ filters, setFilters, matches, showWtc }: FiltersProps) => {
                         />
                     </div>
                 )}
-
-
             </div>
 
             <div className="flex flex-col gap-8 items-center">
 
                 {/* User army options */}
                 <div className="flex flex-col gap-4 ">
-
                     <SelectField 
                         id='userArmySelect'
                         label='Army'
@@ -171,7 +162,6 @@ const Filters = ({ filters, setFilters, matches, showWtc }: FiltersProps) => {
 
                 {/* Opponent army options */}            
                 <div className="flex flex-col gap-4 ">
-
                     <SelectField 
                         id='opponentArmySelect'
                         label='Army'

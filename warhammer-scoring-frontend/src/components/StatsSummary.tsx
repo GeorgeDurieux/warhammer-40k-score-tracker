@@ -5,12 +5,13 @@ const StatsSummary = ({ filters, matches }: StatsSummaryProps) => {
     let wins, losses
 
     if (filters.wtc) {
-        wins = matches.filter(m => m.user_wtc_score > m.opponent_wtc_score).length
-        losses = matches.filter(m => m.user_wtc_score < m.opponent_wtc_score).length
+        wins = matches.filter(m => m.userWtcScore > m.opponentWtcScore).length
+        losses = matches.filter(m => m.userWtcScore < m.opponentWtcScore).length
     } else {
-        wins = matches.filter(m => m.user_score > m.opponent_score).length
-        losses = matches.filter(m => m.user_score < m.opponent_score).length
+        wins = matches.filter(m => m.userScore > m.opponentScore).length
+        losses = matches.filter(m => m.userScore < m.opponentScore).length
     }
+
     const draws = matches.length - wins - losses
 
     return (

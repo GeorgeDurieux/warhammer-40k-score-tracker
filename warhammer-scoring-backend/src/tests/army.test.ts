@@ -6,17 +6,15 @@ const prisma = new PrismaClient()
 
 describe('Armies API', () => {
 
-    // Before testing, clean and seed DB
     beforeAll(async () => {
+        // Clean DB
+        await prisma.game.deleteMany()
+        await prisma.detachment.deleteMany()
+        await prisma.army.deleteMany()
+        await prisma.user.deleteMany()
 
-        // Clean 
-        await prisma.games.deleteMany()
-        await prisma.detachments.deleteMany()
-        await prisma.armies.deleteMany()
-        await prisma.users.deleteMany()
-
-        // Seed
-        await prisma.armies.create({
+        // Seed army with detachments
+        await prisma.army.create({
             data: {
                 name: 'Test Army',
                 detachments: {
@@ -29,14 +27,11 @@ describe('Armies API', () => {
         })
     })
 
-    //After testing, disconnect
     afterAll(async () => {
         await prisma.$disconnect()
     })
 
-    //GET all armies
     it('GET /api/armies should return 200 and array with our seeded army', async () => {
-
         const res = await request(app)
             .get('/api/armies')
             .expect(200)
@@ -48,30 +43,23 @@ describe('Armies API', () => {
         expect(res.body[0].detachments.length).toBe(2)
     })
 
-    //DELETE first army
-    it('DELETE /api/armies/:armyId should delete an existing army and return 200 with confirmation message', async () => {
-
-        const existingArmy = await prisma.armies.findFirst()
-
+    it('DELETE /api/armies/:armyId should delete an existing army and return 200', async () => {
+        const existingArmy = await prisma.army.findFirst()
         expect(existingArmy).not.toBeNull()
 
         const res = await request(app)
             .delete(`/api/armies/${existingArmy!.id}`)
             .expect(200)
 
-
         expect(res.body).toHaveProperty('message', 'Deleted')
         expect(res.body).toHaveProperty('deletedArmy')
         expect(res.body.deletedArmy.id).toBe(existingArmy!.id)
 
-        const checkArmy = await prisma.armies.findUnique({ where: { id: existingArmy!.id } })
-        
+        const checkArmy = await prisma.army.findUnique({ where: { id: existingArmy!.id } })
         expect(checkArmy).toBeNull()
     })
 
-    //POST new army
-    it('POST /api/armies should create a new army with detachments and return 201 with the created army', async () => {
-
+    it('POST /api/armies should create a new army with detachments and return 201', async () => {
         const newArmyData = {
             name: 'Test Army',
             detachments: ['Alpha Detachment', 'Bravo Detachment']
@@ -91,7 +79,7 @@ describe('Armies API', () => {
         const detachmentNames = res.body.detachments.map((d: any) => d.name)
         expect(detachmentNames).toEqual(expect.arrayContaining(newArmyData.detachments))
 
-        const createdArmy = await prisma.armies.findUnique({
+        const createdArmy = await prisma.army.findUnique({
             where: { id: res.body.id },
             include: { detachments: true }
         })
@@ -101,43 +89,30 @@ describe('Armies API', () => {
         expect(createdArmy?.detachments.length).toBe(2)
     })
 
-    //GET the new army
-    it('GET /api/armies/:armyId should fetch an existing army with detachments and return 200', async () => {
-
-        const existingArmy = await prisma.armies.findFirst({
-            include: { detachments: true }
-        })
-
+    it('GET /api/armies/:armyId should fetch an existing army with detachments', async () => {
+        const existingArmy = await prisma.army.findFirst({ include: { detachments: true } })
         expect(existingArmy).not.toBeNull()
 
         const res = await request(app)
             .get(`/api/armies/${existingArmy!.id}`)
             .expect(200)
 
-        expect(res.body.name).toBe(existingArmy?.name) 
+        expect(res.body.name).toBe(existingArmy?.name)
 
         const detachmentNames = res.body.detachments.map((d: any) => d.name)
-
         expect(detachmentNames).toEqual(
             expect.arrayContaining(existingArmy!.detachments.map(d => d.name))
         )
     })
 
-    //GET invalid id army
-    it('GET /api/armies/:00 should return 404', async () => {
-
+    it('GET /api/armies/00 should return 404', async () => {
         await request(app)
             .get(`/api/armies/00`)
             .expect(404)
     })
 
-    //PATCH the new army
     it('PATCH /api/armies/:armyId should update an existing army with new name and detachments', async () => {
-
-        const existingArmy = await prisma.armies.findFirst({
-            include: { detachments: true }
-        })
-
+        const existingArmy = await prisma.army.findFirst({ include: { detachments: true } })
         expect(existingArmy).not.toBeNull()
 
         const updatedData = {
@@ -148,7 +123,7 @@ describe('Armies API', () => {
                 ),
                 { name: 'Charlie Detachment' }
             ]
-        };
+        }
 
         const res = await request(app)
             .patch(`/api/armies/${existingArmy!.id}`)
@@ -158,12 +133,11 @@ describe('Armies API', () => {
         expect(res.body.name).toBe(updatedData.name)
 
         const detachmentNames = res.body.detachments.map((d: any) => d.name)
-
         expect(detachmentNames).toEqual(
             expect.arrayContaining(updatedData.detachments.map(d => d.name))
         )
 
-        const updatedArmy = await prisma.armies.findUnique({
+        const updatedArmy = await prisma.army.findUnique({
             where: { id: existingArmy!.id },
             include: { detachments: true }
         })
@@ -173,45 +147,33 @@ describe('Armies API', () => {
         expect(updatedArmy!.detachments.length).toBe(updatedData.detachments.length)
 
         type Detachment = { id: number; name: string } | { name: string }
-
         function hasId(detachment: Detachment): detachment is { id: number; name: string } {
             return 'id' in detachment && typeof detachment.id === 'number'
         }
-
         const detWithId = updatedData.detachments.filter(hasId)
-
-        expect(updatedArmy!.detachments.find(d => d.id === detWithId[0].id)?.name).toBe(
-            updatedData.detachments[0].name
-        )
+        expect(updatedArmy!.detachments.find(d => d.id === detWithId[0].id)?.name)
+            .toBe(updatedData.detachments[0].name)
 
         expect(updatedArmy!.detachments.some(d => d.name === 'Charlie Detachment')).toBe(true)
     })
 
-    //SOFT DELETE army
     it('PATCH /api/armies/soft/:armyId should soft delete an existing army and its detachments', async () => {
-    
-        const existingArmy = await prisma.armies.findFirst({
-            include: { detachments: true }
-        })
+        const existingArmy = await prisma.army.findFirst({ include: { detachments: true } })
 
         const res = await request(app)
             .patch(`/api/armies/soft/${existingArmy!.id}`)
             .expect(200)
 
         expect(res.body.updatedArmy.id).toBe(existingArmy!.id)
-        expect(res.body.updatedArmy.is_deleted).toBe(true)
+        expect(res.body.updatedArmy.isDeleted).toBe(true)
 
-        const deletedArmy = await prisma.armies.findUnique({
-            where: { id: existingArmy!.id }
-        })
-        
-        expect(deletedArmy?.is_deleted).toBe(true)
+        const deletedArmy = await prisma.army.findUnique({ where: { id: existingArmy!.id } })
+        expect(deletedArmy?.isDeleted).toBe(true)
 
-        const deletedDetachments = await prisma.detachments.findMany({
-            where: { army_id: existingArmy!.id }
+        const deletedDetachments = await prisma.detachment.findMany({
+            where: { armyId: existingArmy!.id }
         })
 
-        expect(deletedDetachments.every(d => d.is_deleted)).toBe(true)
+        expect(deletedDetachments.every(d => d.isDeleted)).toBe(true)
     })
-
 })

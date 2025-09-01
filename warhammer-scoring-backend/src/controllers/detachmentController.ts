@@ -8,8 +8,8 @@ export const createDetachment = async (req: Request, res: Response) => {
     logger.info(`[CREATE DETACHMENT] Creating detachment: ${name} for armyId: ${armyId}`)
 
     try {
-        const newDetachment = await prisma.detachments.create({
-            data: { name, armies: { connect: { id: Number(armyId) } } }
+        const newDetachment = await prisma.detachment.create({
+            data: { name, army: { connect: { id: Number(armyId) } } }
         })
 
         logger.info(`[CREATE DETACHMENT] Detachment created with id: ${newDetachment.id}`)
@@ -23,8 +23,8 @@ export const createDetachment = async (req: Request, res: Response) => {
 export const getDetachments = async (req: Request, res: Response) => {
     logger.info('[GET DETACHMENTS] Fetching all detachments')
     try {
-        const detachments = await prisma.detachments.findMany({
-            where: { is_deleted: false },
+        const detachments = await prisma.detachment.findMany({
+            where: { isDeleted: false },
             orderBy: { name: 'desc' }
         })
         logger.info(`[GET DETACHMENTS] Retrieved ${detachments.length} detachments`)
@@ -39,7 +39,7 @@ export const getDetachmentById = async (req: Request, res: Response): Promise<vo
     const { id } = req.params
     logger.info(`[GET DETACHMENT] Fetching detachment by id: ${id}`)
     try {
-        const detachment = await prisma.detachments.findUnique({ where: { id: Number(id) } })
+        const detachment = await prisma.detachment.findUnique({ where: { id: Number(id) } })
         if (!detachment) {
             logger.warn(`[GET DETACHMENT] Detachment not found: ${id}`)
             res.status(404).json({ errorCode: ERROR_CODES.DETACHMENT_NOT_FOUND })
@@ -56,7 +56,7 @@ export const deleteDetachmentById = async (req: Request, res: Response): Promise
     const { id } = req.params
     logger.info(`[DELETE DETACHMENT] Deleting detachment by id: ${id}`)
     try {
-        await prisma.detachments.delete({ where: { id: Number(id) } })
+        await prisma.detachment.delete({ where: { id: Number(id) } })
         logger.info(`[DELETE DETACHMENT] Detachment deleted: ${id}`)
         res.status(200).json({ message: 'Deleted' })
     } catch (err: any) {
@@ -74,7 +74,7 @@ export const updateDetachmentById = async (req: Request, res: Response): Promise
     logger.info(`[UPDATE DETACHMENT] Updating detachment by id: ${id}`)
 
     try {
-        const existingDetachment = await prisma.detachments.findUnique({ where: { id: Number(id) } })
+        const existingDetachment = await prisma.detachment.findUnique({ where: { id: Number(id) } })
         if (!existingDetachment) {
             logger.warn(`[UPDATE DETACHMENT] Detachment not found: ${id}`)
             res.status(404).json({ errorCode: ERROR_CODES.DETACHMENT_NOT_FOUND })
@@ -82,7 +82,7 @@ export const updateDetachmentById = async (req: Request, res: Response): Promise
         }
 
         const { name } = req.body
-        const updatedDetachment = await prisma.detachments.update({
+        const updatedDetachment = await prisma.detachment.update({
             where: { id: Number(id) },
             data: { name }
         })
@@ -100,16 +100,16 @@ export const softDeleteDetachmentById = async (req: Request, res: Response): Pro
     logger.info(`[SOFT DELETE DETACHMENT] Soft deleting detachment by id: ${id}`)
 
     try {
-        const existingDetachment = await prisma.detachments.findUnique({ where: { id: Number(id) } })
+        const existingDetachment = await prisma.detachment.findUnique({ where: { id: Number(id) } })
         if (!existingDetachment) {
             logger.warn(`[SOFT DELETE DETACHMENT] Detachment not found: ${id}`)
             res.status(404).json({ errorCode: ERROR_CODES.DETACHMENT_NOT_FOUND })
             return
         }
 
-        const updatedDetachment = await prisma.detachments.update({
+        const updatedDetachment = await prisma.detachment.update({
             where: { id: Number(id) },
-            data: { is_deleted: true }
+            data: { isDeleted: true }
         })
 
         logger.info(`[SOFT DELETE DETACHMENT] Detachment soft deleted: ${id}`)
@@ -125,8 +125,8 @@ export const getDetachmentByArmy = async (req: Request, res: Response): Promise<
     logger.info(`[GET DETACHMENT BY ARMY] Fetching detachments for armyId: ${armyId}`)
 
     try {
-        const detachments = await prisma.detachments.findMany({
-            where: { army_id: Number(armyId), is_deleted: false },
+        const detachments = await prisma.detachment.findMany({
+            where: { armyId: Number(armyId), isDeleted: false },
             orderBy: { name: 'desc' }
         })
 

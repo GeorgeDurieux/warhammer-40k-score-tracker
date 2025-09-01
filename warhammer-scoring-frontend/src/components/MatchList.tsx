@@ -9,40 +9,41 @@ const MatchList = ({ filters, matches }: MatchListProps) => {
   const statsByDetachment: Record<string, DetachmentStats> = {}
 
   matches.forEach(match => {
-    const detKey = `${match.user_army.name} (${match.user_detachment.name})`
-    const oppKey = `${match.opponent_army.name}`
+  const detKey = `${match.userArmy.name} (${match.userDetachment.name})`
+  const oppKey = `${match.opponentArmy.name}`
 
-    if (!statsByDetachment[detKey]) {
-      statsByDetachment[detKey] = { wins: 0, total: 0, opponents: {} }
-    }
+  if (!statsByDetachment[detKey]) {
+    statsByDetachment[detKey] = { wins: 0, total: 0, opponents: {} }
+  }
 
-    const detStats = statsByDetachment[detKey]
-    detStats.total += 1
+  const detStats = statsByDetachment[detKey]
+  detStats.total += 1
 
-    let userScore, opponentScore
+  let userScore, opponentScore
 
-    if (filters.wtc) {
-      userScore = match.user_wtc_score
-      opponentScore = match.opponent_wtc_score
-    } else {
-      userScore = match.user_score
-      opponentScore = match.opponent_score
-    }
+  if (filters.wtc) {
+    userScore = match.userWtcScore
+    opponentScore = match.opponentWtcScore
+  } else {
+    userScore = match.userScore
+    opponentScore = match.opponentScore
+  }
 
-    if (userScore > opponentScore) {
-      detStats.wins += 1
-    }
+  if (userScore > opponentScore) {
+    detStats.wins += 1
+  }
 
-    if (!detStats.opponents[oppKey]) {
-      detStats.opponents[oppKey] = { wins: 0, total: 0 }
-    }
+  if (!detStats.opponents[oppKey]) {
+    detStats.opponents[oppKey] = { wins: 0, total: 0 }
+  }
 
-    detStats.opponents[oppKey].total += 1
+  detStats.opponents[oppKey].total += 1
 
-    if (userScore > opponentScore) {
-      detStats.opponents[oppKey].wins += 1
-    }
-  })
+  if (userScore > opponentScore) {
+    detStats.opponents[oppKey].wins += 1
+  }
+})
+
 
   const detachmentArray = Object.entries(statsByDetachment).map(
     ([detKey, { wins, total, opponents }]) => ({

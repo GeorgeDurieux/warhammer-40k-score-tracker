@@ -1,11 +1,11 @@
 export type MatchForm = {
-  user_army_id: number
-  user_detachment_id: number
-  opponent_army_id: number
-  opponent_detachment_id: number
+  userArmyId: number
+  userDetachmentId: number
+  opponentArmyId: number
+  opponentDetachmentId: number
   date: string  
-  user_score: number
-  opponent_score: number
-  is_tournament: boolean
-  tournament_name?: string
+  userScore: number
+  opponentScore: number
+  isTournament: boolean
+  tournamentName?: string
 }

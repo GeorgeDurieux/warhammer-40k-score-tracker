@@ -18,7 +18,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     }
 
     try {
-        const existingUser = await prisma.users.findFirst({
+        const existingUser = await prisma.user.findFirst({
             where: { OR: [{ email }, { username }] }
         })
 
@@ -31,7 +31,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         const hashedPassword = await bcrypt.hash(password, 10)
         logger.info('[REGISTER] Password hashed successfully')
 
-        const newUser = await prisma.users.create({
+        const newUser = await prisma.user.create({
             data: {
                 username,
                 email,
@@ -65,7 +65,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     }
 
     try {
-        const user = await prisma.users.findUnique({
+        const user = await prisma.user.findUnique({
             where: { username }
         })
 
@@ -83,7 +83,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         }
 
         const token = jwt.sign(
-            { id: user.id, username: user.username, email: user.email, is_admin: user.is_admin },
+            { id: user.id, username: user.username, email: user.email, isAdmin: user.isAdmin },
             JWT_SECRET,
             { expiresIn: '7d' }
         )

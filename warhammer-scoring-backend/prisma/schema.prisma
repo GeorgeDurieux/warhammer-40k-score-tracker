@@ -7,60 +7,67 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model armies {
-  id                                   Int           @id @default(autoincrement())
-  name                                 String        @unique(map: "unique_army") @db.VarChar(50)
-  is_deleted                           Boolean?      @default(false)
-  detachments                          detachments[]
-  games_games_opponent_army_idToarmies games[]       @relation("games_opponent_army_idToarmies")
-  games_games_user_army_idToarmies     games[]       @relation("games_user_army_idToarmies")
+model Army {
+  id           Int      @id @default(autoincrement())
+  name         String   @unique(map: "unique_army") @db.VarChar(50)
+  isDeleted    Boolean? @default(false) @map("is_deleted")
+  detachments  Detachment[]
+  gamesOpponent Game[]  @relation("gamesOpponent")
+  gamesUser     Game[]  @relation("gamesUser")
+
+  @@map("armies")
 }
 
-model detachments {
-  id                                              Int      @id @default(autoincrement())
-  name                                            String   @db.VarChar(50)
-  army_id                                         Int
-  is_deleted                                      Boolean? @default(false)
-  armies                                          armies   @relation(fields: [army_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_detachments_armies")
-  games_games_user_detachment_idTodetachments     games[]  @relation("games_user_detachment_idTodetachments")
-  games_games_opponent_detachment_idTodetachments games[]  @relation("games_opponent_detachment_idTodetachments")
+model Detachment {
+  id             Int       @id @default(autoincrement())
+  name           String    @db.VarChar(50)
+  armyId         Int       @map("army_id")
+  isDeleted      Boolean?  @default(false) @map("is_deleted")
+  army           Army      @relation(fields: [armyId], references: [id], map: "fk_detachments_armies")
+  gamesUser      Game[]    @relation("gamesUserDetachment")
+  gamesOpponent  Game[]    @relation("gamesOpponentDetachment")
 
-  @@unique([name, army_id], map: "unique_name_army")
+  @@unique([name, armyId], map: "unique_name_army")
+  @@map("detachments")
 }
 
-model games {
-  id                                                    Int         @id @default(autoincrement())
-  user_id                                               Int
-  user_army_id                                          Int
-  opponent_army_id                                      Int
-  user_detachment_id                                    Int
-  opponent_detachment_id                                Int
-  date                                                  DateTime    @db.Date
-  user_score                                            Int
-  opponent_score                                        Int
-  user_wtc_score                                        Int
-  opponent_wtc_score                                    Int
-  is_tournament                                         Boolean
-  tournament_name                                       String?     @db.VarChar(50)
-  detachments_games_user_detachment_idTodetachments     detachments @relation("games_user_detachment_idTodetachments", fields: [user_detachment_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_games-detachments_user_detachment_id")
-  armies_games_opponent_army_idToarmies                 armies      @relation("games_opponent_army_idToarmies", fields: [opponent_army_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_games_armies_opponent_army_id")
-  armies_games_user_army_idToarmies                     armies      @relation("games_user_army_idToarmies", fields: [user_army_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_games_armies_user_army_id")
-  detachments_games_opponent_detachment_idTodetachments detachments @relation("games_opponent_detachment_idTodetachments", fields: [opponent_detachment_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_games_detachments_opponent_detachment_id")
-  users                                                 users       @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_games_users")
+model Game {
+  id                     Int         @id @default(autoincrement())
+  userId                 Int         @map("user_id")
+  userArmyId             Int         @map("user_army_id")
+  opponentArmyId         Int         @map("opponent_army_id")
+  userDetachmentId       Int         @map("user_detachment_id")
+  opponentDetachmentId   Int         @map("opponent_detachment_id")
+  date                   DateTime    @db.Date
+  userScore              Int         @map("user_score")
+  opponentScore          Int         @map("opponent_score")
+  userWtcScore           Int         @map("user_wtc_score")
+  opponentWtcScore       Int         @map("opponent_wtc_score")
+  isTournament           Boolean     @map("is_tournament")
+  tournamentName         String?     @db.VarChar(50) @map("tournament_name")
+
+  userDetachment         Detachment  @relation("gamesUserDetachment", fields: [userDetachmentId], references: [id], map: "fk_games-detachments_user_detachment_id")
+  opponentDetachment     Detachment  @relation("gamesOpponentDetachment", fields: [opponentDetachmentId], references: [id], map: "fk_games_detachments_opponent_detachment_id")
+  opponentArmy           Army        @relation("gamesOpponent", fields: [opponentArmyId], references: [id], map: "fk_games_armies_opponent_army_id")
+  userArmy               Army        @relation("gamesUser", fields: [userArmyId], references: [id], map: "fk_games_armies_user_army_id")
+  user                   User        @relation(fields: [userId], references: [id], map: "fk_games_users")
 
   @@index([date], map: "idx_games_date")
-  @@index([opponent_army_id], map: "idx_games_opponent_army_id")
-  @@index([opponent_detachment_id], map: "idx_games_opponent_detachment_id")
-  @@index([user_army_id], map: "idx_games_user_army_id")
-  @@index([user_detachment_id], map: "idx_games_user_detachment_id")
-  @@index([user_id], map: "idx_games_user_id")
+  @@index([opponentArmyId], map: "idx_games_opponent_army_id")
+  @@index([opponentDetachmentId], map: "idx_games_opponent_detachment_id")
+  @@index([userArmyId], map: "idx_games_user_army_id")
+  @@index([userDetachmentId], map: "idx_games_user_detachment_id")
+  @@index([userId], map: "idx_games_user_id")
+  @@map("games")
 }
 
-model users {
+model User {
   id       Int      @id @default(autoincrement())
   username String   @unique(map: "unique_username") @db.VarChar(50)
   email    String   @unique(map: "unique_email") @db.VarChar(100)
   password String   @db.VarChar(255)
-  is_admin Boolean? @default(false)
-  games    games[]
+  isAdmin  Boolean? @default(false) @map("is_admin")
+  games    Game[]
+
+  @@map("users")
 }

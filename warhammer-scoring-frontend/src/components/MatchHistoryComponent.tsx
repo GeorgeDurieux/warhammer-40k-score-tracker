@@ -3,8 +3,7 @@ import CustomButton from './CustomButton'
 import MatchEntry from './MatchEntry'
 import SortBar from './SortBar'
 import type { MatchHistoryProps } from '../types/MatchHistortProps'
-
-type SortOption = 'date-desc' | 'date-asc' | 'score-desc' | 'score-asc' | 'wtc-desc' | 'wtc-asc'
+import type { SortOption } from '../types/SortOption'
 
 const MatchHistoryComponent = ({ matches, onEdit, onDelete, onAdd }: MatchHistoryProps) => {
 
@@ -25,25 +24,26 @@ const MatchHistoryComponent = ({ matches, onEdit, onDelete, onAdd }: MatchHistor
 
     const sortedMatches = useMemo(() => {
 
-        const copy = [...matches]
+    const copy = [...matches]
 
-        switch (sortOption) {
+    switch (sortOption) {
         case 'date-asc':
             return copy.sort((a, b) => a.date.localeCompare(b.date))
         case 'score-desc':
-            return copy.sort((a, b) => b.user_score - a.user_score)
+            return copy.sort((a, b) => b.userScore - a.userScore)
         case 'score-asc':
-            return copy.sort((a, b) => a.user_score - b.user_score)
+            return copy.sort((a, b) => a.userScore - b.userScore)
         case 'wtc-desc':
-            return copy.sort((a, b) => b.user_wtc_score - a.user_wtc_score)
+            return copy.sort((a, b) => b.userWtcScore - a.userWtcScore)
         case 'wtc-asc':
-            return copy.sort((a, b) => a.user_wtc_score - b.user_wtc_score)
+            return copy.sort((a, b) => a.userWtcScore - b.userWtcScore)
         case 'date-desc':
         default:
             return copy.sort((a, b) => b.date.localeCompare(a.date))
-        }
+    }
 
-    }, [matches, sortOption])
+}, [matches, sortOption])
+
 
     return (
 
