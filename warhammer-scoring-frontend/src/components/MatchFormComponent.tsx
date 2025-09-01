@@ -69,7 +69,7 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
         const army = armies.find(a => a.id === armyId)
         if (!army) return []
 
-        const chapterNames = ['Space Wolves', 'Dark Angels', 'Blood Angels', 'Deathwatch']
+        const chapterNames = ['Space Wolves', 'Dark Angels', 'Blood Angels', 'Deathwatch', 'Black Templars']
         const isChapter = chapterNames.includes(army.name)
 
         if (isChapter) {

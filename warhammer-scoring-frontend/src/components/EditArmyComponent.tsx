@@ -59,7 +59,7 @@ function EditArmyComponent ({ armyId }: {armyId: number}) {
 
     const handleSave = async () => {
         try {
-            const res = await fetch(`http://localhost:4000/api/armies/${armyId}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/armies/${armyId}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(army)
