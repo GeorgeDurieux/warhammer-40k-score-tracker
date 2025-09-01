@@ -1,15 +1,5 @@
 import { useEffect, useState } from 'react'
-
-type NumberFieldProps = {
-    id: string
-    label: string
-    value: number
-    onChange: (value: number) => void
-    required?: boolean
-    min?: number
-    max?: number
-    step?: number
-}
+import type { NumberFieldProps } from '../types/NumberFieldProps'
 
 function NumberField({
   id,

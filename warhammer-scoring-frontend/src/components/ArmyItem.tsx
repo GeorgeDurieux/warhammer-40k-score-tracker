@@ -1,24 +1,8 @@
-import { useState } from "react";
-import { ChevronRight, ChevronDown, Pencil, Trash2 } from "lucide-react";
+import { useState } from "react"
+import { ChevronRight, ChevronDown, Pencil, Trash2 } from "lucide-react"
+import type { ArmyItemProps } from "../types/ArmyItemProps"
 
-type Detachment = {
-  id: number
-  name: string
-}
-
-type Army = {
-    id: number
-    name: string
-    detachments: Detachment[]
-}
-
-type Props = {
-    army: Army
-    onEdit?: (id: number) => void
-    onDelete?: (id: number) => void
-}
-
-export default function ArmyItem({ army, onEdit, onDelete }: Props) {
+export default function ArmyItem({ army, onEdit, onDelete }: ArmyItemProps) {
 
     const [isOpen, setIsOpen] = useState(false)
 

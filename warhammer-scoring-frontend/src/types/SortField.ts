@@ -1,0 +1,1 @@
+export type SortField = 'date' | 'score' | 'wtc'

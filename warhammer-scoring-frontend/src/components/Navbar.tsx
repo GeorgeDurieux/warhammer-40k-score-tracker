@@ -2,16 +2,7 @@ import { useState } from "react"
 import { NavLink as RouterNavLink } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import { LogIn, LogOut, Menu, X } from "lucide-react"
-
-type NavLink = {
-  label: string
-  path: string
-  adminOnly?: boolean
-}
-
-type NavbarProps = {
-  links: NavLink[]
-}
+import type { NavbarProps } from "../types/NavbarProps"
 
 function Navbar({ links }: NavbarProps) {
     const { user, isLoggedIn, logout } = useAuth()

@@ -1,9 +1,4 @@
-type CheckboxFieldProps = {
-  id: string
-  label: string
-  value: boolean
-  onChange: (value: boolean) => void
-}
+import type { CheckboxFieldProps } from "../services/CheckBoxFieldProps"
 
 function CheckboxField({ id, label, value, onChange }: CheckboxFieldProps) {
   return (

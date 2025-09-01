@@ -1,9 +1,4 @@
-type TextareaFieldProps = {
-    id: string
-    label: string
-    value: string
-    onChange: (value: string) => void
-}
+import type { TextareaFieldProps } from "../types/TextareaFieldProps"
 
 function TextareaField({ id, label, value, onChange }: TextareaFieldProps) {
     return (

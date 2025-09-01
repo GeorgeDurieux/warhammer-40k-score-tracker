@@ -1,20 +1,7 @@
 import { useState } from "react"
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import TextField from "./TextField"
-
-
-type PasswordFieldProps = {
-    id: string
-    label: string
-    value: string
-    onChange: (value: string) => void
-    autoComplete?: string
-    required?: boolean
-    pattern?: string
-    title?: string
-    minLength?: number
-    maxLength?: number
-}
+import type { PasswordFieldProps } from "../types/PasswordFieldProps"
 
 function PasswordField({
     id, 

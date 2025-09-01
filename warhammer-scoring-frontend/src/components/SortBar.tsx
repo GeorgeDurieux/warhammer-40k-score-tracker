@@ -1,13 +1,8 @@
 import CustomButton from "./CustomButton"
 import { FaArrowUp, FaArrowDown } from "react-icons/fa"
-
-type SortField = 'date' | 'score' | 'wtc'
-type SortOption = 'date-asc' | 'date-desc' | 'score-asc' | 'score-desc' | 'wtc-asc' | 'wtc-desc'
-
-type SortBarProps = {
-    sortOption: SortOption
-    onSortChange: (option: SortOption) => void
-}
+import type { SortBarProps } from "../types/SortBarProps"
+import type { SortOption } from "../types/SortOption"
+import type { SortField } from "../types/SortField"
 
 const SortBar = ({ sortOption, onSortChange }: SortBarProps) => {
 

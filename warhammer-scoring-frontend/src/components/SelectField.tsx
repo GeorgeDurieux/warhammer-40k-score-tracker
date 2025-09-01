@@ -1,20 +1,7 @@
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from 'lucide-react'
 import { Fragment } from 'react'
-
-type Option = {
-  label: string
-  value: string
-}
-
-type SelectFieldProps = {
-    id: string
-    label: string
-    value: string
-    options: Option[]
-    onChange: (value: string) => void
-    required?: boolean
-}
+import type { SelectFieldProps } from '../types/SelectFieldProps'
 
 function SelectField({ id, label, value, options, onChange }: SelectFieldProps) {
 

@@ -1,25 +1,8 @@
 import ArmyItem from './ArmyItem'
 import CustomButton from './CustomButton'
+import type { ArmyListProps } from '../types/ArmyListProps'
 
-type Detachment = {
-    id: number
-    name: string
-}
-
-type Army = {
-    id: number
-    name: string
-    detachments: Detachment[]
-}
-
-type Props = {
-  armies: Army[]
-  onEdit: (id: number) => void
-  onDelete: (id: number) => void
-  onAdd: () => void
-}
-
-export default function ArmyList({ armies, onEdit, onDelete, onAdd }: Props) {
+export default function ArmyList({ armies, onEdit, onDelete, onAdd }: ArmyListProps) {
 
   return (
 

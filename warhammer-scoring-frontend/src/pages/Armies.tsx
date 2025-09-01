@@ -4,17 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Modal from '../components/Modal'
 import { handleApiError } from '../utils/handleApiError'
 import Title from '../components/Title'
-
-type Detachment = {
-  id: number
-  name: string
-}
-
-type Army = {
-  id: number
-  name: string
-  detachments: Detachment[]
-}
+import type { Army } from '../types/Army'
 
 function Armies() {
 

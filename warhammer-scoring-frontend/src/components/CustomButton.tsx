@@ -1,12 +1,6 @@
-type ButtonProps = {
-    type?: 'button' | 'submit' | 'reset'
-    onClick?: () => void
-    disabled?: boolean
-    children: React.ReactNode
-    isSmall?: boolean
-}
+import type { CustomButtonProps } from "../types/CustomButtonProps"
 
-function CustomButton({ children, type, onClick, disabled, isSmall }: ButtonProps) {
+function CustomButton({ children, type, onClick, disabled, isSmall }: CustomButtonProps) {
     return (
         <>
             <button 

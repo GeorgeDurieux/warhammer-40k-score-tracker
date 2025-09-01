@@ -1,0 +1,1 @@
+export type SortOption = 'date-asc' | 'date-desc' | 'score-asc' | 'score-desc' | 'wtc-asc' | 'wtc-desc'

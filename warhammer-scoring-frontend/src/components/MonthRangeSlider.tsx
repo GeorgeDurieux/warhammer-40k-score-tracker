@@ -1,12 +1,7 @@
 import { Range } from 'react-range'
+import type { SliderProps } from '../types/SliderProps'
 
-type Props = {
-  months: string[] 
-  values: [number, number] 
-  onChange: (range: [number, number]) => void
-}
-
-const MonthRangeSlider = ({ months, values, onChange }: Props) => {
+const MonthRangeSlider = ({ months, values, onChange }: SliderProps) => {
   const STEP = 1
   const MIN = 0
   const MAX = months.length - 1

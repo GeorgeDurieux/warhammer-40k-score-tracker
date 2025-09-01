@@ -3,18 +3,7 @@ import { Trash2 } from "lucide-react"
 import CustomButton from "./CustomButton"
 import Modal from "./Modal"
 import { handleApiError } from "../utils/handleApiError"
-
-type Detachment = {
-    id?: number
-    name: string
-    isNew?: boolean
-}
-
-type Army = {
-    id: number
-    name: string
-    detachments: Detachment[]
-}
+import type { Army } from "../types/Army"
 
 function EditArmyComponent ({ armyId }: {armyId: number}) {
 

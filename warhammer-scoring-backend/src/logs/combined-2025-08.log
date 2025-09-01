@@ -15,3 +15,400 @@
 2025-08-17 17:06:26 [INFO]: [GET MATCHES] Fetching all matches
 2025-08-17 17:06:26 [INFO]: [GET MATCHES] Retrieved 31 matches
 2025-08-17 17:06:26 [INFO]: [FRONTEND] GET /api/matches 304 11.278 ms
+2025-08-19 10:50:26 [INFO]: Database connected successfully
+2025-08-19 10:50:26 [INFO]: Server running on http://localhost:4000
+2025-08-19 10:59:24 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 10:59:24 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 10:59:24 [INFO]: [FRONTEND] GET /api/matches 200 160.602 ms
+2025-08-19 10:59:24 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 10:59:24 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 10:59:24 [INFO]: [FRONTEND] GET /api/matches 304 8.141 ms
+2025-08-19 11:00:00 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:00:00 [INFO]: [FRONTEND] GET /api/armies 200 12.910 ms
+2025-08-19 11:00:00 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:00:00 [INFO]: [FRONTEND] GET /api/armies 304 12.401 ms
+2025-08-19 11:00:07 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:00:07 [INFO]: [FRONTEND] GET /api/armies 304 5.054 ms
+2025-08-19 11:00:07 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:00:07 [INFO]: [FRONTEND] GET /api/armies 304 11.204 ms
+2025-08-19 11:00:11 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:00:11 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:00:11 [INFO]: [FRONTEND] GET /api/matches 200 16.178 ms
+2025-08-19 11:00:11 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:00:11 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:00:11 [INFO]: [FRONTEND] GET /api/matches 304 20.915 ms
+2025-08-19 11:00:16 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:00:16 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:00:16 [INFO]: [FRONTEND] GET /api/matches 304 16.295 ms
+2025-08-19 11:00:16 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:00:16 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:00:16 [INFO]: [FRONTEND] GET /api/matches 304 15.623 ms
+2025-08-19 11:00:31 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:00:31 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:00:31 [INFO]: [FRONTEND] GET /api/matches 304 14.618 ms
+2025-08-19 11:00:31 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:00:31 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:00:31 [INFO]: [FRONTEND] GET /api/matches 304 20.580 ms
+2025-08-19 11:00:32 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:00:32 [INFO]: [FRONTEND] GET /api/armies 304 6.978 ms
+2025-08-19 11:00:32 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:00:32 [INFO]: [FRONTEND] GET /api/armies 304 8.431 ms
+2025-08-19 11:07:36 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:07:36 [INFO]: [FRONTEND] GET /api/armies 304 86.713 ms
+2025-08-19 11:07:36 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:07:36 [INFO]: [FRONTEND] GET /api/armies 304 6.125 ms
+2025-08-19 11:07:37 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:07:37 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:07:37 [INFO]: [FRONTEND] GET /api/matches 304 23.666 ms
+2025-08-19 11:07:37 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:07:37 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:07:37 [INFO]: [FRONTEND] GET /api/matches 304 11.823 ms
+2025-08-19 11:10:53 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:10:53 [INFO]: [FRONTEND] GET /api/armies 304 6.432 ms
+2025-08-19 11:10:53 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:10:53 [INFO]: [FRONTEND] GET /api/armies 304 6.980 ms
+2025-08-19 11:10:56 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:10:56 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:10:56 [INFO]: [FRONTEND] GET /api/matches 304 12.528 ms
+2025-08-19 11:10:56 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:10:56 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:10:56 [INFO]: [FRONTEND] GET /api/matches 304 10.672 ms
+2025-08-19 11:11:00 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:11:00 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:11:00 [INFO]: [FRONTEND] GET /api/matches 304 8.251 ms
+2025-08-19 11:11:00 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:11:00 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:11:00 [INFO]: [FRONTEND] GET /api/matches 304 11.899 ms
+2025-08-19 11:11:04 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:11:04 [INFO]: [FRONTEND] GET /api/armies 304 6.762 ms
+2025-08-19 11:11:04 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:11:04 [INFO]: [FRONTEND] GET /api/armies 304 6.342 ms
+2025-08-19 11:33:50 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:33:50 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:33:50 [INFO]: [FRONTEND] GET /api/matches 304 105.130 ms
+2025-08-19 11:33:50 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:33:50 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:33:50 [INFO]: [FRONTEND] GET /api/matches 304 7.790 ms
+2025-08-19 11:34:09 [INFO]: [LOGIN] Attempting login for username: Ragnar
+2025-08-19 11:34:09 [INFO]: [LOGIN] JWT token generated for user: 1
+2025-08-19 11:34:09 [INFO]: [FRONTEND] POST /api/auth/login 200 126.110 ms
+2025-08-19 11:34:14 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:34:14 [INFO]: [FRONTEND] GET /api/armies 304 7.168 ms
+2025-08-19 11:34:14 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:34:14 [INFO]: [FRONTEND] GET /api/armies 304 9.336 ms
+2025-08-19 11:34:24 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:34:24 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:34:24 [INFO]: [FRONTEND] GET /api/matches 304 12.272 ms
+2025-08-19 11:34:24 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:34:24 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:34:24 [INFO]: [FRONTEND] GET /api/matches 304 8.933 ms
+2025-08-19 11:34:27 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:34:27 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:34:27 [INFO]: [FRONTEND] GET /api/matches 304 13.330 ms
+2025-08-19 11:34:27 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:34:27 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:34:27 [INFO]: [FRONTEND] GET /api/matches 304 8.607 ms
+2025-08-19 11:34:31 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:34:31 [INFO]: [FRONTEND] GET /api/armies 304 6.594 ms
+2025-08-19 11:34:31 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:34:31 [INFO]: [FRONTEND] GET /api/armies 304 5.857 ms
+2025-08-19 11:34:38 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:34:38 [INFO]: [FRONTEND] GET /api/armies 304 10.301 ms
+2025-08-19 11:34:38 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 11:34:38 [INFO]: [FRONTEND] GET /api/armies 304 8.829 ms
+2025-08-19 11:56:40 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:56:40 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:56:40 [INFO]: [FRONTEND] GET /api/matches 304 104.276 ms
+2025-08-19 11:56:40 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 11:56:40 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 11:56:40 [INFO]: [FRONTEND] GET /api/matches 304 12.809 ms
+2025-08-19 12:03:38 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 12:03:38 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 12:03:38 [INFO]: [FRONTEND] GET /api/matches 304 122.895 ms
+2025-08-19 12:03:38 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 12:03:38 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 12:03:38 [INFO]: [FRONTEND] GET /api/matches 304 8.629 ms
+2025-08-19 12:18:27 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 12:18:28 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 12:18:28 [INFO]: [FRONTEND] GET /api/matches 304 106.155 ms
+2025-08-19 12:18:28 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 12:18:28 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 12:18:28 [INFO]: [FRONTEND] GET /api/matches 304 7.795 ms
+2025-08-19 12:28:10 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 12:28:10 [INFO]: [FRONTEND] GET /api/armies 304 113.418 ms
+2025-08-19 12:28:10 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 12:28:10 [INFO]: [FRONTEND] GET /api/armies 304 8.205 ms
+2025-08-19 12:28:12 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 12:28:12 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 12:28:12 [INFO]: [FRONTEND] GET /api/matches 304 19.348 ms
+2025-08-19 12:28:12 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 12:28:12 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 12:28:12 [INFO]: [FRONTEND] GET /api/matches 304 9.044 ms
+2025-08-19 12:37:39 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 12:37:39 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 12:37:39 [INFO]: [FRONTEND] GET /api/matches 304 96.285 ms
+2025-08-19 12:37:39 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 12:37:39 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 12:37:39 [INFO]: [FRONTEND] GET /api/matches 304 8.130 ms
+2025-08-19 12:49:18 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 12:49:18 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 12:49:18 [INFO]: [FRONTEND] GET /api/matches 304 91.250 ms
+2025-08-19 12:49:18 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 12:49:18 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 12:49:18 [INFO]: [FRONTEND] GET /api/matches 304 7.446 ms
+2025-08-19 13:00:26 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:00:26 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:00:26 [INFO]: [FRONTEND] GET /api/matches 304 125.830 ms
+2025-08-19 13:00:26 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:00:26 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:00:26 [INFO]: [FRONTEND] GET /api/matches 304 8.389 ms
+2025-08-19 13:01:03 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 13:01:03 [INFO]: [FRONTEND] GET /api/armies 304 7.341 ms
+2025-08-19 13:01:03 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 13:01:03 [INFO]: [FRONTEND] GET /api/armies 304 7.081 ms
+2025-08-19 13:01:14 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:01:14 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:01:14 [INFO]: [FRONTEND] GET /api/matches 304 7.838 ms
+2025-08-19 13:01:14 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:01:14 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:01:14 [INFO]: [FRONTEND] GET /api/matches 304 10.193 ms
+2025-08-19 13:06:52 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:06:52 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:06:52 [INFO]: [FRONTEND] GET /api/matches 304 130.750 ms
+2025-08-19 13:06:52 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:06:52 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:06:52 [INFO]: [FRONTEND] GET /api/matches 304 7.712 ms
+2025-08-19 13:10:03 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:10:03 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:10:03 [INFO]: [FRONTEND] GET /api/matches 304 11.213 ms
+2025-08-19 13:10:03 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:10:03 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:10:03 [INFO]: [FRONTEND] GET /api/matches 304 8.005 ms
+2025-08-19 13:10:12 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:10:12 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:10:12 [INFO]: [FRONTEND] GET /api/matches 304 8.956 ms
+2025-08-19 13:10:12 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:10:12 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:10:12 [INFO]: [FRONTEND] GET /api/matches 304 8.217 ms
+2025-08-19 13:11:42 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:11:42 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:11:42 [INFO]: [FRONTEND] GET /api/matches 304 11.701 ms
+2025-08-19 13:11:42 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:11:42 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:11:42 [INFO]: [FRONTEND] GET /api/matches 304 10.797 ms
+2025-08-19 13:27:25 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:27:25 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:27:25 [INFO]: [FRONTEND] GET /api/matches 304 202.598 ms
+2025-08-19 13:27:25 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:27:25 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:27:25 [INFO]: [FRONTEND] GET /api/matches 304 9.490 ms
+2025-08-19 13:29:03 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:29:03 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:29:03 [INFO]: [FRONTEND] GET /api/matches 304 19.091 ms
+2025-08-19 13:29:03 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:29:03 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:29:03 [INFO]: [FRONTEND] GET /api/matches 304 10.135 ms
+2025-08-19 13:32:19 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:32:19 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:32:19 [INFO]: [FRONTEND] GET /api/matches 304 11.086 ms
+2025-08-19 13:32:19 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:32:19 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:32:19 [INFO]: [FRONTEND] GET /api/matches 304 8.960 ms
+2025-08-19 13:34:40 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:34:40 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:34:40 [INFO]: [FRONTEND] GET /api/matches 304 87.471 ms
+2025-08-19 13:34:40 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:34:40 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:34:40 [INFO]: [FRONTEND] GET /api/matches 304 8.277 ms
+2025-08-19 13:35:22 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:35:22 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:35:22 [INFO]: [FRONTEND] GET /api/matches 304 13.915 ms
+2025-08-19 13:35:22 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:35:22 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:35:22 [INFO]: [FRONTEND] GET /api/matches 304 9.915 ms
+2025-08-19 13:36:24 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:36:24 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:36:24 [INFO]: [FRONTEND] GET /api/matches 304 7.149 ms
+2025-08-19 13:36:24 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:36:24 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:36:24 [INFO]: [FRONTEND] GET /api/matches 304 7.430 ms
+2025-08-19 13:36:27 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:36:27 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:36:27 [INFO]: [FRONTEND] GET /api/matches 304 7.075 ms
+2025-08-19 13:36:27 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 13:36:27 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 13:36:27 [INFO]: [FRONTEND] GET /api/matches 304 6.634 ms
+2025-08-19 14:06:21 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:06:21 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:06:21 [INFO]: [FRONTEND] GET /api/matches 304 112.222 ms
+2025-08-19 14:06:21 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:06:21 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:06:21 [INFO]: [FRONTEND] GET /api/matches 304 11.226 ms
+2025-08-19 14:06:27 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:06:27 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:06:27 [INFO]: [FRONTEND] GET /api/matches 304 8.676 ms
+2025-08-19 14:06:27 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:06:27 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:06:27 [INFO]: [FRONTEND] GET /api/matches 304 9.327 ms
+2025-08-19 14:10:52 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:10:52 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:10:52 [INFO]: [FRONTEND] GET /api/matches 304 11.403 ms
+2025-08-19 14:10:52 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:10:52 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:10:52 [INFO]: [FRONTEND] GET /api/matches 304 11.595 ms
+2025-08-19 14:37:39 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:37:39 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:37:39 [INFO]: [FRONTEND] GET /api/matches 304 109.820 ms
+2025-08-19 14:37:39 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:37:39 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:37:39 [INFO]: [FRONTEND] GET /api/matches 304 7.838 ms
+2025-08-19 14:38:36 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:38:36 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:38:36 [INFO]: [FRONTEND] GET /api/matches 304 9.015 ms
+2025-08-19 14:38:36 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:38:36 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:38:36 [INFO]: [FRONTEND] GET /api/matches 304 7.676 ms
+2025-08-19 14:44:03 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:44:03 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:44:03 [INFO]: [FRONTEND] GET /api/matches 304 112.829 ms
+2025-08-19 14:44:03 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:44:03 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:44:03 [INFO]: [FRONTEND] GET /api/matches 304 8.835 ms
+2025-08-19 14:46:56 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 14:46:56 [INFO]: [FRONTEND] GET /api/armies 304 12.319 ms
+2025-08-19 14:46:56 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 14:46:56 [INFO]: [FRONTEND] GET /api/armies 304 7.500 ms
+2025-08-19 14:47:00 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:47:00 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:47:00 [INFO]: [FRONTEND] GET /api/matches 304 9.507 ms
+2025-08-19 14:47:00 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:47:00 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:47:00 [INFO]: [FRONTEND] GET /api/matches 304 11.054 ms
+2025-08-19 14:47:10 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:47:10 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:47:10 [INFO]: [FRONTEND] GET /api/matches 304 9.643 ms
+2025-08-19 14:47:10 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:47:10 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:47:10 [INFO]: [FRONTEND] GET /api/matches 304 8.359 ms
+2025-08-19 14:51:44 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:51:44 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:51:44 [INFO]: [FRONTEND] GET /api/matches 304 108.765 ms
+2025-08-19 14:51:44 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:51:44 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:51:44 [INFO]: [FRONTEND] GET /api/matches 304 10.993 ms
+2025-08-19 14:51:45 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:51:45 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:51:45 [INFO]: [FRONTEND] GET /api/matches 304 25.952 ms
+2025-08-19 14:51:45 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:51:45 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:51:45 [INFO]: [FRONTEND] GET /api/matches 304 12.090 ms
+2025-08-19 14:58:51 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:58:51 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:58:51 [INFO]: [FRONTEND] GET /api/matches 304 116.662 ms
+2025-08-19 14:58:51 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:58:51 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:58:51 [INFO]: [FRONTEND] GET /api/matches 304 7.802 ms
+2025-08-19 14:58:53 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 14:58:53 [INFO]: [FRONTEND] GET /api/armies 200 12.732 ms
+2025-08-19 14:58:53 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 14:58:53 [INFO]: [FRONTEND] GET /api/armies 304 14.814 ms
+2025-08-19 14:58:56 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 14:58:56 [INFO]: [FRONTEND] GET /api/armies 304 7.446 ms
+2025-08-19 14:58:56 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 14:58:56 [INFO]: [FRONTEND] GET /api/armies 304 9.677 ms
+2025-08-19 14:58:58 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:58:58 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:58:58 [INFO]: [FRONTEND] GET /api/matches 304 14.178 ms
+2025-08-19 14:58:58 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:58:58 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:58:58 [INFO]: [FRONTEND] GET /api/matches 304 19.087 ms
+2025-08-19 14:59:00 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:59:00 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:59:00 [INFO]: [FRONTEND] GET /api/matches 304 15.559 ms
+2025-08-19 14:59:00 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 14:59:00 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 14:59:00 [INFO]: [FRONTEND] GET /api/matches 304 14.783 ms
+2025-08-19 15:06:48 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:06:49 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:06:49 [INFO]: [FRONTEND] GET /api/matches 304 152.863 ms
+2025-08-19 15:06:49 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:06:49 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:06:49 [INFO]: [FRONTEND] GET /api/matches 304 7.366 ms
+2025-08-19 15:07:17 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 15:07:17 [INFO]: [FRONTEND] GET /api/armies 304 7.930 ms
+2025-08-19 15:07:17 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 15:07:17 [INFO]: [FRONTEND] GET /api/armies 304 10.814 ms
+2025-08-19 15:07:18 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:07:18 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:07:18 [INFO]: [FRONTEND] GET /api/matches 304 11.513 ms
+2025-08-19 15:07:18 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:07:18 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:07:18 [INFO]: [FRONTEND] GET /api/matches 304 12.076 ms
+2025-08-19 15:07:20 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:07:20 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:07:20 [INFO]: [FRONTEND] GET /api/matches 304 11.896 ms
+2025-08-19 15:07:20 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:07:20 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:07:20 [INFO]: [FRONTEND] GET /api/matches 304 14.518 ms
+2025-08-19 15:07:21 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 15:07:21 [INFO]: [FRONTEND] GET /api/armies 304 8.064 ms
+2025-08-19 15:07:21 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 15:07:21 [INFO]: [FRONTEND] GET /api/armies 304 7.715 ms
+2025-08-19 15:07:23 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:07:23 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:07:23 [INFO]: [FRONTEND] GET /api/matches 304 10.194 ms
+2025-08-19 15:07:23 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:07:23 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:07:23 [INFO]: [FRONTEND] GET /api/matches 304 13.718 ms
+2025-08-19 15:08:05 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 15:08:05 [INFO]: [FRONTEND] GET /api/armies 304 6.725 ms
+2025-08-19 15:08:05 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 15:08:05 [INFO]: [FRONTEND] GET /api/armies 304 6.366 ms
+2025-08-19 15:08:10 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:08:10 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:08:10 [INFO]: [FRONTEND] GET /api/matches 304 11.009 ms
+2025-08-19 15:08:10 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:08:10 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:08:10 [INFO]: [FRONTEND] GET /api/matches 304 11.706 ms
+2025-08-19 15:13:40 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 15:13:40 [INFO]: [FRONTEND] GET /api/armies 304 136.727 ms
+2025-08-19 15:13:40 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 15:13:40 [INFO]: [FRONTEND] GET /api/armies 304 10.419 ms
+2025-08-19 15:13:43 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:13:43 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:13:43 [INFO]: [FRONTEND] GET /api/matches 304 20.371 ms
+2025-08-19 15:13:43 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:13:43 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:13:43 [INFO]: [FRONTEND] GET /api/matches 304 11.891 ms
+2025-08-19 15:14:43 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:14:43 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:14:43 [INFO]: [FRONTEND] GET /api/matches 304 13.188 ms
+2025-08-19 15:14:43 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:14:43 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:14:43 [INFO]: [FRONTEND] GET /api/matches 304 12.517 ms
+2025-08-19 15:14:49 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:14:49 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:14:49 [INFO]: [FRONTEND] GET /api/matches 304 12.012 ms
+2025-08-19 15:14:49 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:14:49 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:14:49 [INFO]: [FRONTEND] GET /api/matches 304 14.046 ms
+2025-08-19 15:14:50 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 15:14:50 [INFO]: [FRONTEND] GET /api/armies 304 8.356 ms
+2025-08-19 15:14:50 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 15:14:50 [INFO]: [FRONTEND] GET /api/armies 304 9.780 ms
+2025-08-19 15:14:51 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:14:52 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:14:52 [INFO]: [FRONTEND] GET /api/matches 304 10.295 ms
+2025-08-19 15:14:52 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:14:52 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:14:52 [INFO]: [FRONTEND] GET /api/matches 304 9.167 ms
+2025-08-19 15:14:53 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 15:14:53 [INFO]: [FRONTEND] GET /api/armies 304 9.699 ms
+2025-08-19 15:14:53 [INFO]: [GET_ARMIES] Fetched 28 armies
+2025-08-19 15:14:53 [INFO]: [FRONTEND] GET /api/armies 304 11.999 ms
+2025-08-19 15:14:54 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:14:54 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:14:54 [INFO]: [FRONTEND] GET /api/matches 304 10.330 ms
+2025-08-19 15:14:54 [INFO]: [GET MATCHES] Fetching all matches
+2025-08-19 15:14:54 [INFO]: [GET MATCHES] Retrieved 31 matches
+2025-08-19 15:14:54 [INFO]: [FRONTEND] GET /api/matches 304 11.658 ms

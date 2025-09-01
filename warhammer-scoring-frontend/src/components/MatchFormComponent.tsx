@@ -9,21 +9,9 @@ import CustomButton from "./CustomButton"
 import { useAuth } from "../context/AuthContext"
 import Modal from "./Modal"
 import { handleApiError } from "../utils/handleApiError"
-
-type Detachment = {
-  id: number
-  name: string
-}
-
-type Army = {
-  id: number
-  name: string
-  detachments: Detachment[]
-}
-
-type MatchFormComponentProps = {
-    matchToEdit?: MatchForm & { id?: number }
-}
+import type { Army } from "../types/Army"
+import type { Detachment } from "../types/Detachment"
+import type { MatchFormComponentProps } from "../types/MatchFormComponentProps"
 
 function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
 
@@ -217,7 +205,7 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
                     value={formData.user_detachment_id.toString()}
                     options={userDetachments.map(det => ({
                         label: det.name,
-                        value: det.id.toString()
+                        value: det.id!.toString()
                     })) ?? []}
                     onChange={(val) =>
                         setFormData({ ...formData, user_detachment_id: Number(val) })
@@ -246,7 +234,7 @@ function MatchFormComponent({ matchToEdit }: MatchFormComponentProps) {
                     value={formData.opponent_detachment_id.toString()}
                     options={opponentDetachments.map(det => ({
                         label: det.name,
-                        value: det.id.toString()
+                        value: det.id!.toString()
                     })) ?? []}
                     onChange={(val) =>
                         setFormData({ ...formData, opponent_detachment_id: Number(val) })

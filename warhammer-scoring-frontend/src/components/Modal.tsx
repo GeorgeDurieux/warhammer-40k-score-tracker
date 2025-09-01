@@ -1,14 +1,6 @@
 import { useEffect, useState } from 'react'
 import CustomButton from './CustomButton'
-
-type ModalProps = {
-  isOpen: boolean
-  title: string
-  children: React.ReactNode
-  onClose: () => void
-  onConfirm?: () => void
-  confirmText?: string
-}
+import type { ModalProps } from '../types/ModalProps'
 
 export default function Modal({ isOpen, title, children, onClose, onConfirm, confirmText }: ModalProps) {
   const [showAnimation, setShowAnimation] = useState(false)
