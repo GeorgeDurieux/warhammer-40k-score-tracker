@@ -8,6 +8,7 @@ import cors from 'cors'
 import morgan from 'morgan'
 import logger from './logger/logger'
 import { errorHandler } from './middleware/errorHandler'
+import { setupSwagger } from './swagger'
 
 const app = express()
 
@@ -20,6 +21,10 @@ app.use(cors({
 // JSON parser
 app.use(express.json())
 
+// SWAGGER (documentation)
+setupSwagger(app)
+
+// MORGAN (logging)
 morgan.token('prefix', () => '[FRONTEND]')
 const frontendFormat = ':prefix :method :url :status :response-time ms'
 

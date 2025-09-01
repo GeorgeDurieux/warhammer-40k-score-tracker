@@ -40,6 +40,8 @@ This app provides a streamlined way to **submit matches, automatically calculate
 - **JWT Authentication**
 - **Bcrypt** for password hashing
 - **Jest** & **Supertest** for testing
+- **Swagger** for API documentation
+- **Morgan** for logging
 
 ### Frontend
 - **React** with **TypeScript**
